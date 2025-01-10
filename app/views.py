@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm
 from django.contrib import messages
-from .models import Camp,Login
+from .models import Camp,Login,Police,Volunteer,Public
 
 # Create your views here.
 
@@ -81,5 +81,11 @@ def ViewAdmin(request):
 
 def ViewTables(request):
     users=Login.objects.all()
-    return render(request,'datatable.html',{'users':users})
+    camps=Camp.objects.all()
+    stations=Police.objects.all()
+    publics=Public.objects.all()
+    volunteers=Volunteer.objects.all()
+    return render(request,'datatable.html',{'users':users},
+                  {'camps':camps},{'statons':stations},{'publics':publics},
+                  {'volunteers':volunteers})
 
