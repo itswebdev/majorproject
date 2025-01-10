@@ -78,3 +78,8 @@ def VolunteerReg(request):
 
 def ViewAdmin(request):
     return render(request,'admin.html')
+
+def ViewTables(request):
+    users=Login.objects.all()
+    return render(request,'datatable.html',{'users':users})
+
