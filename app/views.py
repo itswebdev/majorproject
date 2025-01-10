@@ -75,3 +75,6 @@ def VolunteerReg(request):
         form=VolunteerForm()
         login=LoginForm()
     return render(request,'volunteer_reg.html',{'form':form,'login':login})
+
+def ViewAdmin(request):
+    return render(request,'admin.html')
