@@ -757,8 +757,10 @@
                           <th>DOB</th>
                           <th>Aadhar No</th>
                           <th>Contact</th>
+                          <th>Email</th>
                         </tr>
                       </thead>
+                      <tfoot>
                       <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -766,6 +768,7 @@
                         <th>DOB</th>
                         <th>Aadhar No</th>
                         <th>Contact</th>
+                        <th>Email</th>
                       </tr>
                           </tfoot>
                           <tbody>
@@ -777,6 +780,7 @@
                               <td>{{user.date_of_birth}}</td>
                               <td>{{user.aadhar_no}}</td>
                               <td>{{user.contact}}</td>
+                              <td>{{user.login_id.email}}</td>
                             </tr>
                             {% endfor %}
                           </tbody>

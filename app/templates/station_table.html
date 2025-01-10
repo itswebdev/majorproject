@@ -761,6 +761,7 @@
                           <th>Email</th>
                         </tr>
                       </thead>
+                      <tfoot>
                               <tr>
                                 <th>ID</th>
                                 <th>Station ID</th>
@@ -782,6 +783,7 @@
                               <td>{{station.district}}</td>
                               <td>{{station.city}}</td>
                               <td>{{station.contact}}</td>
+                              <td>{{station.login_id.email}}</td>
                             </tr>
                             {% endfor %}
                           </tbody>

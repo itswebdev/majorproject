@@ -760,8 +760,10 @@
                           <th>Panchayath</th>
                           <th>Village</th>
                           <th>Contact</th>
+                          <th>Email</th>
                         </tr>
                       </thead>
+                      <tfoot>
                             <tr>
                                 <th>ID</th>
                                 <th>Full Name</th>
@@ -772,20 +774,23 @@
                                 <th>Panchayath</th>
                                 <th>Village</th>
                                 <th>Contact</th>
+                                <th>Email</th>
                             </tr>
                           </tfoot>
                           <tbody>
                             {% for public in publics %}
                             <tr>
                               <td>{{public.id}}</td>
-                              <td>{{public.full_name}}</td>
+                              <td>{{public.fullname}}</td>
                               <td>{{public.address}}</td>
                               <td>{{public.pincode}}</td>
                               <td>{{public.district}}</td>
                               <td>{{public.city}}</td>
-                              <td>{{public.Panchayath}}</td>
+                              <td>{{public.panchayath}}</td>
                               <td>{{public.village}}</td>
                               <td>{{public.contact}}</td>
+                              <td>{{public.login_id.email}}</td>
+
                             </tr>
                             {% endfor %}
                           </tbody>
