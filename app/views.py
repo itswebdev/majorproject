@@ -85,7 +85,7 @@ def ViewTables(request):
     stations=Police.objects.all()
     publics=Public.objects.all()
     volunteers=Volunteer.objects.all()
-    return render(request,'datatable.html',{'users':users},
-                  {'camps':camps},{'statons':stations},{'publics':publics},
-                  {'volunteers':volunteers})
+    return render(request,'datatable.html',{'users':users,
+                  'camps':camps,'statons':stations,'publics':publics,
+                  'volunteers':volunteers})
 
