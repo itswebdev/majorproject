@@ -86,6 +86,6 @@ def ViewTables(request):
     publics=Public.objects.all()
     volunteers=Volunteer.objects.all()
     return render(request,'datatable.html',{'users':users,
-                  'camps':camps,'statons':stations,'publics':publics,
+                  'camps':camps,'stations':stations,'publics':publics,
                   'volunteers':volunteers})
 
