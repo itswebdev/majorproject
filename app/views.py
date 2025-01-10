@@ -79,13 +79,18 @@ def VolunteerReg(request):
 def ViewAdmin(request):
     return render(request,'admin.html')
 
-def ViewTables(request):
-    users=Login.objects.all()
+def CampTable(request):
     camps=Camp.objects.all()
-    stations=Police.objects.all()
-    publics=Public.objects.all()
-    volunteers=Volunteer.objects.all()
-    return render(request,'datatable.html',{'users':users,
-                  'camps':camps,'stations':stations,'publics':publics,
-                  'volunteers':volunteers})
+    return render(request,'camp_table.html',{'camps':camps})
 
+def StationTable(request):
+     stations=Police.objects.all()
+     return render(request,'station_table.html',{'stations':stations})
+
+def PublicTable(request):
+    publics=Public.objects.all()
+    return render(request,'public_table.html',{'publics':publics})
+
+def VolunteerTable(request):
+    volunteers=Volunteer.objects.all()
+    return render(request,'volunteer_table.html',{'volunteers':volunteers})
