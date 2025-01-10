@@ -209,8 +209,8 @@
                       </a>
                     </li>
                     <li class="active">
-                      <a href="../tables/datatables.html">
-                        <span class="sub-item">Datatables</span>
+                      <a href="datatable.html">
+                        <span class="sub-item">Camp</span>
                       </a>
                     </li>
                   </ul>
@@ -748,6 +748,7 @@
                         id="basic-datatables"
                         class="display table table-striped table-hover"
                       >
+<<<<<<< HEAD
                         <thead>  
                           <tr>
                             <th>ID</th>
@@ -805,6 +806,9 @@
                           </tr>
                         </thead>
                         <tfoot>
+=======
+                        <thead>
+>>>>>>> a247c5fc47613dc7426125c83349b2079b8f56fc
                             <tr>
                                 <th>ID</th>
                                 <th>Camp Name</th>
@@ -816,26 +820,40 @@
                                 <th>Login Id</th>
                                 <th>Contact</th>
                               </tr>
-                        </tfoot>
-                        <tbody>
-                          {% for camp in camps %}
-                          <tr>
-                            <td>{{camp.id}}</td>
-                            <td>{{camp.full_address}}</td>
-                            <td>{{camp.camp_name}}</td>
-                            <td>{{camp.district}}</td>
-                            <td>{{camp.city}}</td>
-                            <td>{{camp.panchayath}}</td>
-                            <td>{{camp.thaluk}}</td>
-                            <td>{{camp.login_id}}</td>
-                            <td>{{camp.contact}}</td>
-                          </tr>
-                          {% endfor %}
-                        </tbody>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Camp Name</th>
+                                    <th>Address</th>
+                                    <th>District</th>
+                                    <th>City</th>
+                                    <th>Panchayath</th>
+                                    <th>Thaluk</th>
+                                    <th>Login Id</th>
+                                    <th>Contact</th>
+                                  </tr>
+                            </tfoot>
+                            <tbody>
+                              {% for camp in camps %}
+                              <tr>
+                                <td>{{camp.id}}</td>
+                                <td>{{camp.full_address}}</td>
+                                <td>{{camp.camp_name}}</td>
+                                <td>{{camp.district}}</td>
+                                <td>{{camp.city}}</td>
+                                <td>{{camp.panchayath}}</td>
+                                <td>{{camp.thaluk}}</td>
+                                <td>{{camp.login_id}}</td>
+                                <td>{{camp.contact}}</td>
+                              </tr>
+                              {% endfor %}
+                            </tbody>
                       </table>
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
               </div>
 
               <div class="col-md-12">
@@ -989,9 +1007,14 @@
                   </div>
                 </div>
               </div>
+=======
+              </div>              
+>>>>>>> a247c5fc47613dc7426125c83349b2079b8f56fc
             </div>
           </div>
         </div>
+
+        
 
         <footer class="footer">
           <div class="container-fluid d-flex justify-content-between">
