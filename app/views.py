@@ -95,6 +95,18 @@ def VolunteerTable(request):
     volunteers=Volunteer.objects.all()
     return render(request,'volunteer_table.html',{'volunteers':volunteers})
 
+def Camp(request):
+    return render(request,'camp.html')
+
+def Station(request):
+    return render(request,'station.html')
+
+def Public(request):
+    return render(request,'public.html')
+
+def Volunteer(request):
+    return render(request,'volunteer.html')
+
 
 def UserLogin(request):
     if request.method=="POST":
