@@ -99,7 +99,7 @@ def Camp(request):
     return render(request,"camp.html")
 
 
-def LoginCamp(request):
+def UserLogin(request):
     if request.method=="POST":
         form=LoginCheck(request.POST)
         if form.is_valid():

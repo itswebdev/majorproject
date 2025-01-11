@@ -11,6 +11,6 @@ urlpatterns = [
     path("station_tables/",views.StationTable, name="StationTable"),
     path("public_tables/",views.PublicTable, name="PublicTable"),
     path("volunteer_tables/",views.VolunteerTable, name="VolunteerTable"),
-    path("login/",views.LoginCamp,name="LoginCamp"),
+    path("login/",views.UserLogin,name="UserCamp"),
     path("camp/",views.Camp, name='Camp')
 ]
