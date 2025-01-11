@@ -33,7 +33,7 @@
           </form>
         </div>
         <div class="form-container sign-in-container">
-          <form action="#">
+          <form action="#" method="post">
             <h1>Sign In</h1>
             <div class="social-container">
               <a href="#" class="social"><i class="fab fa-facebook-f"></i> </a>
@@ -43,11 +43,14 @@
               <a href="#" class="social"><i class="fab fa-linkedin-in"></i> </a>
             </div>
             <span>or use your account</span>
-            <input type="email" placeholder="Enter email" />
-            <input type="password" placeholder="Enter Password" />
-            <a href="#">Forget Your Password?</a>
-            <button>Sign-In</button>
-          </form>
+            {% csrf_token %}
+            {{form.as_p}}
+
+            {% comment %} <input type="email" name='email' placeholder="Enter email" />
+            <input type="password" name='password' placeholder="Enter Password" /> {% endcomment %}
+            {% comment %} <a href="#">Forget Your Password?</a> {% endcomment %}
+            <button type='submit'>Sign-In</button>
+          </form> 
         </div>
         <div class="overlay-container">
           <div class="overlay">

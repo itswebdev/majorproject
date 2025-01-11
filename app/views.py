@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm
+from django.shortcuts import render, redirect
+from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck
 from django.contrib import messages
 from .models import Camp,Login,Police,Volunteer,Public
 
@@ -94,5 +94,27 @@ def PublicTable(request):
 def VolunteerTable(request):
     volunteers=Volunteer.objects.all()
     return render(request,'volunteer_table.html',{'volunteers':volunteers})
-def Login(request):
-    return render(request,'login.html')
+
+def Camp(request):
+    return render(request,"camp.html")
+
+
+def LoginCamp(request):
+    if request.method=="POST":
+        form=LoginCheck(request.POST)
+        if form.is_valid():
+            email=form.cleaned_data['email']
+            password=form.cleaned_data['password']
+            try:
+                user=Login.objects.get(email=email)
+                if user.password==password:
+                    return redirect ('Camp')
+                else:
+                    messages.error(request,"invalid password")
+            except Login.DoesNotExist:
+                    messages.error(request,"User Does not Exist")
+    else:
+        form=LoginCheck()
+    return render(request,'login.html',{'form':form})
+
+

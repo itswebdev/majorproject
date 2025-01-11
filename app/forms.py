@@ -26,3 +26,7 @@ class VolunteerForm(forms.ModelForm):
     class Meta:
         model=Volunteer
         fields=['volunteer_name','gender','date_of_birth','aadhar_no','contact']
+
+class LoginCheck(forms.Form):
+    email=forms.CharField(max_length=100)
+    password=forms.CharField(widget=forms.PasswordInput)
