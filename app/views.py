@@ -95,9 +95,6 @@ def VolunteerTable(request):
     volunteers=Volunteer.objects.all()
     return render(request,'volunteer_table.html',{'volunteers':volunteers})
 
-def Camp(request):
-    return render(request,"camp.html")
-
 
 def UserLogin(request):
     if request.method=="POST":
@@ -108,7 +105,14 @@ def UserLogin(request):
             try:
                 user=Login.objects.get(email=email)
                 if user.password==password:
-                    return redirect ('Camp')
+                    if user.usertype=="camp":
+                        return render(request,'camp.html')
+                    elif user.usertype=="police_station":
+                        return render(request,'station.html')
+                    elif user.usertype=="public_user":
+                        return render(request,'public.html')
+                    elif user.usertype=="volunteer":
+                        return render(request,'volunteer.html')    
                 else:
                     messages.error(request,"invalid password")
             except Login.DoesNotExist:
