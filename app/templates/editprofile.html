@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Profile</title>
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }} {{ login.email }}
+    </form>
+    <button type="submit">Edit</button>
+</body>
+</html>
