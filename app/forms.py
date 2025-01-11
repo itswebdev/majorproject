@@ -30,3 +30,9 @@ class VolunteerForm(forms.ModelForm):
 class LoginCheck(forms.Form):
     email=forms.CharField(max_length=100)
     password=forms.CharField(widget=forms.PasswordInput)
+
+class LoginEditForm(forms.ModelForm):
+    class Meta:
+        model=Login
+        fields=['email']
+

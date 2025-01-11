@@ -13,8 +13,11 @@ urlpatterns = [
     path("volunteer_tables/",views.VolunteerTable, name="VolunteerTable"),
     path("login/",views.UserLogin,name="UserCamp"),
     path("campHome/",views.CampHome, name='CampHome'),
-    path("station/",views.Station, name='Station'),
-    path("public/",views.Public, name='Public'),
-    path("volunteer/",views.Volunteer, name='Volunteer'),
-    path("editprofile/",views.EditProfile, name='editprofile'),
+    path("stationHome/",views.StationHome, name='StationHome'),
+    path("publicHome/",views.PublicHome, name='PublicHome'),
+    path("volunteerHome/",views.VolunteerHome, name='VolunteerHome'),
+    path("editcamp/",views.EditCamp, name='EditCamp'),
+    path("editstation/",views.EditStation, name='EditStation'),
+    path("editpublic/",views.EditPublic, name='EditPublic'),
+    path("editvolunteer/",views.EditVolunteer, name='EditVolunteer')
 ]

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck
+from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck,LoginEditForm
 from django.contrib import messages
 from .models import Camp,Login,Police,Volunteer,Public
 
@@ -98,13 +98,13 @@ def VolunteerTable(request):
 def CampHome(request):
     return render(request,'camp.html')
 
-def Station(request):
+def StationHome(request):
     return render(request,'station.html')
 
-def Public(request):
+def PublicHome(request):
     return render(request,'public.html')
 
-def Volunteer(request):
+def VolunteerHome(request):
     return render(request,'volunteer.html')
 
 
@@ -119,16 +119,16 @@ def UserLogin(request):
                 if user.password==password:
                     if user.usertype=="camp":
                         request.session['camp_id']=user.id
-                        return redirect('Camp')
+                        return redirect('CampHome')
                     elif user.usertype=="police_station":
                         request.session['station_id']=user.id
-                        return redirect('Station')
+                        return redirect('StationHome')
                     elif user.usertype=="public_user":
                         request.session['public_id']=user.id
-                        return redirect('Public')
+                        return redirect('PublicHome')
                     elif user.usertype=="volunteer":
                         request.session['volunteer_id']=user.id
-                        return redirect('Volunteer')    
+                        return redirect('VolunteerHome')    
                 else:
                     messages.error(request,"invalid password")
             except Login.DoesNotExist:
@@ -137,43 +137,71 @@ def UserLogin(request):
         form=LoginCheck()
     return render(request,'login.html',{'form':form})
 
-def EditProfile(request):
-    id=request.session['camp_id']
+def EditCamp(request):
+    id=request.session.get('camp_id')
     user=get_object_or_404(Login, id=id)
     camp=get_object_or_404(Camp, login_id=user)
-    if request.method=="POST":
-        if user.usertype=="camp":
-            login=LoginForm(request.POST, instance=user)
-            form=CampForm(request.POST, instance=camp)
-        elif user.usertype=="police_station":
-            login=LoginForm(request.POST, instance=user)
-            form=PoliceForm(request.POST, instance=user.police)
-        elif user.usertype=="public_user":
-            login=LoginForm(request.POST, instance=user)
-            form=PublicForm(request.POST, instance=user.public)
-        elif user.usertype=="volunteer":
-            login=LoginForm(request.POST, instance=user)
-            form=VolunteerForm(request.POST, instance=user.volunteer)
-        if form.is_valid() and login.is_valid():
-            form.save()
+    if request.method == "POST":
+        login=LoginEditForm(request.POST, instance=user)
+        form=CampForm(request.POST, instance=camp)
+        if login.is_valid() and form.is_valid():
             login.save()
+            form.save()
             messages.success(request,"Profile Updated Successfully")
             return redirect('CampHome')
     else:
-        if user.usertype=="camp":
-            login=LoginForm(instance=user)
-            form=CampForm(instance=camp)
-        elif user.usertype=="police_station":
-            login=LoginForm(instance=user)
-            form=PoliceForm(instance=user.police)
-        elif user.usertype=="public_user":
-            login=LoginForm(instance=user)
-            form=PublicForm(instance=user.public)
-        elif user.usertype=="volunteer":
-            login=LoginForm(instance=user)
-            form=VolunteerForm(instance=user.volunteer)
+        login=LoginEditForm(instance=user)
+        form=CampForm(instance=camp)
     return render(request,'edit_profile.html',{'form':form,'login':login})
 
-        
+def EditStation(request):
+    id=request.session['station_id']
+    user=get_object_or_404(Login, id=id)
+    station=get_object_or_404(Police, login_id=user)
+    if request.method=="POST":
+            login=LoginForm(request.POST, instance=user)
+            form=PoliceForm(request.POST, instance=station)
+            if form.is_valid() and login.is_valid():
+             form.save()
+             login.save()
+             messages.success(request,"Profile Updated Successfully")
+             return redirect('StationHome')
+    else:
+      login=LoginForm(instance=user)
+      form=PoliceForm(instance=station)
+    return render(request,'edit_profile.html',{'form':form,'login':login})
 
 
+def EditPublic(request):
+    id=request.session['public_id']
+    user=get_object_or_404(Login, id=id)
+    public=get_object_or_404(Public, login_id=user)
+    if request.method=="POST":
+            login=LoginForm(request.POST, instance=user)
+            form=PublicForm(request.POST, instance=public)
+            if form.is_valid() and login.is_valid():
+             form.save()
+             login.save()
+             messages.success(request,"Profile Updated Successfully")
+             return redirect('PublicHome')
+    else:
+      login=LoginForm(instance=user)
+      form=PublicForm(instance=public)
+    return render(request,'edit_profile.html',{'form':form,'login':login})
+
+def EditVolunteer(request):
+    id=request.session['volunteer_id']
+    user=get_object_or_404(Login, id=id)
+    Volunteer=get_object_or_404(Volunteer, login_id=user)
+    if request.method=="POST":
+            login=LoginForm(request.POST, instance=user)
+            form=VolunteerForm(request.POST, instance=Volunteer)
+            if form.is_valid() and login.is_valid():
+             form.save()
+             login.save()
+             messages.success(request,"Profile Updated Successfully")
+             return redirect('VolunteerHome')
+    else:
+      login=LoginForm(instance=user)
+      form=VolunteerForm(instance=Volunteer)
+    return render(request,'edit_profile.html',{'form':form,'login':login})

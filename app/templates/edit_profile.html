@@ -6,8 +6,9 @@
 <body>
     <form method="post">
         {% csrf_token %}
-        {{ form.as_p }} {{ login.email }}
-    </form>
+        {{ form.as_p }} {{ login.as_p }}
+    
     <button type="submit">Edit</button>
+</form>
 </body>
 </html>
