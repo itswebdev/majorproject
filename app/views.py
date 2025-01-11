@@ -118,12 +118,16 @@ def UserLogin(request):
                 user=Login.objects.get(email=email)
                 if user.password==password:
                     if user.usertype=="camp":
+                        request.session['camp_id']=user.id
                         return redirect('Camp')
                     elif user.usertype=="police_station":
+                        request.session['station_id']=user.id
                         return redirect('Station')
                     elif user.usertype=="public_user":
+                        request.session['public_id']=user.id
                         return redirect('Public')
                     elif user.usertype=="volunteer":
+                        request.session['volunteer_id']=user.id
                         return redirect('Volunteer')    
                 else:
                     messages.error(request,"invalid password")
