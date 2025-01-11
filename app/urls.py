@@ -12,9 +12,9 @@ urlpatterns = [
     path("public_tables/",views.PublicTable, name="PublicTable"),
     path("volunteer_tables/",views.VolunteerTable, name="VolunteerTable"),
     path("login/",views.UserLogin,name="UserCamp"),
-    path("camp/",views.Camp, name='Camp'),
+    path("campHome/",views.CampHome, name='CampHome'),
     path("station/",views.Station, name='Station'),
     path("public/",views.Public, name='Public'),
     path("volunteer/",views.Volunteer, name='Volunteer'),
-    path("editprofile/<int:id>/",views.EditProfile, name='EditProfile')
+    path("editprofile/",views.EditProfile, name='editprofile'),
 ]

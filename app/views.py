@@ -95,7 +95,7 @@ def VolunteerTable(request):
     volunteers=Volunteer.objects.all()
     return render(request,'volunteer_table.html',{'volunteers':volunteers})
 
-def Camp(request):
+def CampHome(request):
     return render(request,'camp.html')
 
 def Station(request):
@@ -137,12 +137,14 @@ def UserLogin(request):
         form=LoginCheck()
     return render(request,'login.html',{'form':form})
 
-def EditProfile(request, id):
+def EditProfile(request):
+    id=request.session['camp_id']
     user=get_object_or_404(Login, id=id)
+    camp=get_object_or_404(Camp, login_id=user)
     if request.method=="POST":
         if user.usertype=="camp":
             login=LoginForm(request.POST, instance=user)
-            form=CampForm(request.POST, instance=user.camp)
+            form=CampForm(request.POST, instance=camp)
         elif user.usertype=="police_station":
             login=LoginForm(request.POST, instance=user)
             form=PoliceForm(request.POST, instance=user.police)
@@ -156,11 +158,11 @@ def EditProfile(request, id):
             form.save()
             login.save()
             messages.success(request,"Profile Updated Successfully")
-            return redirect('UserLogin')
+            return redirect('CampHome')
     else:
         if user.usertype=="camp":
             login=LoginForm(instance=user)
-            form=CampForm(instance=user.camp)
+            form=CampForm(instance=camp)
         elif user.usertype=="police_station":
             login=LoginForm(instance=user)
             form=PoliceForm(instance=user.police)
