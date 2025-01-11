@@ -5,6 +5,8 @@ from .models import Camp,Login,Police,Volunteer,Public
 
 # Create your views here.
 
+    # camp Registration form
+
 def CampReg(request):
     if request.method=="POST":
         form=CampForm(request.POST)
@@ -22,6 +24,8 @@ def CampReg(request):
         form=CampForm()
         login=LoginForm()
     return render(request, 'camp_reg.html',{'form':form,'login':login})
+
+    # station Registration form
 
 def PoliceReg(request):
     if request.method=="POST":
@@ -41,6 +45,8 @@ def PoliceReg(request):
         login=LoginForm()
     return render(request,'police_reg.html',{'form':form,'login':login})
 
+    # public Registration form
+
 def PublicReg(request):
     if request.method=="POST":
         form=PublicForm(request.POST)
@@ -58,6 +64,8 @@ def PublicReg(request):
         form=PublicForm()
         login=LoginForm()
     return render(request, 'public_reg.html',{'form':form,'login':login})
+
+    # volunteer Registration form
 
 def VolunteerReg(request):
     if request.method=="POST":
@@ -95,18 +103,29 @@ def VolunteerTable(request):
     volunteers=Volunteer.objects.all()
     return render(request,'volunteer_table.html',{'volunteers':volunteers})
 
+    # camp home page
+
 def CampHome(request):
     return render(request,'camp.html')
+
+    # station home page
 
 def StationHome(request):
     return render(request,'station.html')
 
+    # public home page
+
 def PublicHome(request):
     return render(request,'public.html')
+
+    
+    # volunteer home page
 
 def VolunteerHome(request):
     return render(request,'volunteer.html')
 
+
+    # user login 
 
 def UserLogin(request):
     if request.method=="POST":
@@ -137,6 +156,9 @@ def UserLogin(request):
         form=LoginCheck()
     return render(request,'login.html',{'form':form})
 
+
+     # camp profile editing
+
 def EditCamp(request):
     id=request.session.get('camp_id')
     user=get_object_or_404(Login, id=id)
@@ -144,9 +166,9 @@ def EditCamp(request):
     if request.method == "POST":
         login=LoginEditForm(request.POST, instance=user)
         form=CampForm(request.POST, instance=camp)
-        if login.is_valid() and form.is_valid():
-            login.save()
+        if form.is_valid() and login.is_valid():
             form.save()
+            login.save()
             messages.success(request,"Profile Updated Successfully")
             return redirect('CampHome')
     else:
@@ -154,12 +176,15 @@ def EditCamp(request):
         form=CampForm(instance=camp)
     return render(request,'edit_profile.html',{'form':form,'login':login})
 
+    
+     # station profile editing
+
 def EditStation(request):
     id=request.session['station_id']
     user=get_object_or_404(Login, id=id)
     station=get_object_or_404(Police, login_id=user)
     if request.method=="POST":
-            login=LoginForm(request.POST, instance=user)
+            login=LoginEditForm(request.POST, instance=user)
             form=PoliceForm(request.POST, instance=station)
             if form.is_valid() and login.is_valid():
              form.save()
@@ -167,17 +192,19 @@ def EditStation(request):
              messages.success(request,"Profile Updated Successfully")
              return redirect('StationHome')
     else:
-      login=LoginForm(instance=user)
+      login=LoginEditForm(instance=user)
       form=PoliceForm(instance=station)
     return render(request,'edit_profile.html',{'form':form,'login':login})
 
+
+     # public profile editing
 
 def EditPublic(request):
     id=request.session['public_id']
     user=get_object_or_404(Login, id=id)
     public=get_object_or_404(Public, login_id=user)
     if request.method=="POST":
-            login=LoginForm(request.POST, instance=user)
+            login=LoginEditForm(request.POST, instance=user)
             form=PublicForm(request.POST, instance=public)
             if form.is_valid() and login.is_valid():
              form.save()
@@ -185,23 +212,25 @@ def EditPublic(request):
              messages.success(request,"Profile Updated Successfully")
              return redirect('PublicHome')
     else:
-      login=LoginForm(instance=user)
+      login=LoginEditForm(instance=user)
       form=PublicForm(instance=public)
     return render(request,'edit_profile.html',{'form':form,'login':login})
 
-def EditVolunteer(request):
+    # volunteer profile editing
+
+def EditVolunteer(request):                             
     id=request.session['volunteer_id']
     user=get_object_or_404(Login, id=id)
-    Volunteer=get_object_or_404(Volunteer, login_id=user)
+    volunteer=get_object_or_404(Volunteer, login_id=user)
     if request.method=="POST":
-            login=LoginForm(request.POST, instance=user)
-            form=VolunteerForm(request.POST, instance=Volunteer)
+            login=LoginEditForm(request.POST, instance=user)
+            form=VolunteerForm(request.POST, instance=volunteer)
             if form.is_valid() and login.is_valid():
              form.save()
              login.save()
              messages.success(request,"Profile Updated Successfully")
              return redirect('VolunteerHome')
     else:
-      login=LoginForm(instance=user)
-      form=VolunteerForm(instance=Volunteer)
+      login=LoginEditForm(instance=user)
+      form=VolunteerForm(instance=volunteer)
     return render(request,'edit_profile.html',{'form':form,'login':login})

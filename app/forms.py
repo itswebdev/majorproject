@@ -31,7 +31,7 @@ class LoginCheck(forms.Form):
     email=forms.CharField(max_length=100)
     password=forms.CharField(widget=forms.PasswordInput)
 
-class LoginEditForm(forms.ModelForm):
+class LoginEditForm(forms.ModelForm): # form for profile editing
     class Meta:
         model=Login
         fields=['email']
