@@ -44,8 +44,8 @@
             </div>
             <span>or use your account</span>
             {% csrf_token %}
-            {{form.as_p}}
-
+            {{form.email}}
+            {{form.password}}
             {% comment %} <input type="email" name='email' placeholder="Enter email" />
             <input type="password" name='password' placeholder="Enter Password" /> {% endcomment %}
             {% comment %} <a href="#">Forget Your Password?</a> {% endcomment %}

@@ -118,13 +118,13 @@ def UserLogin(request):
                 user=Login.objects.get(email=email)
                 if user.password==password:
                     if user.usertype=="camp":
-                        return render(request,'camp.html')
+                        return redirect('Camp')
                     elif user.usertype=="police_station":
-                        return render(request,'station.html')
+                        return redirect('Station')
                     elif user.usertype=="public_user":
-                        return render(request,'public.html')
+                        return redirect('Public')
                     elif user.usertype=="volunteer":
-                        return render(request,'volunteer.html')    
+                        return redirect('Volunteer')    
                 else:
                     messages.error(request,"invalid password")
             except Login.DoesNotExist:
