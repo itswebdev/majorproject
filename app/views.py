@@ -94,3 +94,5 @@ def PublicTable(request):
 def VolunteerTable(request):
     volunteers=Volunteer.objects.all()
     return render(request,'volunteer_table.html',{'volunteers':volunteers})
+def Login(request):
+    return render(request,'login.html')
