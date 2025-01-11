@@ -16,4 +16,5 @@ urlpatterns = [
     path("station/",views.Station, name='Station'),
     path("public/",views.Public, name='Public'),
     path("volunteer/",views.Volunteer, name='Volunteer'),
+    path("editprofile/<int:id>/",views.EditProfile, name='EditProfile')
 ]

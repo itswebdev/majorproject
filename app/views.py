@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck
 from django.contrib import messages
 from .models import Camp,Login,Police,Volunteer,Public
@@ -136,5 +136,42 @@ def UserLogin(request):
     else:
         form=LoginCheck()
     return render(request,'login.html',{'form':form})
+
+def EditProfile(request, id):
+    user=get_object_or_404(Login, id=id)
+    if request.method=="POST":
+        if user.usertype=="camp":
+            login=LoginForm(request.POST, instance=user)
+            form=CampForm(request.POST, instance=user.camp)
+        elif user.usertype=="police_station":
+            login=LoginForm(request.POST, instance=user)
+            form=PoliceForm(request.POST, instance=user.police)
+        elif user.usertype=="public_user":
+            login=LoginForm(request.POST, instance=user)
+            form=PublicForm(request.POST, instance=user.public)
+        elif user.usertype=="volunteer":
+            login=LoginForm(request.POST, instance=user)
+            form=VolunteerForm(request.POST, instance=user.volunteer)
+        if form.is_valid() and login.is_valid():
+            form.save()
+            login.save()
+            messages.success(request,"Profile Updated Successfully")
+            return redirect('UserLogin')
+    else:
+        if user.usertype=="camp":
+            login=LoginForm(instance=user)
+            form=CampForm(instance=user.camp)
+        elif user.usertype=="police_station":
+            login=LoginForm(instance=user)
+            form=PoliceForm(instance=user.police)
+        elif user.usertype=="public_user":
+            login=LoginForm(instance=user)
+            form=PublicForm(instance=user.public)
+        elif user.usertype=="volunteer":
+            login=LoginForm(instance=user)
+            form=VolunteerForm(instance=user.volunteer)
+    return render(request,'edit_profile.html',{'form':form,'login':login})
+
+        
 
 
