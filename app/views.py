@@ -160,7 +160,7 @@ def UserLogin(request):
      # camp profile editing
 
 def EditCamp(request):
-    id=request.session.get('camp_id')
+    id=request.session.get['camp_id']
     user=get_object_or_404(Login, id=id)
     camp=get_object_or_404(Camp, login_id=user)
     if request.method == "POST":
@@ -180,7 +180,7 @@ def EditCamp(request):
      # station profile editing
 
 def EditStation(request):
-    id=request.session('station_id')
+    id=request.session['station_id']
     user=get_object_or_404(Login, id=id)
     station=get_object_or_404(Police, login_id=user)
     if request.method=="POST":
@@ -200,7 +200,7 @@ def EditStation(request):
      # public profile editing
 
 def EditPublic(request):
-    id=request.session('public_id')
+    id=request.session['public_id']
     user=get_object_or_404(Login, id=id)
     public=get_object_or_404(Public, login_id=user)
     if request.method=="POST":
@@ -219,7 +219,7 @@ def EditPublic(request):
     # volunteer profile editing
 
 def EditVolunteer(request):                             
-    id=request.session('volunteer_id')
+    id=request.session['volunteer_id']
     user=get_object_or_404(Login, id=id)
     volunteer=get_object_or_404(Volunteer, login_id=user)
     if request.method=="POST":
