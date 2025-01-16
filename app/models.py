@@ -44,3 +44,17 @@ class Volunteer(models.Model):
     aadhar_no=models.CharField(max_length=25)
     contact=models.CharField(max_length=15)
     login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
+
+class CampUser(models.Model):
+    photo=models.ImageField(upload_to='camp')
+    full_name=models.CharField(max_length=100)
+    address=models.CharField(max_length=100)
+    district=models.CharField(max_length=100)
+    city=models.CharField(max_length=100)
+    contact=models.CharField(max_length=100)
+    aadhar=models.CharField(max_length=100)
+    panchayath=models.CharField(max_length=100)
+    village=models.CharField(max_length=100)
+    thaluk=models.CharField(max_length=100)
+    current_date=models.DateField(auto_now_add=True)
+    login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
