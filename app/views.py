@@ -252,6 +252,7 @@ def CampAddUser(request):
             camp_user.camp_id=campdata
             camp_user.save()
             messages.success(request,"Registered Successfully")
+            return redirect('CampHome')
     else:
 
         form=CampUserForm()
