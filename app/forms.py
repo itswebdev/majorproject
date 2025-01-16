@@ -1,5 +1,5 @@
 from django import forms
-from .models import Camp, Login, Police, Public, Volunteer
+from .models import Camp, Login, Police, Public, Volunteer, CampUser
 
 class CampForm(forms.ModelForm):
     
@@ -36,3 +36,7 @@ class LoginEditForm(forms.ModelForm): # form for profile editing
         model=Login
         fields=['email']
 
+class CampUserForm(forms.ModelForm):
+    class Mets:
+        model=CampUser
+        fields=['photo','full_name','address','district','city','contact_no','aadhar_no','panchayath','village','thaluk']
