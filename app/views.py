@@ -254,4 +254,4 @@ def CampAddUser(request):
      else:
 
         form=CampUserForm()
-     return render(request,'police_reg.html',{'form':form})
+     return render(request,'camp_user_reg.html',{'form':form})

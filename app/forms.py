@@ -37,6 +37,6 @@ class LoginEditForm(forms.ModelForm): # form for profile editing
         fields=['email']
 
 class CampUserForm(forms.ModelForm):
-    class Mets:
+    class Meta:
         model=CampUser
         fields=['photo','full_name','address','district','city','contact_no','aadhar_no','panchayath','village','thaluk']
