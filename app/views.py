@@ -244,6 +244,7 @@ def ViewAdmin2(request):
 
 def CampAddUser(request):
     id=request.session['camp_id']
+    campdata=get_object_or_404(Login,id=id)
     if request.method=="POST":
         form=CampUserForm(request.POST)
         if form.is_valid():
