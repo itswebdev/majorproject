@@ -100,7 +100,7 @@ def StationTable(request):
 def PublicTable(request):
     publics=Public.objects.all()
     return render(request,'public_table.html',{'publics':publics})
-
+ 
 def VolunteerTable(request):
     volunteers=Volunteer.objects.all()
     return render(request,'volunteer_table.html',{'volunteers':volunteers})
@@ -201,7 +201,7 @@ def EditStation(request):
 
      # public profile editing
 
-def EditPublic(request):
+def EditPublic(request): 
     id=request.session['public_id']
     user=get_object_or_404(Login, id=id)
     public=get_object_or_404(Public, login_id=user)
