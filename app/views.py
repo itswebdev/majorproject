@@ -84,6 +84,8 @@ def VolunteerReg(request):
         login=LoginForm()
     return render(request,'volunteer_reg.html',{'form':form,'login':login})
 
+# admin home page
+
 def ViewAdmin(request):
     return render(request,'admin.html')
 
@@ -234,3 +236,6 @@ def EditVolunteer(request):
       login=LoginEditForm(instance=user)
       form=VolunteerForm(instance=volunteer)
     return render(request,'edit_profile.html',{'form':form,'login':login})
+
+def ViewAdmin2(request):
+    return render(request,'admin2.html')

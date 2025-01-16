@@ -19,5 +19,6 @@ urlpatterns = [
     path("editcamp/",views.EditCamp, name='EditCamp'),
     path("editstation/",views.EditStation, name='EditStation'),
     path("editpublic/",views.EditPublic, name='EditPublic'),
-    path("editvolunteer/",views.EditVolunteer, name='EditVolunteer')
+    path("editvolunteer/",views.EditVolunteer, name='EditVolunteer'),
+    path('admin_view/',views.ViewAdmin2,name='ViewAdmin2')
 ]
