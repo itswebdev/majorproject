@@ -46,7 +46,7 @@ class Volunteer(models.Model):
     login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
 
 class CampUser(models.Model):
-    photo=models.ImageField(upload_to='camp')
+    photo=models.ImageField(upload_to='camp')          # Here camp is the folder name where the images added will be stored 
     full_name=models.CharField(max_length=100)
     address=models.CharField(max_length=100)
     district=models.CharField(max_length=100)
