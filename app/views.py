@@ -244,11 +244,12 @@ def ViewAdmin2(request):
 
 def CampAddUser(request):
      id=request.session['camp_id']
+     campdata=get_object_or_404(Login, id=id)
      if request.method=="POST":
-        form=CampUserForm(request.POST)
+        form=CampUserForm(request.POST, request.FILES)
         if form.is_valid():
             camp_user=form.save(commit=False)
-            camp_user.camp_id=id
+            camp_user.camp_id=campdata
             camp_user.save()
             messages.success(request,"Registered Successfully")
      else:
