@@ -243,16 +243,9 @@ def ViewAdmin2(request):
     return render(request,'admin2.html') 
 
 def CampAddUser(request):
-<<<<<<< HEAD
     id=request.session['camp_id']
     if request.method=="POST":
         form=CampUserForm(request.POST)
-=======
-     id=request.session['camp_id']
-     campdata=get_object_or_404(Login, id=id)
-     if request.method=="POST":
-        form=CampUserForm(request.POST, request.FILES)
->>>>>>> 9b40c00e8a1a97e41e5ae62940b31752af523643
         if form.is_valid():
             camp_user=form.save(commit=False)
             camp_user.camp_id=campdata
