@@ -182,7 +182,7 @@ def EditCamp(request):
      # station profile editing
 
 def EditStation(request):
-    id=request.session['station_id']
+    id=request.session['station_id']                   
     user=get_object_or_404(Login, id=id)
     station=get_object_or_404(Police, login_id=user)
     if request.method=="POST":
@@ -243,10 +243,10 @@ def ViewAdmin2(request):
     return render(request,'admin2.html') 
 
 def CampAddUser(request):
-    id=request.session['camp_id']
+    id=request.session['camp_id']                        # We can also use ' id=request.session.get('camp_id') ' instead of this line.
     campdata=get_object_or_404(Login,id=id)
     if request.method=="POST":
-        form=CampUserForm(request.POST,request.FILES)
+        form=CampUserForm(request.POST,request.FILES)    # 'request.FILES' is used because image files are also stored here.
         if form.is_valid():
             camp_user=form.save(commit=False)
             camp_user.camp_id=campdata
