@@ -162,7 +162,7 @@ def UserLogin(request):
      # camp profile editing
 
 def EditCamp(request):
-    id=request.session.get['camp_id']
+    id=request.session['camp_id']
     user=get_object_or_404(Login, id=id)
     camp=get_object_or_404(Camp, login_id=user)
     if request.method == "POST":
@@ -243,15 +243,15 @@ def ViewAdmin2(request):
     return render(request,'admin2.html') 
 
 def CampAddUser(request):
-     id=request.session['camp_id']
-     if request.method=="POST":
+    id=request.session['camp_id']
+    if request.method=="POST":
         form=CampUserForm(request.POST)
         if form.is_valid():
             camp_user=form.save(commit=False)
             camp_user.camp_id=id
             camp_user.save()
             messages.success(request,"Registered Successfully")
-     else:
+    else:
 
         form=CampUserForm()
-     return render(request,'camp_user_reg.html',{'form':form})
+    return render(request,'camp_user_reg.html',{'form':form})
