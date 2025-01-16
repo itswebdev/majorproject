@@ -237,5 +237,7 @@ def EditVolunteer(request):
       form=VolunteerForm(instance=volunteer)
     return render(request,'edit_profile.html',{'form':form,'login':login})
 
+    # admin page view 2
+
 def ViewAdmin2(request):
-    return render(request,'admin2.html')
+    return render(request,'admin2.html') 
