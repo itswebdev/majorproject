@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck,LoginEditForm
+from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck,LoginEditForm,CampUserForm
 from django.contrib import messages
-from .models import Camp,Login,Police,Volunteer,Public
+from .models import Camp,Login,Police,Volunteer,Public,CampUser
 
 # Create your views here.
 
@@ -241,3 +241,17 @@ def EditVolunteer(request):
 
 def ViewAdmin2(request):
     return render(request,'admin2.html') 
+
+def CampAddUser(request):
+     id=request.session['camp_id']
+     if request.method=="POST":
+        form=CampUserForm(request.POST)
+        if form.is_valid():
+            camp_user=form.save(commit=False)
+            camp_user.camp_id=id
+            camp_user.save()
+            messages.success(request,"Registered Successfully")
+     else:
+
+        form=CampUserForm()
+     return render(request,'police_reg.html',{'form':form})
