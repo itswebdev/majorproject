@@ -40,6 +40,7 @@ def PoliceReg(request):
             station.login_id=user
             station.save()
             messages.success(request,"Police Station Registered Successfully")
+            return redirect('UserLogin')
     else:
 
         form=PoliceForm()
@@ -60,6 +61,7 @@ def PublicReg(request):
             a.login_id=user
             a.save()
             messages.success(request,"User Registration Successfully")
+            return redirect('UserLogin')
     else:
 
         form=PublicForm()
@@ -80,6 +82,7 @@ def VolunteerReg(request):
             a.login_id=user
             a.save()
             messages.success(request,"Volunteer Registered successfully")
+            return redirect('UserLogin')
     else:
         form=VolunteerForm()
         login=LoginForm()
