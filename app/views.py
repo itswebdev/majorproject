@@ -24,7 +24,7 @@ def CampReg(request):
 
         form=CampForm()
         login=LoginForm()
-    return render(request, 'camp_reg.html',{'form':form,'login':login})
+    return render(request, 'registration.html',{'form':form,'login':login})
 
     # station Registration form
 
@@ -44,7 +44,7 @@ def PoliceReg(request):
 
         form=PoliceForm()
         login=LoginForm()
-    return render(request,'police_reg.html',{'form':form,'login':login})
+    return render(request,'registration.html',{'form':form,'login':login})
 
     # public Registration form
 
@@ -64,7 +64,7 @@ def PublicReg(request):
 
         form=PublicForm()
         login=LoginForm()
-    return render(request, 'public_reg.html',{'form':form,'login':login})
+    return render(request, 'registration.html',{'form':form,'login':login})
 
     # volunteer Registration form
 
@@ -83,7 +83,7 @@ def VolunteerReg(request):
     else:
         form=VolunteerForm()
         login=LoginForm()
-    return render(request,'volunteer_reg.html',{'form':form,'login':login})
+    return render(request,'registration.html',{'form':form,'login':login})
 
 # admin home page
 
