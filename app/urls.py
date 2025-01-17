@@ -21,5 +21,6 @@ urlpatterns = [
     path("editpublic/",views.EditPublic, name='EditPublic'),
     path("editvolunteer/",views.EditVolunteer, name='EditVolunteer'),
     path('admin_view/',views.ViewAdmin2,name='ViewAdmin2'),
-    path('camp_user_reg',views.CampAddUser,name="CampAddUser")
+    path('camp_user_reg',views.CampAddUser,name="CampAddUser"),
+    path('campusersview',views.CampUsersView,name="CampUsersView")
 ]

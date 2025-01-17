@@ -258,3 +258,7 @@ def CampAddUser(request):
 
         form=CampUserForm()
     return render(request,'camp_user_reg.html',{'form':form})
+
+def CampUsersView(request):
+    users=CampUser.objects.all()
+    return render(request,'camp_users_table',{'users':users})
