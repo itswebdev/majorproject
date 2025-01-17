@@ -261,4 +261,4 @@ def CampAddUser(request):
 
 def CampUsersView(request):
     users=CampUser.objects.all()
-    return render(request,'camp_users_table',{'users':users})
+    return render(request,'camp_users_table.html',{'users':users})

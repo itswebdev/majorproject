@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>Camp Users</h1>
-    <table>
+    <table border="1px">
       <tr>
         <th>Photo</th>
         <th>Full Name</th>
@@ -22,16 +22,16 @@
       </tr>
       {% for user in users %}
       <tr>
-        <th>{{user.photo}}</th>
-        <th>{{user.full_name}}</th>
-        <th>{{user.address}}</th>
-        <th>{{user.district}}</th>
-        <th>{{user.city}}</th>
-        <th>{{user.contact_no}}</th>
-        <th>{{user.aadhar_no}}</th>
-        <th>{{user.panchayath}}</th>
-        <th>{{user.village}}</th>
-        <th>{{user.thaluk}}</th>
+        <td>{{user.photo}}</td>
+        <td>{{user.full_name}}</td>
+        <td>{{user.address}}</td>
+        <td>{{user.district}}</td>
+        <td>{{user.city}}</td>
+        <td>{{user.contact_no}}</td>
+        <td>{{user.aadhar_no}}</td>
+        <td>{{user.panchayath}}</td>
+        <td>{{user.village}}</td>
+        <td>{{user.thaluk}}</td>
       </tr>
       {% endfor %}
     </table>
