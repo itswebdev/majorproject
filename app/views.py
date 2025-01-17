@@ -19,6 +19,7 @@ def CampReg(request):
             a.login_id=user
             a.save()
             messages.success(request,"Camp Registered Successfully")
+            return redirect('UserLogin')
     else:
 
         form=CampForm()
