@@ -23,7 +23,9 @@
       {% for user in users %}
       <tr>
         {% comment %} new {% endcomment %}
-        <td><img src="{{user.photo.url}}" /></td> 
+        <td>
+          <img src="{{user.photo.url}}" style="width: 300px; height: auto" />
+        </td>
         <td>{{user.full_name}}</td>
         <td>{{user.address}}</td>
         <td>{{user.district}}</td>
