@@ -262,3 +262,21 @@ def CampAddUser(request):
 def CampUsersView(request):
     users=CampUser.objects.all()
     return render(request,'camp_users_table.html',{'users':users})
+
+def EditCampUser(request,id):
+    user=get_object_or_404(CampUser, id=id)
+    if request.method=="POST":
+        form=CampUserForm(request.POST,request.FILES, instance=user)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Updated Successfully")
+            return redirect('CampUsersView')
+    else:
+        form=CampUserForm(instance=user)
+    return render(request,'edit_camp_user.html',{'form':form})
+
+def CampUserDelete(request,id):
+    user=get_object_or_404(CampUser, id=id)
+    user.delete()
+    messages.success(request,"Deleted Successfully")
+    return redirect('CampUsersView')

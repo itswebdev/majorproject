@@ -19,6 +19,8 @@
         <th>Panchayath</th>
         <th>Village</th>
         <th>Thaluk</th>
+        <th>Edit</th>
+        <th>Delete</th>
       </tr>
       {% for user in users %}
       <tr>
@@ -35,6 +37,8 @@
         <td>{{user.panchayath}}</td>
         <td>{{user.village}}</td>
         <td>{{user.thaluk}}</td>
+        <td><a href="{% url 'EditCampUser' user.id %}">Edit </a></td>
+        <td><a href="{% url 'CampUserDelete' user.id %}">delete </a></td>
       </tr>
       {% endfor %}
     </table>
