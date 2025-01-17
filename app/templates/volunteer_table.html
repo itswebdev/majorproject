@@ -1,5 +1,4 @@
-{% extends "admin2.html" %}
-{% block content %}
+{% extends "admin2.html" %} {% block content %}
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -12,46 +11,45 @@
             id="basic-datatables"
             class="display table table-striped table-hover"
           >
-
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>Gender</th>
-              <th>DOB</th>
-              <th>Aadhar No</th>
-              <th>Contact</th>
-              <th>Email</th>
-            </tr>
-          </thead>
-          <tfoot>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Gender</th>
-            <th>DOB</th>
-            <th>Aadhar No</th>
-            <th>Contact</th>
-            <th>Email</th>
-          </tr>
-              </tfoot>
-              <tbody>
-                {% for user in volunteers %}
-                <tr>
-                  <td>{{user.id}}</td>
-                  <td>{{user.volunteer_name}}</td>
-                  <td>{{user.gender}}</td>
-                  <td>{{user.date_of_birth}}</td>
-                  <td>{{user.aadhar_no}}</td>
-                  <td>{{user.contact}}</td>
-                  <td>{{user.login_id.email}}</td>
-                </tr>
-                {% endfor %}
-              </tbody>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>DOB</th>
+                <th>Aadhar No</th>
+                <th>Contact</th>
+                <th>Email</th>
+              </tr>
+            </thead>
+            <tfoot>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Gender</th>
+                <th>DOB</th>
+                <th>Aadhar No</th>
+                <th>Contact</th>
+                <th>Email</th>
+              </tr>
+            </tfoot>
+            <tbody>
+              {% for user in volunteers %}
+              <tr>
+                <td>{{user.id}}</td>
+                <td>{{user.volunteer_name}}</td>
+                <td>{{user.gender}}</td>
+                <td>{{user.date_of_birth}}</td>
+                <td>{{user.aadhar_no}}</td>
+                <td>{{user.contact}}</td>
+                <td>{{user.login_id.email}}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-  </div>
-  {% endblock %}
+</div>
+{% endblock %}
