@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Camp user</title>
+  </head>
+  <body>
+    <h1>Camp Users</h1>
+    <table>
+      <tr>
+        <th>Photo</th>
+        <th>Full Name</th>
+        <th>Address</th>
+        <th>District</th>
+        <th>City</th>
+        <th>Contact no</th>
+        <th>Aadhar no</th>
+        <th>Panchayath</th>
+        <th>Village</th>
+        <th>Thaluk</th>
+      </tr>
+      {% for user in users %}
+      <tr>
+        <th>{{user.photo}}</th>
+        <th>{{user.full_name}}</th>
+        <th>{{user.address}}</th>
+        <th>{{user.district}}</th>
+        <th>{{user.city}}</th>
+        <th>{{user.contact_no}}</th>
+        <th>{{user.aadhar_no}}</th>
+        <th>{{user.panchayath}}</th>
+        <th>{{user.village}}</th>
+        <th>{{user.thaluk}}</th>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
