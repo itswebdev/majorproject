@@ -291,3 +291,7 @@ def CampUserDelete(request,id):
     user.delete()
     messages.success(request,"Deleted Successfully")
     return redirect('CampUsersView')
+
+def Landing(request):
+    return render(request,'landing.html')
+   
