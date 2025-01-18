@@ -244,7 +244,9 @@ def EditVolunteer(request):
     # admin page view 2
 
 def ViewAdmin2(request):
-    return render(request,'admin2.html') 
+    return render(request,'admin2.html')
+
+    #  Camp User Registration  
 
 def CampAddUser(request):
     id=request.session['camp_id']                        # We can also use ' id=request.session.get('camp_id') ' instead of this line.
@@ -262,9 +264,13 @@ def CampAddUser(request):
         form=CampUserForm()
     return render(request,'camp_user_reg.html',{'form':form})
 
+    # Camp user viewing
+
 def CampUsersView(request):
     users=CampUser.objects.all()
     return render(request,'camp_users_table.html',{'users':users})
+
+    # Editing camp user
 
 def EditCampUser(request,id):
     user=get_object_or_404(CampUser, id=id)
@@ -277,6 +283,8 @@ def EditCampUser(request,id):
     else:
         form=CampUserForm(instance=user)
     return render(request,'edit_camp_user.html',{'form':form})
+
+    # Deleting camp user
 
 def CampUserDelete(request,id):
     user=get_object_or_404(CampUser, id=id)
