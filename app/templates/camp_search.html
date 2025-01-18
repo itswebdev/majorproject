@@ -1,14 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Search</title>
-</head>
-<body>
-    <form method="get">
-        Seach Camp : <input type="text" >
-        <button type="submit">Search</button>
+  </head>
+  <body>
+    <form method="post">
+        {% csrf_token %}
+      Seach Camp : <input name="search" type="text" />
+      <button type="submit">Search</button>
     </form>
-</body>
+    {% if camps %} 
+    <table class="table table-striped" border="1">
+    <tr>
+      <th>Camp Name</th>
+      <th>Address</th>
+      <th>District</th>
+      <th>City</th>
+      <th>Panchayath</th>
+      <th>Thaluk</th>
+    </tr>
+    {% for camp in camps %}
+    <tr>
+      <td>{{camp.camp_name}}</td>
+      <td>{{camp.full_address}}</td>
+      <td>{{camp.district}}</td>
+      <td>{{camp.city}}</td>
+      <td>{{camp.panchayath}}</td>
+      <td>{{camp.thaluk}}</td>
+    </tr>
+    {% endfor %} {% endif %}
+  </body>
 </html>

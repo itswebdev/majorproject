@@ -296,4 +296,9 @@ def Landing(request):
     return render(request,'landing.html')
    
 def CampSearch(request):
-    return render(request,'camp_search.html')
+    if request.method=="POST":
+        query=request.POST.get('search')
+        camps=Camp.objects.filter(camp_name__icontains=query,city__icontains=query)
+        return render(request,'camp_search.html',{'camps':camps})
+    else:
+        return render(request,'camp_search.html')
