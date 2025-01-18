@@ -44,11 +44,11 @@
             </div>
             <span>or use your account</span>
             {% csrf_token %}
-            {{form.email}}
-            {{form.password}}
-            {% comment %} <input type="email" name='email' placeholder="Enter email" />
-            <input type="password" name='password' placeholder="Enter Password" /> {% endcomment %}
-            {% comment %} <a href="#">Forget Your Password?</a> {% endcomment %}
+            <!-- {{form.email}}
+            {{form.password}} -->
+            <input type="email" name='email' placeholder="Enter email" />
+            <input type="password" name='password' placeholder="Enter Password" />
+            <a href="#">Forget Your Password?</a>
             <button type='submit'>Sign-In</button>
           </form> 
         </div>
