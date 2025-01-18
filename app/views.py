@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck,LoginEditForm,CampUserForm
 from django.contrib import messages
 from .models import Camp,Login,Police,Volunteer,Public,CampUser
+from django.db.models import Q
+
 
 # Create your views here.
 
@@ -295,10 +297,27 @@ def CampUserDelete(request,id):
 def Landing(request):
     return render(request,'landing.html')
    
+# def CampSearch(request):
+#     if request.method=="POST":
+#         query=request.POST.get('search')
+#         camps=Camp.objects.filter(camp_name__icontains=query,city__icontains=query)
+#         return render(request,'camp_search.html',{'camps':camps})
+#     else:
+#         return render(request,'camp_search.html')
+    
+
 def CampSearch(request):
-    if request.method=="POST":
-        query=request.POST.get('search')
-        camps=Camp.objects.filter(camp_name__icontains=query,city__icontains=query)
-        return render(request,'camp_search.html',{'camps':camps})
+    if request.method == "POST":
+        query = request.POST.get('search')
+        camps = Camp.objects.filter(
+            Q(camp_name__icontains=query) |
+            Q(district__icontains=query) |
+            Q(full_address__icontains=query) |
+            Q(city__icontains=query) |
+            Q(panchayath__icontains=query) |
+            Q(thaluk__icontains=query) |
+            Q(contact__icontains=query) 
+        )
+        return render(request, 'camp_search.html', {'camps': camps})
     else:
-        return render(request,'camp_search.html')
+        return render(request, 'camp_search.html')
