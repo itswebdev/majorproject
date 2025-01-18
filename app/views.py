@@ -306,6 +306,8 @@ def Landing(request):
 #         return render(request,'camp_search.html')
     
 
+    # searching for camps
+
 def CampSearch(request):
     if request.method == "POST":
         query = request.POST.get('search')
