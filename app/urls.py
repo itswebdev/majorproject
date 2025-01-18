@@ -38,5 +38,7 @@ urlpatterns = [
     path('camp_user_edit/<int:id>',views.EditCampUser,name="EditCampUser"),         # path of editing camp user
 
     path('camp_user_delete/<int:id>/',views.CampUserDelete,name="CampUserDelete"),   # path of deleting camp user
+
+    path('camp_search',views.CampSearch,name="CampSearch")
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new
  

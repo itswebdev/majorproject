@@ -295,3 +295,5 @@ def CampUserDelete(request,id):
 def Landing(request):
     return render(request,'landing.html')
    
+def CampSearch(request):
+    return render(request,'camp_search.html')

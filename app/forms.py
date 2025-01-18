@@ -36,6 +36,7 @@ class LoginEditForm(forms.ModelForm): # form for profile editing
         model=Login
         fields=['email']
 
+
 class CampUserForm(forms.ModelForm):
     class Meta:
         model=CampUser
