@@ -281,7 +281,7 @@ def EditCampUser(request,id):
         if form.is_valid():
             form.save()
             messages.success(request,"Updated Successfully")
-            return redirect('CampUsersView')
+            return redirect('CampUsersView') 
     else:
         form=CampUserForm(instance=user)
     return render(request,'edit_camp_user.html',{'form':form})
