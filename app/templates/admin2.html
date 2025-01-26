@@ -182,14 +182,14 @@
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#forms">
                   <i class="fas fa-pen-square"></i>
-                  <p>Forms</p>
+                  <p>Camps</p>
                   <span class="caret"></span>
                 </a>
                 <div class="collapse" id="forms">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="forms/forms.html">
-                        <span class="sub-item">Basic Form</span>
+                      <a href="{% url 'CampNeedsTable' %}">
+                        <span class="sub-item">Camp Needs</span>
                       </a>
                     </li>
                   </ul>
@@ -278,8 +278,8 @@
               <li class="nav-item">
                 <a href="../../documentation/index.html">
                   <i class="fas fa-file"></i>
-                  <p>Documentation</p>
-                  <span class="badge badge-secondary">1</span>
+                  <p>Camp Needs</p>
+                  {% comment %} <span class="badge badge-secondary">1</span> {% endcomment %}
                 </a>
               </li>
               <li class="nav-item">

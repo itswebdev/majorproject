@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Camp Needs</h1>
+    <table border="1">
+      <tr>
+        <th>Camps</th>
+        <th>Needs</th>
+      </tr>
+      {% for need in needs %}
+      <tr>
+        <td>{{need.camp_id.camp_name}}</td>
+        <td>{{need.needs}}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>
