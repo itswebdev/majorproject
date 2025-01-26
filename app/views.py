@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck,LoginEditForm,CampUserForm
+from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck,LoginEditForm,CampUserForm,CampNeedsForm
 from django.contrib import messages
-from .models import Camp,Login,Police,Volunteer,Public,CampUser
+from .models import Camp,Login,Police,Volunteer,Public,CampUser,CampNeeds
 from django.db.models import Q
 
 
@@ -287,7 +287,7 @@ def EditCampUser(request,id):
     return render(request,'edit_camp_user.html',{'form':form})
 
     # Deleting camp user
-
+ 
 def CampUserDelete(request,id):
     user=get_object_or_404(CampUser, id=id)
     user.delete()
@@ -323,3 +323,19 @@ def CampSearch(request):
         return render(request, 'camp_search.html', {'camps': camps})
     else:
         return render(request, 'camp_search.html')
+
+
+def CampNeedsSubmit(request):
+    id=request.session['camp_id']    
+    campdata=get_object_or_404(Camp,login_id=id)
+    if request.method =="POST":
+        form=CampNeedsForm(request.POST)
+        if form.is_valid():
+            camp_need=form.save(commit=False)
+            camp_need.camp_id=campdata
+            camp_need.save()
+            messages.success(request,"Needs are submitted successfully")
+    else:
+        form=CampNeedsForm()
+    return render(request,'camp_needs.html',{'form':form})
+

@@ -58,3 +58,8 @@ class CampUser(models.Model):
     thaluk=models.CharField(max_length=100)
     current_date=models.DateField(auto_now_add=True)
     camp_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
+
+class CampNeeds(models.Model):
+    needs=models.TextField(max_length=100)
+    camp_id=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
+    current_date=models.DateField(auto_now_add=True)
