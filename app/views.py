@@ -339,3 +339,7 @@ def CampNeedsSubmit(request):
         form=CampNeedsForm()
     return render(request,'camp_needs.html',{'form':form})
 
+def CampNeedsTable(request):
+    needs=CampNeeds.objects.all()
+    return render(request,'camp_needs_table.html',{'needs':needs})
+
