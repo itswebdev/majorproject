@@ -105,7 +105,7 @@ def StationTable(request):
 
 def PublicTable(request):
     publics=Public.objects.all()
-    return render(request,'public_table.html',{'publics':publics})
+    return render(request,'public_table.html',{'publics':publics}) 
  
 def VolunteerTable(request):
     volunteers=Volunteer.objects.all()
