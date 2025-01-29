@@ -343,3 +343,10 @@ def CampNeedsTable(request):
     needs=CampNeeds.objects.all()
     return render(request,'camp_needs_table.html',{'needs':needs})
 
+
+   # function to logout
+
+def Logout(request):
+    request.session.flush()
+    return redirect('Landing')
+
