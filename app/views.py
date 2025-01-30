@@ -376,3 +376,13 @@ def Logout(request):
     request.session.flush()
     return redirect('Landing')
 
+def SetCampNeedStatus(request,id):
+    need=get_object_or_404(CampNeeds,id=id)
+    if request.method=="POST":
+        need.status=request.POST.get('status')
+        need.save()
+        messages.success(request,"Status Updated Successfully")
+        return redirect('CampNeedsTable')
+    else:
+        form=CampNeedsForm(instance=need)
+    return render(request,'set_camp_status.html',{'form':form})

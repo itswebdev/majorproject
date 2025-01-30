@@ -61,5 +61,6 @@ class CampUser(models.Model):
 
 class CampNeeds(models.Model):
     needs=models.TextField(max_length=100)
+    status=models.CharField(max_length=100,null=True,blank=True)
     camp_id=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
     current_date=models.DateField(auto_now_add=True)
