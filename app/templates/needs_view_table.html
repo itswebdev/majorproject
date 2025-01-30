@@ -46,6 +46,7 @@
                     <td>{{need.needs}}</td>
                     <td>{{need.current_date}}</td>
                     <td>{{need.status}}</td>
+                    {% if need.status == "rejected" or need.status == "null" %}
                     <td><button class="btn btn-primary"><a href="{% url 'EditCampNeed' need.id %}"  style="color: white;text-decoration: none;">Edit</a></button></td>
                     <td>
                       <button
@@ -57,6 +58,9 @@
                       Delete
                     </button>
                   </td>
+                    {% else %}
+                    <td colspan="2">Completed</td>
+                    {% endif %}
                 </tr>
                   {% endfor %}
                 </tbody>
