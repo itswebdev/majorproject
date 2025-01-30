@@ -1,0 +1,37 @@
+{% load static%}
+
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          <h4 class="card-title">Camp Needs</h4>
+        </div>
+        <link rel="stylesheet" href="{% static "admin/assets/css/bootstrap.min.css" %}" />
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              id="basic-datatables"
+              class="display table table-striped table-hover"
+            >
+
+            <thead>
+              <tr>
+                <th>Camps</th>
+                <th>Needs</th>
+              </tr>
+            </thead>
+            <tbody>
+                  {% for need in needs %}
+                  <tr>
+                    <td>{{need.camp_id.camp_name}}</td>
+                    <td>{{need.needs}}</td>
+                  </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>              
+  </div>

@@ -269,7 +269,9 @@ def CampAddUser(request):
     # Camp user viewing
 
 def CampUsersView(request):
-    users=CampUser.objects.all()
+    session_id=request.session['camp_id']
+    a=get_object_or_404(Login,id=session_id)
+    users=CampUser.objects.filter(camp_id=a)
     return render(request,'camp_users_table.html',{'users':users})
 
     # Editing camp user
@@ -342,6 +344,12 @@ def CampNeedsSubmit(request):
 def CampNeedsTable(request):
     needs=CampNeeds.objects.all()
     return render(request,'camp_needs_table.html',{'needs':needs})
+
+def NeedsViewTable(request):
+        session_id=request.session['camp_id']
+        a=get_object_or_404(Camp,login_id=session_id)
+        needs=CampNeeds.objects.filter(camp_id=a)
+        return render(request,'needs_view_table.html',{'needs':needs})
 
 
    # function to logout

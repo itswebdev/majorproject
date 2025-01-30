@@ -43,6 +43,8 @@ urlpatterns = [
 
     path('camp_search',views.CampSearch,name="CampSearch"),
 
-    path('camp_needs',views.CampNeedsSubmit,name="CampNeedsSubmit")
+    path('camp_needs',views.CampNeedsSubmit,name="CampNeedsSubmit"),
+    path('needs_view',views.NeedsViewTable,name="NeedsViewTable"),
+
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new
  
