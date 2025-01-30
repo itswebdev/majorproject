@@ -10,7 +10,10 @@
       {% csrf_token %} {{form.needs}}
       <br />
       <br />
-      <input type="text" name="status" placeholder="Enter Status" />
+      <input type="radio" name="status" value="Approved" /> Approved
+      <input type="radio" name="status" value="Rejected" /> Rejected
+      <br />
+      <br />
       <button type="submit">Submit</button>
     </form>
   </body>

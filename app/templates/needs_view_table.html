@@ -35,6 +35,7 @@
               <tr>
                 <th>Camp</th>
                 <th>Needs</th>
+                <th>Date</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -43,6 +44,7 @@
                   <tr>
                     <td>{{need.camp_id.camp_name}}</td>
                     <td>{{need.needs}}</td>
+                    <td>{{need.current_date}}</td>
                     <td>{{need.status}}</td>
                     <td><button class="btn btn-primary"><a href="{% url 'EditCampNeed' need.id %}"  style="color: white;text-decoration: none;">Edit</a></button></td>
                     <td>
