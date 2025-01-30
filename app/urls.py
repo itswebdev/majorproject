@@ -45,6 +45,9 @@ urlpatterns = [
 
     path('camp_needs',views.CampNeedsSubmit,name="CampNeedsSubmit"),
     path('needs_view',views.NeedsViewTable,name="NeedsViewTable"),
+    path('edit_camp_need/<int:id>',views.EditCampNeed,name="EditCampNeed"),
+    path('delete_camp_need/<int:id>/',views.CampNeedsDelete,name="DeleteCampNeed"),
+
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new
  

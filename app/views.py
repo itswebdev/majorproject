@@ -351,6 +351,24 @@ def NeedsViewTable(request):
         needs=CampNeeds.objects.filter(camp_id=a)
         return render(request,'needs_view_table.html',{'needs':needs})
 
+def EditCampNeed(request,id):
+    need=get_object_or_404(CampNeeds,id=id)
+    if request.method=="POST":
+        form=CampNeedsForm(request.POST,instance=need)
+        if form.is_valid():
+            form.save()
+            messages.success(request,"Updated Successfully")
+            return redirect('NeedsViewTable')
+    else:
+        form=CampNeedsForm(instance=need)
+    return render(request,'camp_needs.html',{'form':form})
+
+def CampNeedsDelete(request,id):
+    need=get_object_or_404(CampNeeds,id=id)
+    need.delete()
+    messages.success(request,"Deleted Successfully")
+    return redirect('NeedsViewTable')
+
 
    # function to logout
 
