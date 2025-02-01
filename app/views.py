@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import CampForm,LoginForm,PoliceForm, PublicForm, VolunteerForm, LoginCheck,LoginEditForm,CampUserForm,CampNeedsForm
+from .forms import *
 from django.contrib import messages
-from .models import Camp,Login,Police,Volunteer,Public,CampUser,CampNeeds
+from .models import *
 from django.db.models import Q
 
 
@@ -425,3 +425,33 @@ def SearchPerson(request):
         return render(request,'camp_search_person.html',{'users':users})
     else:
         return render(request,'camp_search_person.html')
+    
+def CampAlerts(request):
+    session_id=request.session['camp_id']
+    alert=get_object_or_404(Camp,login_id=session_id)
+    if request.method=='POST':
+        form=CampAlertForm(request.POST)
+        if form.is_valid():
+            camp_alert=form.save(commit=False)
+            camp_alert.login_id=alert
+            camp_alert.save()
+            messages.success(request,'Alert submitted successfully')
+            return redirect('CampHome')
+    else:
+        form=CampAlertForm()
+    return render(request,'camp_alert.html',{'form':form})
+
+def CampAlertTable(request):
+    alerts=CampAlert.objects.all()
+    return render(request,'camp_alert_table.html',{'alerts':alerts})
+
+def AlertCampTable(request):
+    session_id=request.session['camp_id']
+    a=get_object_or_404(Camp,login_id=session_id)
+    alerts=CampAlert.objects.filter(login_id=a)
+    return render(request,'alert_message.html',{'alerts':alerts})
+
+def DeleteAlert(request,id):
+    d=get_object_or_404(CampAlert,id=id)
+    d.delete()
+    return redirect('AlertCampTable')

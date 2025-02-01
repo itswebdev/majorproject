@@ -67,5 +67,5 @@ class CampNeeds(models.Model):
 
 class CampAlert(models.Model):
     emergency_message=models.TextField(max_length=50)
-    current_date=models.DateField()
+    current_date=models.DateField(auto_now_add=True)
     login_id=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)

@@ -46,8 +46,11 @@ urlpatterns = [
     path('delete_camp_need/<int:id>/',views.CampNeedsDelete,name="DeleteCampNeed"),
     path('set_camp_need_status/<int:id>',views.SetCampNeedStatus,name="SetCampNeedStatus"),
     path('camp_person_search',views.SearchCampPerson,name="SearchCampPerson"),
-    path('person_search',views.SearchPerson,name="SearchPerson")
+    path('person_search',views.SearchPerson,name="SearchPerson"),
+    path('camp_alert',views.CampAlerts,name="CampAlerts"),
+    path('camp_alert_table',views.CampAlertTable,name="CampAlertTable"),
+    path('alert_table',views.AlertCampTable,name="AlertCampTable"), 
+    path('delete_alert/<int:id>',views.DeleteAlert,name="DeleteAlert"), 
 
-
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new
+]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  
