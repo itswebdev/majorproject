@@ -389,7 +389,7 @@ def SetCampNeedStatus(request,id):
 
 def SearchCampPerson(request):
     id = request.session['camp_id']
-    a=get_object_or_404(Camp,login_id=id)
+    a=get_object_or_404(Login,id=id)
     if request.method=="POST":
         query=request.POST.get('search')
         users=CampUser.objects.filter(
@@ -405,3 +405,5 @@ def SearchCampPerson(request):
             Q(thaluk__icontains=query) 
             )      
         return render(request,'camp_search_person.html',{'users':users})
+    else:
+        return render(request,'camp_search_person.html')
