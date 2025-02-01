@@ -386,3 +386,22 @@ def SetCampNeedStatus(request,id):
     else:
         form=CampNeedsForm(instance=need)
     return render(request,'set_camp_status.html',{'form':form})
+
+def SearchCampPerson(request):
+    id = request.session['camp_id']
+    a=get_object_or_404(Camp,login_id=id)
+    if request.method=="POST":
+        query=request.POST.get('search')
+        users=CampUser.objects.filter(
+            Q(camp_id=a) &
+            Q(full_name__icontains=query) | 
+            Q(address__icontains=query) | 
+            Q(district__icontains=query) | 
+            Q(city__icontains=query)| 
+            Q(contact_no__icontains=query) | 
+            Q(aadhar_no__icontains=query) |
+            Q(panchayath__icontains=query) | 
+            Q(village__icontains=query) |
+            Q(thaluk__icontains=query) 
+            )      
+        return render(request,'camp_search_person.html',{'users':users})
