@@ -407,3 +407,21 @@ def SearchCampPerson(request):
         return render(request,'camp_search_person.html',{'users':users})
     else:
         return render(request,'camp_search_person.html')
+    
+def SearchPerson(request):
+    if request.method=="POST":
+        query=request.POST.get('search')
+        users=CampUser.objects.filter(
+            Q(full_name__icontains=query) | 
+            Q(address__icontains=query) | 
+            Q(district__icontains=query) | 
+            Q(city__icontains=query)| 
+            Q(contact_no__icontains=query) | 
+            Q(aadhar_no__icontains=query) |
+            Q(panchayath__icontains=query) | 
+            Q(village__icontains=query) |
+            Q(thaluk__icontains=query) 
+            )      
+        return render(request,'camp_search_person.html',{'users':users})
+    else:
+        return render(request,'camp_search_person.html')
