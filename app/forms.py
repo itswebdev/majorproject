@@ -1,5 +1,5 @@
 from django import forms
-from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds
+from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds,CampAlert
 
 class CampForm(forms.ModelForm):
     
@@ -46,3 +46,8 @@ class CampNeedsForm(forms.ModelForm):
     class Meta:
         model=CampNeeds
         fields=['needs'] 
+
+class CampAlertForm(forms.ModelForm):
+    class Meta:
+        model=CampAlert
+        fields=['emergency_message']
