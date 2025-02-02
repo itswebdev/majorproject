@@ -470,3 +470,33 @@ def VolunteerReq(request):
     else:
         form=VolunteerReqForm()
     return render(request,'volunteer_req.html',{'form':form})
+
+def VolunteerReqTable(request):
+    requests=VolunteerRequest.objects.all()
+    return render(request,'volunteer_req_table.html',{'requests':requests})
+
+def ReqVolunteerTable(request):
+    session_id=request.session['camp_id']
+    a=get_object_or_404(Camp,login_id=session_id)
+    requests=VolunteerRequest.objects.filter(login_id=a)
+    return render(request,'req_volunteer_table.html',{'requests':requests})
+
+
+def EditVolunteerReq(request,id):
+    req=get_object_or_404(VolunteerRequest,id=id)
+    if request.method=="POST":
+          requests=VolunteerReqForm(request.POST,instance=req)
+          if requests.is_valid():
+              requests.save()
+              messages.success(request,'Request edited successfullly')
+              return redirect('ReqVolunteerTable')
+    else:
+        requests=VolunteerReqForm(instance=req)
+    return render(request,'edit_vol_req.html',{'requests':requests})
+
+
+def DeleteVolunteerReq(request,id):
+    req=get_object_or_404(VolunteerRequest,id=id)
+    req.delete()
+    messages.success(request,'Request deleted successfully')
+    return redirect('ReqVolunteerTable')
