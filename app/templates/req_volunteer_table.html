@@ -28,8 +28,8 @@
                               <td>{{request.no_of_volunteers}}</td>
                               <td>{{request.volunteer_details}}</td>
                               <td>{{request.current_date}}</td>
-                              <td><button ><a href="{% url 'EditVolunteerReq' request.id %}" style="text-decoration: none;">Edit</a></button></td>
-                              <td><button><a href="{% url 'DeleteVolunteerReq' request.id %}" style="text-decoration: none;">Delete</a></button></td>
+                              <td><button class="btn btn-primary"><a href="{% url 'EditVolunteerReq' request.id %}" style="text-decoration: none;color: white;">Edit</a></button></td>
+                              <td><button class="btn btn-danger"><a href="{% url 'DeleteVolunteerReq' request.id %}" style="text-decoration: none;color: white;">Delete</a></button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
