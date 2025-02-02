@@ -16,7 +16,7 @@
                       <thead>
                         <tr>
                           <th>Camp name</th>
-                          <th>Volunteers requests</th>
+                          <th>Number of Volunteers needed</th>
                           <th>Volunteers details</th>
                           <th>Date</th>
                         </tr>
@@ -28,6 +28,7 @@
                               <td>{{request.no_of_volunteers}}</td>
                               <td>{{request.volunteer_details}}</td>
                               <td>{{request.current_date}}</td>
+                              <td><button class="btn btn-primary"><a href="#" style="color: white;text-decoration: none;">Allocate</a></button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
