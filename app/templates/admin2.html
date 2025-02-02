@@ -1094,9 +1094,9 @@
     <script src="{% static "admin/assets/js/kaiadmin.min.js" %}"></script>
 
     <!-- Kaiadmin DEMO methods, don't include it in your project! -->
-    <script src="{% static "admin/assets/js/setting-demo.js"%}"></script>
+    {% comment %} <script src="{% static "admin/assets/js/setting-demo.js"%}"></script>
     <script src="{% static "admin/assets/js/demo.js"%}"></script>
-    <script src="{% static "admin/assets/js/setting-demo2.js" %}"></script>
+    <script src="{% static "admin/assets/js/setting-demo2.js" %}"></script> {% endcomment %}
     <script>
       $("#lineChart").sparkline([102, 109, 120, 99, 110, 105, 115], {
         type: "line",
