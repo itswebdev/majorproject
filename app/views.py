@@ -470,3 +470,7 @@ def VolunteerReq(request):
     else:
         form=VolunteerReqForm()
     return render(request,'volunteer_req.html',{'form':form})
+
+def VolunteerReqTable(request):
+    requests=VolunteerRequest.objects.all()
+    return render(request,'volunteer_req_table.html',{'requests':requests})
