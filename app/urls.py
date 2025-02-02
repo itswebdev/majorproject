@@ -51,6 +51,7 @@ urlpatterns = [
     path('camp_alert_table',views.CampAlertTable,name="CampAlertTable"),
     path('alert_table',views.AlertCampTable,name="AlertCampTable"), 
     path('delete_alert/<int:id>',views.DeleteAlert,name="DeleteAlert"), 
+    path('volunteer_req',views.VolunteerReq,name="VolunteerReq")
 
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  
