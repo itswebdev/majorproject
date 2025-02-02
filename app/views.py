@@ -455,3 +455,18 @@ def DeleteAlert(request,id):
     d=get_object_or_404(CampAlert,id=id)
     d.delete()
     return redirect('AlertCampTable')
+
+def VolunteerReq(request):
+    session_id=request.session['camp_id']
+    req=get_object_or_404(Camp,login_id=session_id)
+    if request.method=='POST':
+        form=VolunteerReqForm(request.POST)
+        if form.is_valid():
+            a=form.save(commit=False)
+            a.login_id=req
+            a.save()
+            messages.success(request,'Request for volunteers send successfully')
+            return redirect('CampHome')
+    else:
+        form=VolunteerReqForm()
+    return render(request,'volunteer_req.html',{'form':form})
