@@ -1,0 +1,43 @@
+          {% load static%}
+            <div class="row">
+              <div class="col-md-12">
+                <div class="card">
+                  <div class="card-header">
+                    <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
+                    <h4 class="card-title">Volunteer requests</h4>
+                  </div>
+                  <div class="card-body">
+                    <div class="table-responsive">
+                      <table
+                        id="basic-datatables"
+                        class="display table table-striped table-hover"
+                      >
+
+                      <thead>
+                        <tr>
+                          <th>Camp name</th>
+                          <th>Volunteers requests</th>
+                          <th>Volunteers details</th>
+                          <th>Date</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                            {% for request in requests %}
+                            <tr>
+                              <td>{{request.login_id.camp_name}}</td>
+                              <td>{{request.no_of_volunteers}}</td>
+                              <td>{{request.volunteer_details}}</td>
+                              <td>{{request.current_date}}</td>
+                              <td><button ><a href="{% url 'EditVolunteerReq' request.id %}" style="text-decoration: none;">Edit</a></button></td>
+                              <td><button><a href="{% url 'DeleteVolunteerReq' request.id %}" style="text-decoration: none;">Delete</a></button></td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              </div>              
+            </div>
+

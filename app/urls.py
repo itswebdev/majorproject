@@ -53,6 +53,9 @@ urlpatterns = [
     path('delete_alert/<int:id>',views.DeleteAlert,name="DeleteAlert"), 
     path('volunteer_req',views.VolunteerReq,name="VolunteerReq"),
     path('volunteer_req_table',views.VolunteerReqTable,name="VolunteerReqTable"),
-
+    path('req_volunteer_table',views.ReqVolunteerTable,name="ReqVolunteerTable"),
+    path('edit_volunteer_table/<int:id>',views.EditVolunteerReq,name="EditVolunteerReq"),
+    path('delete_volunteer_table/<int:id>',views.DeleteVolunteerReq,name="DeleteVolunteerReq")
+    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  
