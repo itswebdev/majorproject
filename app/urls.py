@@ -61,6 +61,8 @@ urlpatterns = [
     path('req_volunteer_table',views.ReqVolunteerTable,name="ReqVolunteerTable"),
     path('edit_volunteer_req/<int:id>',views.EditVolunteerReq,name="EditVolunteerReq"),
     path('delete_volunteer_req/<int:id>',views.DeleteVolunteerReq,name="DeleteVolunteerReq"),
+    path('volunteer_allocate_table',views.VolunteerAllocateTable,name="VolunteerAllocateTable"),
+
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  

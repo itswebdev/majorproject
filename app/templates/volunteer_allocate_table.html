@@ -1,0 +1,47 @@
+
+{% load static %}
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+            <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
+          <h4 class="card-title">Volunteer Allocate Table</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              id="basic-datatables"
+              class="display table table-striped table-hover"
+            >
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Name</th>
+                  <th>Gender</th>
+                  <th>DOB</th>
+                  <th>Aadhar No</th>
+                  <th>Contact</th>
+                  <th>Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in volunteers %}
+                <tr>
+                  <td>{{user.id}}</td>
+                  <td>{{user.volunteer_name}}</td>
+                  <td>{{user.gender}}</td>
+                  <td>{{user.date_of_birth}}</td>
+                  <td>{{user.aadhar_no}}</td>
+                  <td>{{user.contact}}</td>
+                  <td>{{user.login_id.email}}</td>
+                  <td><button class="btn btn-primary"><a href="#" style="color: white;text-decoration: none;">Allocate Now</a></button></td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

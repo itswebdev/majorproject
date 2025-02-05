@@ -500,3 +500,7 @@ def DeleteVolunteerReq(request,id):
     req.delete()
     messages.success(request,'Request deleted successfully')
     return redirect('ReqVolunteerTable')
+
+def VolunteerAllocateTable(request):
+    volunteers=Volunteer.objects.all()
+    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers})
