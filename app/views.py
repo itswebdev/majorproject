@@ -501,6 +501,7 @@ def DeleteVolunteerReq(request,id):
     messages.success(request,'Request deleted successfully')
     return redirect('ReqVolunteerTable')
 
-def VolunteerAllocateTable(request):
+def VolunteerAllocateTable(request,id):
+    #print(id)                            check  the volunteer_req_table.html  file
     volunteers=Volunteer.objects.all()
-    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers})
+    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers}) 
