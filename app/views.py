@@ -428,6 +428,7 @@ def SearchPerson(request):
     
 def CampAlerts(request):
     session_id=request.session['camp_id']
+    # print(session_id)
     alert=get_object_or_404(Camp,login_id=session_id)
     if request.method=='POST':
         form=CampAlertForm(request.POST)
@@ -446,10 +447,10 @@ def CampAlertTable(request):
     return render(request,'camp_alert_table.html',{'alerts':alerts})
 
 def AlertCampTable(request):
-    session_id=request.session['camp_id']
-    a=get_object_or_404(Camp,login_id=session_id)
-    alerts=CampAlert.objects.filter(login_id=a)
-    return render(request,'alert_message.html',{'alerts':alerts})
+    session_id=request.session['camp_id']                            #  getting the current session id .
+    a=get_object_or_404(Camp,login_id=session_id)                    #  comparing the session id with the login id (foreign key of camp model),if true then saves the id the of the camp into a.
+    alerts=CampAlert.objects.filter(login_id=a)                      #  filtering only from the camp whose id is stored in the variable a.
+    return render(request,'alert_message.html',{'alerts':alerts})    
 
 def DeleteAlert(request,id):
     d=get_object_or_404(CampAlert,id=id)
