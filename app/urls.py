@@ -45,17 +45,24 @@ urlpatterns = [
     path('edit_camp_need/<int:id>',views.EditCampNeed,name="EditCampNeed"),
     path('delete_camp_need/<int:id>/',views.CampNeedsDelete,name="DeleteCampNeed"),
     path('set_camp_need_status/<int:id>',views.SetCampNeedStatus,name="SetCampNeedStatus"),
+
     path('camp_person_search',views.SearchCampPerson,name="SearchCampPerson"),
     path('person_search',views.SearchPerson,name="SearchPerson"),
+
     path('camp_alert',views.CampAlerts,name="CampAlerts"),
     path('camp_alert_table',views.CampAlertTable,name="CampAlertTable"),
     path('alert_table',views.AlertCampTable,name="AlertCampTable"), 
     path('delete_alert/<int:id>',views.DeleteAlert,name="DeleteAlert"), 
+    
+    #       Request for volunteers required by camp
+
     path('volunteer_req',views.VolunteerReq,name="VolunteerReq"),
     path('volunteer_req_table',views.VolunteerReqTable,name="VolunteerReqTable"),
     path('req_volunteer_table',views.ReqVolunteerTable,name="ReqVolunteerTable"),
-    path('edit_volunteer_table/<int:id>',views.EditVolunteerReq,name="EditVolunteerReq"),
-    path('delete_volunteer_table/<int:id>',views.DeleteVolunteerReq,name="DeleteVolunteerReq")
+    path('edit_volunteer_req/<int:id>',views.EditVolunteerReq,name="EditVolunteerReq"),
+    path('delete_volunteer_req/<int:id>',views.DeleteVolunteerReq,name="DeleteVolunteerReq"),
+    path('volunteer_allocate_table/<int:id>',views.VolunteerAllocateTable,name="VolunteerAllocateTable"),
+
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  

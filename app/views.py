@@ -379,7 +379,7 @@ def Logout(request):
 def SetCampNeedStatus(request,id):
     need=get_object_or_404(CampNeeds,id=id)
     if request.method=="POST":
-        need.status=request.POST.get('status')
+        need.status=request.POST.get('status')  #  Similar functionality as the cleaned_data[] but it cannot be used without form validation
         need.save()
         messages.success(request,"Status Updated Successfully")
         return redirect('CampNeedsTable')
@@ -500,3 +500,8 @@ def DeleteVolunteerReq(request,id):
     req.delete()
     messages.success(request,'Request deleted successfully')
     return redirect('ReqVolunteerTable')
+
+def VolunteerAllocateTable(request,id):
+    #print(id)                            check  the volunteer_req_table.html  file
+    volunteers=Volunteer.objects.all()
+    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers}) 
