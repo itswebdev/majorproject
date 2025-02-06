@@ -170,7 +170,9 @@ def UserLogin(request):
 def EditCamp(request):
     id=request.session['camp_id']
     user=get_object_or_404(Login, id=id)
+    # print(user)
     camp=get_object_or_404(Camp, login_id=user)
+    # print(camp)
     if request.method == "POST":
         login=LoginEditForm(request.POST, instance=user)
         form=CampForm(request.POST, instance=camp)
@@ -377,9 +379,11 @@ def Logout(request):
     return redirect('Landing')
 
 def SetCampNeedStatus(request,id):
+    # print(id)
     need=get_object_or_404(CampNeeds,id=id)
+    # print(need)
     if request.method=="POST":
-        need.status=request.POST.get('status')  #  Similar functionality as the cleaned_data[] but it cannot be used without form validation
+        need.status=request.POST.get('status')  #  Similar functionality as the cleaned_data[] , but cleaned_data[] cannot be used without form validation
         need.save()
         messages.success(request,"Status Updated Successfully")
         return redirect('CampNeedsTable')
@@ -430,6 +434,7 @@ def CampAlerts(request):
     session_id=request.session['camp_id']
     # print(session_id)
     alert=get_object_or_404(Camp,login_id=session_id)
+    # print(alert)
     if request.method=='POST':
         form=CampAlertForm(request.POST)
         if form.is_valid():
@@ -448,7 +453,7 @@ def CampAlertTable(request):
 
 def AlertCampTable(request):
     session_id=request.session['camp_id']                            #  getting the current session id .
-    a=get_object_or_404(Camp,login_id=session_id)                    #  comparing the session id with the login id (foreign key of camp model),if true then saves the id the of the camp into a.
+    a=get_object_or_404(Camp,login_id=session_id)                    #  comparing the session id with the login id (foreign key of camp model),if true then saves  id  of the camp into a.
     alerts=CampAlert.objects.filter(login_id=a)                      #  filtering only from the camp whose id is stored in the variable a.
     return render(request,'alert_message.html',{'alerts':alerts})    
 
