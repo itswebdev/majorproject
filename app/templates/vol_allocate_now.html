@@ -15,26 +15,17 @@
             >
               <thead>
                 <tr>
-                  <th>ID</th>
-                  <th>Name</th>
-                  <th>Gender</th>
-                  <th>DOB</th>
-                  <th>Aadhar No</th>
-                  <th>Contact</th>
-                  <th>Email</th>
+                  <th>camp id</th>
+                  <th>volunteer id</th>
+                  <th>current date</th>
                 </tr>
               </thead>
               <tbody>
-                {% for user in volunteers %}
+                {% for user in volunteer_camp %}
                 <tr>
-                  <td>{{user.id}}</td>
-                  <td>{{user.volunteer_name}}</td>
-                  <td>{{user.gender}}</td>
-                  <td>{{user.date_of_birth}}</td>
-                  <td>{{user.aadhar_no}}</td>
-                  <td>{{user.contact}}</td>
-                  <td>{{user.login_id.email}}</td>
-                  <td><button class="btn btn-primary"><a href="../VolAllocateNow/{{campid.id}}/{{user.id}}" style="color: white;text-decoration: none;">Allocate Now</a></button></td>
+                  <td>{{user.camp}}</td>
+                  <td>{{user.volunteer}}</td>
+                  <td>{{user.curr_date}}</td>
                 </tr>
                 {% endfor %}
               </tbody>

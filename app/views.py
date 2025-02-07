@@ -170,11 +170,13 @@ def UserLogin(request):
 def EditCamp(request):
     id=request.session['camp_id']
     user=get_object_or_404(Login, id=id)
+    # print(user)
     camp=get_object_or_404(Camp, login_id=user)
+    # print(camp)
     if request.method == "POST":
         login=LoginEditForm(request.POST, instance=user)
         form=CampForm(request.POST, instance=camp)
-        if form.is_valid() and login.is_valid():
+        if form.is_valid() and login.is_valid(): 
             form.save()
             login.save()
             messages.success(request,"Profile Updated Successfully")
@@ -377,9 +379,11 @@ def Logout(request):
     return redirect('Landing')
 
 def SetCampNeedStatus(request,id):
+    # print(id)
     need=get_object_or_404(CampNeeds,id=id)
+    # print(need)
     if request.method=="POST":
-        need.status=request.POST.get('status')  #  Similar functionality as the cleaned_data[] but it cannot be used without form validation
+        need.status=request.POST.get('status')  #  Similar functionality as the cleaned_data[] , but cleaned_data[] cannot be used without form validation
         need.save()
         messages.success(request,"Status Updated Successfully")
         return redirect('CampNeedsTable')
@@ -428,7 +432,9 @@ def SearchPerson(request):
     
 def CampAlerts(request):
     session_id=request.session['camp_id']
+    # print(session_id)
     alert=get_object_or_404(Camp,login_id=session_id)
+    # print(alert)
     if request.method=='POST':
         form=CampAlertForm(request.POST)
         if form.is_valid():
@@ -446,10 +452,10 @@ def CampAlertTable(request):
     return render(request,'camp_alert_table.html',{'alerts':alerts})
 
 def AlertCampTable(request):
-    session_id=request.session['camp_id']
-    a=get_object_or_404(Camp,login_id=session_id)
-    alerts=CampAlert.objects.filter(login_id=a)
-    return render(request,'alert_message.html',{'alerts':alerts})
+    session_id=request.session['camp_id']                            #  getting the current session id .
+    a=get_object_or_404(Camp,login_id=session_id)                    #  comparing the session id with the login id (foreign key of camp model),if true then saves  id  of the camp into a.
+    alerts=CampAlert.objects.filter(login_id=a)                      #  filtering only from the camp whose id is stored in the variable a.
+    return render(request,'alert_message.html',{'alerts':alerts})    
 
 def DeleteAlert(request,id):
     d=get_object_or_404(CampAlert,id=id)
@@ -503,5 +509,13 @@ def DeleteVolunteerReq(request,id):
 
 def VolunteerAllocateTable(request,id):
     #print(id)                            check  the volunteer_req_table.html  file
+    id=get_object_or_404(Camp,id=id)
     volunteers=Volunteer.objects.all()
-    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers}) 
+    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers,'campid':id}) 
+
+
+def VolAllocateNow(request,campid,id):
+   a=get_object_or_404(Camp,id=campid)
+   vol=get_object_or_404(Volunteer,id=id)
+   Allocate.objects.create(camp=a,volunteer=vol)
+   return redirect('VolunteerReqTable')
