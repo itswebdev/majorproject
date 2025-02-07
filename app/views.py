@@ -515,7 +515,17 @@ def VolunteerAllocateTable(request,id):
 
 
 def VolAllocateNow(request,campid,id):
-   a=get_object_or_404(Camp,id=campid)
-   vol=get_object_or_404(Volunteer,id=id)
-   Allocate.objects.create(camp=a,volunteer=vol)
-   return redirect('VolunteerReqTable')
+    a=get_object_or_404(Camp,id=campid)
+    vol=get_object_or_404(Volunteer,id=id)
+    if not Allocate.objects.filter(camp=a,volunteer=vol).exists():
+       Allocate.objects.create(camp=a,volunteer=vol)
+       vol.allocation="true"
+       vol.save()
+       messages.success(request,'Allocated successfully')
+       return redirect('VolunteerReqTable')
+    else:
+       messages.error(request,'Already allocated')
+       return redirect('VolunteerAllocateTable',id=campid)
+    
+
+    
