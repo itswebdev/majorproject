@@ -34,11 +34,20 @@
                   <td>{{user.aadhar_no}}</td>
                   <td>{{user.contact}}</td>
                   <td>{{user.login_id.email}}</td>
+                  {% if user.allocation == "true" %}
+                     <td>Already allocated</td>
+                  {% else %}
                   <td><button class="btn btn-primary"><a href="../VolAllocateNow/{{campid.id}}/{{user.id}}" style="color: white;text-decoration: none;">Allocate Now</a></button></td>
+                  {% endif %}
                 </tr>
                 {% endfor %}
               </tbody>
             </table>
+            {% if messages %}
+              {% for message in messages %}
+               <script>alert('{{ message }}')</script>
+              {% endfor %}
+            {% endif %}
           </div>
         </div>
       </div>

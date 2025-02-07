@@ -44,6 +44,7 @@ class Volunteer(models.Model):
     aadhar_no=models.CharField(max_length=25)
     contact=models.CharField(max_length=15)
     login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
+    allocation=models.CharField(max_length=100,null=True,blank=True)
 
 class CampUser(models.Model):
     photo=models.ImageField(upload_to='camp')          # Here camp is the folder name where the images added will be stored 
