@@ -72,7 +72,7 @@ class CampAlert(models.Model):
     login_id=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
 
 class VolunteerRequest(models.Model):
-    no_of_volunteers=models.CharField(max_length=100)
+    no_of_volunteers=models.CharField(max_length=100)      #   join this table with camp table to alert the volunteers telling  which camp they are allocated to
     volunteer_details=models.TextField(max_length=100)
     current_date=models.DateField(auto_now_add=True)
     login_id=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
