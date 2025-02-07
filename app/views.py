@@ -176,7 +176,7 @@ def EditCamp(request):
     if request.method == "POST":
         login=LoginEditForm(request.POST, instance=user)
         form=CampForm(request.POST, instance=camp)
-        if form.is_valid() and login.is_valid():
+        if form.is_valid() and login.is_valid(): 
             form.save()
             login.save()
             messages.success(request,"Profile Updated Successfully")
@@ -509,5 +509,13 @@ def DeleteVolunteerReq(request,id):
 
 def VolunteerAllocateTable(request,id):
     #print(id)                            check  the volunteer_req_table.html  file
+    id=get_object_or_404(Camp,id=id)
     volunteers=Volunteer.objects.all()
-    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers}) 
+    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers,'campid':id}) 
+
+
+def VolAllocateNow(request,campid,id):
+   a=get_object_or_404(Camp,id=campid)
+   vol=get_object_or_404(Volunteer,id=id)
+   Allocate.objects.create(camp=a,volunteer=vol)
+   return redirect('VolunteerReqTable')
