@@ -549,15 +549,35 @@ def VolDeAllocate(request,campid,id,volreqid):
        messages.error(request,'Already deallocated')
        return redirect('VolunteerAllocateTable',id=campid,requestid=volreqid)
 
-def Notification(request):
+def Notification(request):                                        #    Allocation notification sent to the volunteers
     a=request.session['volunteer_id']
     user=get_object_or_404(Login,id=a)
     volunteer=get_object_or_404(Volunteer,login_id=user)
     isallocated = Allocate.objects.filter(volunteer=volunteer).first()
     if isallocated:
         camp=isallocated.camp
+        messages.success(request,f'You have been assigned to the camp {camp.camp_name}')
+        return render(request,'notification.html',{'camp':camp})
     else:
         camp=None
-    return render(request,'notification.html',{'camp':camp})
+    
+
+
+#                          OR
+
+
+# def VolNotifi(request):                                  #    Allocation notification sent to the volunteers
+#     session_id=request.session['volunteer_id']
+#     print(session_id)
+#     a=get_object_or_404(Volunteer,login_id=session_id)
+#     print(a)
+#     allocation=Allocate.objects.filter(volunteer=a).first()
+#     print(allocation)
+#     camp=allocation.camp
+#     if allocation:
+#         messages.success(request,f'You have been assigned to the camp {camp.camp_name}.Location :{camp.full_address},{camp.district},{camp.thaluk},{camp.panchayath}. Contact :{camp.contact}')
+#         return render(request,'allocation_notify.html')
+#     else:
+#         None
 
     

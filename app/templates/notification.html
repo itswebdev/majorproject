@@ -1,14 +1,56 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
   </head>
   <body>
+    <style>
+      body{
+        margin: 0;
+      }
+      ul{
+        list-style: none;
+      }
+      #div1{
+        text-align: center;
+        background-color: #15649c;
+        color: white;
+        padding-top: 30px;
+        padding-bottom: 30px;
+      }
+      #div1.li{
+        margin-left: 10%;
+      }
+      #div2{
+         border-radius: 70px;
+         color: white;
+         align-items: center;
+         background-color: #2487CE;
+         padding-top: 20px;
+         padding-bottom: 20px;
+         padding-left: 75px;
+         margin-right: 33%;
+         margin-left: 33%;
+         box-shadow: 8px 10px 10px #888888;
+      }
+      #li1{
+        text-align: center;
+      }
+    </style>
     {% if camp != None %}
-    <h4>You have been assigned to a camp</h4>
-    <table border="1">
+    <div id="div1"><h1>Notification</h1></div>
+    {% if messages %}
+     <ul>
+        {% for message in messages %}
+        <li id="li1"><b>{{ message }}</b></li>
+        {% endfor %}
+     </ul>
+     {% endif %}
+    <!-- <table id="basic-datatables" class="display table table-striped table-hover">
       <tr>
         <th>Camp Name</th>
         <th>Address</th>
@@ -27,7 +69,17 @@
         <td>{{camp.thaluk}}</td>
         <td>{{camp.contact}}</td>
       </tr>
-    </table>
+    </table> -->
+    <div id="div2">
+      <ul>
+        <li><b>Address : {{ camp.full_address }}</b></li>
+        <li><b>District : {{ camp.district }}</b></li>
+        <li><b>City : {{ camp.city }}</li>
+        <li><b>Panchayath : {{ camp.panchayath }}</b></li>
+        <li><b>Thaluk : {{ camp.thaluk }}</b></li>
+        <li><b>Contact : {{ camp.contact }}</b></li>
+      </ul>
+    </div>
     {% else %}
     <p>There is no camp</p>
     {% endif %}
