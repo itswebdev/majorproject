@@ -51,7 +51,7 @@
                 <td>
                   <button class="btn btn-primary">
                     <a
-                      href="../../VolAllocateNow/{{campid.id}}/{{user.id}}/{{volreq.id}}"
+                      href="{% url 'VolAllocateNow' campid.id user.id volreq.id %}"
                       style="color: white; text-decoration: none"
                       >Allocate Now</a
                     >
@@ -61,7 +61,7 @@
                 <td>
                   <button class="btn btn-primary">
                     <a
-                      href="../../VolDeAllocate/{{campid.id}}/{{user.id}}/{{volreq.id}}"
+                      href="{% url 'VolDeAllocate' campid.id user.id volreq.id %}"
                       style="color: white; text-decoration: none"
                     >
                       Deallocate</a
