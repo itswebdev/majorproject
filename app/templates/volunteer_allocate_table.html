@@ -16,6 +16,10 @@
           Volunteers Allocated {{volreq.totalallocated}}
         </h4>
       </div>
+      {% if messages %} {% for message in messages %}
+      <p>{{message}}</p>
+
+      {% endfor %} {% endif %}
       <div class="card-body">
         <div class="table-responsive">
           <table
@@ -73,11 +77,6 @@
               {% endfor %}
             </tbody>
           </table>
-          {% comment %} {% if messages %} {% for message in messages %}
-          <script>
-            alert("{{ message }}");
-          </script>
-          {% endfor %} {% endif %} {% endcomment %}
         </div>
       </div>
     </div>

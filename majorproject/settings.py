@@ -141,3 +141,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# settings.py
+MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
+
+
