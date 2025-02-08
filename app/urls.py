@@ -64,6 +64,7 @@ urlpatterns = [
     path('volunteer_allocate_table/<int:id>/<int:requestid>',views.VolunteerAllocateTable,name="VolunteerAllocateTable"),
     path('VolAllocateNow/<int:campid>/<int:id>/<int:volreqid>',views.VolAllocateNow,name="VolAllocateNow"),
     path('VolDeAllocate/<int:campid>/<int:id>/<int:volreqid>',views.VolDeAllocate,name="VolDeAllocate"),
+    path('Notification/',views.Notification,name="Notification"),
 
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 

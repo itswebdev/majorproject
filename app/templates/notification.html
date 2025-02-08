@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    {% if camp != None %}
+    <h4>You have been assigned to a camp</h4>
+    <table border="1">
+      <tr>
+        <th>Camp Name</th>
+        <th>Address</th>
+        <th>District</th>
+        <th>City</th>
+        <th>Panchayath</th>
+        <th>Thaluk</th>
+        <th>Contact</th>
+      </tr>
+      <tr>
+        <td>{{camp.camp_name}}</td>
+        <td>{{camp.full_address}}</td>
+        <td>{{camp.district}}</td>
+        <td>{{camp.city}}</td>
+        <td>{{camp.panchayath}}</td>
+        <td>{{camp.thaluk}}</td>
+        <td>{{camp.contact}}</td>
+      </tr>
+    </table>
+    {% else %}
+    <p>There is no camp</p>
+    {% endif %}
+  </body>
+</html>

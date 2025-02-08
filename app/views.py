@@ -549,5 +549,15 @@ def VolDeAllocate(request,campid,id,volreqid):
        messages.error(request,'Already deallocated')
        return redirect('VolunteerAllocateTable',id=campid,requestid=volreqid)
 
+def Notification(request):
+    a=request.session['volunteer_id']
+    user=get_object_or_404(Login,id=a)
+    volunteer=get_object_or_404(Volunteer,login_id=user)
+    isallocated = Allocate.objects.filter(volunteer=volunteer).first()
+    if isallocated:
+        camp=isallocated.camp
+    else:
+        camp=None
+    return render(request,'notification.html',{'camp':camp})
 
     
