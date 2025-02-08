@@ -28,16 +28,16 @@
                               <td>{{request.no_of_volunteers}}</td>
                               <td>{{request.volunteer_details}}</td>
                               <td>{{request.current_date}}</td>
-                              <td><button class="btn btn-primary"><a href="{% url 'VolunteerAllocateTable' request.login_id.id %}" style="color: white;text-decoration: none;">Allocate</a></button></td>
+                              <td><button class="btn btn-primary"><a href="{% url 'VolunteerAllocateTable' request.login_id.id request.id %}" style="color: white;text-decoration: none;">Allocate</a></button></td>
                             </tr>
                             {% endfor %}
                         </tbody>
                       </table>
-                      {% if messages %}
+                      {% comment %} {% if messages %}
                        {% for message in messages %}
                         <script>alert('{{message}}')</script>
                        {% endfor %}
-                      {% endif %}
+                      {% endif %} {% endcomment %}
                     </div>
                   </div>
                 </div>

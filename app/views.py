@@ -507,25 +507,47 @@ def DeleteVolunteerReq(request,id):
     messages.success(request,'Request deleted successfully')
     return redirect('ReqVolunteerTable')
 
-def VolunteerAllocateTable(request,id):
+def VolunteerAllocateTable(request,id,requestid):
     #print(id)                            check  the volunteer_req_table.html  file
     id=get_object_or_404(Camp,id=id)
     volunteers=Volunteer.objects.all()
-    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers,'campid':id}) 
+    volreq=get_object_or_404(VolunteerRequest,id=requestid)
+    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers,'campid':id,'volreq':volreq}) 
 
 
-def VolAllocateNow(request,campid,id):
+def VolAllocateNow(request,campid,id,volreqid):
     a=get_object_or_404(Camp,id=campid)
     vol=get_object_or_404(Volunteer,id=id)
+    req=get_object_or_404(VolunteerRequest,id=volreqid)
     if not Allocate.objects.filter(camp=a,volunteer=vol).exists():
        Allocate.objects.create(camp=a,volunteer=vol)
        vol.allocation="true"
        vol.save()
+       req.totalallocated+=1
+       req.save()
        messages.success(request,'Allocated successfully')
-       return redirect('VolunteerReqTable')
+       return redirect('VolunteerAllocateTable',id=campid,requestid=volreqid)
     else:
        messages.error(request,'Already allocated')
-       return redirect('VolunteerAllocateTable',id=campid)
-    
+       return redirect('VolunteerAllocateTable',id=campid,requestid=volreqid)
+
+def VolDeAllocate(request,campid,id,volreqid):
+    a=get_object_or_404(Camp,id=campid)
+    vol=get_object_or_404(Volunteer,id=id)
+    req=get_object_or_404(VolunteerRequest,id=volreqid)
+    if Allocate.objects.filter(camp=a,volunteer=vol).exists():
+       Allocate.objects.filter(camp=a,volunteer=vol).delete()
+       vol.allocation="false"
+       vol.save()
+       if int(req.totalallocated)>0:
+        req.totalallocated-=1
+        req.save()
+       messages.success(request,'Deallocated successfully')
+       return redirect('VolunteerAllocateTable',id=campid,requestid=volreqid)
+
+    else:
+       messages.error(request,'Already deallocated')
+       return redirect('VolunteerAllocateTable',id=campid,requestid=volreqid)
+
 
     
