@@ -19,6 +19,7 @@
                           <th>Number of Volunteers needed</th>
                           <th>Volunteers details</th>
                           <th>Date</th>
+                          <th colspan="2" style="text-align: center;">Status</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -28,8 +29,14 @@
                               <td>{{request.no_of_volunteers}}</td>
                               <td>{{request.volunteer_details}}</td>
                               <td>{{request.current_date}}</td>
+                              {% if request.no_of_volunteers == request.totalallocated %}
+                              <td>Volunteers Allocated</td>
+                              <td><button class="btn btn-primary"><a href="{% url 'VolunteerAllocateTable' request.login_id.id request.id %}" style="color: white;text-decoration: none;">Reallocate</a></button></td>
+                              </tr>
+                              {% else %}
                               <td><button class="btn btn-primary"><a href="{% url 'VolunteerAllocateTable' request.login_id.id request.id %}" style="color: white;text-decoration: none;">Allocate</a></button></td>
-                            </tr>
+                              </tr>
+                              {% endif %}
                             {% endfor %}
                         </tbody>
                       </table>
