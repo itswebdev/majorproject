@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Notification</title>
     <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
   </head>
   <body>
@@ -15,17 +15,17 @@
       ul{
         list-style: none;
       }
-      #div1{
+      .div1{
         text-align: center;
         background-color: #15649c;
         color: white;
         padding-top: 30px;
         padding-bottom: 30px;
       }
-      #div1.li{
+      .div1.li{
         margin-left: 10%;
       }
-      #div2{
+      .div2{
          border-radius: 70px;
          color: white;
          align-items: center;
@@ -37,16 +37,18 @@
          margin-left: 33%;
          box-shadow: 8px 10px 10px #888888;
       }
-      #li1{
+      .li1{
+        padding-top: 10px;
         text-align: center;
+        font-size: large;
       }
     </style>
     {% if camp != None %}
-    <div id="div1"><h1>Notification</h1></div>
+    <div class="div1"><h1>Notification</h1></div>
     {% if messages %}
      <ul>
         {% for message in messages %}
-        <li id="li1"><b>{{ message }}</b></li>
+        <li class="li1"><b>{{ message }}</b></li>
         {% endfor %}
      </ul>
      {% endif %}
@@ -70,7 +72,7 @@
         <td>{{camp.contact}}</td>
       </tr>
     </table> -->
-    <div id="div2">
+    <div class="div2">
       <ul>
         <li><b>Address : {{ camp.full_address }}</b></li>
         <li><b>District : {{ camp.district }}</b></li>
@@ -80,8 +82,15 @@
         <li><b>Contact : {{ camp.contact }}</b></li>
       </ul>
     </div>
-    {% else %}
-    <p>There is no camp</p>
+    {% elif camp == None %}
+    <div class="div1"><h1>Notification</h1></div>
+     {% if messages %}
+      <ul>
+       {% for message in messages %}
+        <li class="li1"><b>{{ message }}</b></li>
+       {% endfor %}
+      </ul>
+     {% endif %}
     {% endif %}
   </body>
 </html>

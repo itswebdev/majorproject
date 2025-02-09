@@ -61,9 +61,11 @@ urlpatterns = [
     path('req_volunteer_table',views.ReqVolunteerTable,name="ReqVolunteerTable"),
     path('edit_volunteer_req/<int:id>',views.EditVolunteerReq,name="EditVolunteerReq"),
     path('delete_volunteer_req/<int:id>',views.DeleteVolunteerReq,name="DeleteVolunteerReq"),
+
     path('volunteer_allocate_table/<int:id>/<int:requestid>',views.VolunteerAllocateTable,name="VolunteerAllocateTable"),
     path('VolAllocateNow/<int:campid>/<int:id>/<int:volreqid>',views.VolAllocateNow,name="VolAllocateNow"),
     path('VolDeAllocate/<int:campid>/<int:id>/<int:volreqid>',views.VolDeAllocate,name="VolDeAllocate"),
+    
     path('Notification',views.Notification,name="Notification"),
 
     
