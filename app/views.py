@@ -510,7 +510,7 @@ def DeleteVolunteerReq(request,id):
 def VolunteerAllocateTable(request,id,requestid):
     #print(id)                            check  the volunteer_req_table.html  file
     id=get_object_or_404(Camp,id=id)
-    volunteers = Volunteer.objects.filter(allocation="false") | Volunteer.objects.filter(id__in=Allocate.objects.filter(camp_id=id).values_list('volunteer_id')) # chech this line   
+    volunteers = Volunteer.objects.filter(allocation="false") | Volunteer.objects.filter(allocation__isnull=True) | Volunteer.objects.filter(id__in=Allocate.objects.filter(camp_id=id).values_list('volunteer_id')) # Here added filtering allocation field where value is NULL   
     volreq=get_object_or_404(VolunteerRequest,id=requestid)
     return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers,'campid':id,'volreq':volreq}) 
 
