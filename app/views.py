@@ -26,7 +26,7 @@ def CampReg(request):
 
         form=CampForm()
         login=LoginForm()
-    return render(request, 'registration.html',{'form':form,'login':login})
+    return render(request, 'common/registration.html',{'form':form,'login':login})
 
     # station Registration form
 
@@ -47,7 +47,7 @@ def PoliceReg(request):
 
         form=PoliceForm()
         login=LoginForm()
-    return render(request,'registration.html',{'form':form,'login':login})
+    return render(request,'common/registration.html',{'form':form,'login':login})
 
     # public Registration form
 
@@ -68,7 +68,7 @@ def PublicReg(request):
 
         form=PublicForm()
         login=LoginForm()
-    return render(request, 'registration.html',{'form':form,'login':login})
+    return render(request, 'common/registration.html',{'form':form,'login':login})
 
     # volunteer Registration form
 
@@ -88,7 +88,7 @@ def VolunteerReg(request):
     else:
         form=VolunteerForm()
         login=LoginForm()
-    return render(request,'registration.html',{'form':form,'login':login})
+    return render(request,'common/registration.html',{'form':form,'login':login})
 
 # admin home page
 
@@ -97,40 +97,40 @@ def ViewAdmin(request):
 
 def CampTable(request):
     camps=Camp.objects.all()
-    return render(request,'camp_table.html',{'camps':camps})
+    return render(request,'camp/camp_table.html',{'camps':camps})
 
 def StationTable(request):
      stations=Police.objects.all()
-     return render(request,'station_table.html',{'stations':stations})
+     return render(request,'police/station_table.html',{'stations':stations})
 
 def PublicTable(request):
     publics=Public.objects.all()
-    return render(request,'public_table.html',{'publics':publics}) 
+    return render(request,'public/public_table.html',{'publics':publics}) 
  
 def VolunteerTable(request):
     volunteers=Volunteer.objects.all()
-    return render(request,'volunteer_table.html',{'volunteers':volunteers})
+    return render(request,'volunteer/volunteer_table.html',{'volunteers':volunteers})
 
     # camp home page
 
 def CampHome(request):
-    return render(request,'camp.html')
+    return render(request,'camp/camp.html')
 
     # station home page
 
 def StationHome(request):
-    return render(request,'station.html')
+    return render(request,'police/station.html')
 
     # public home page
 
 def PublicHome(request):
-    return render(request,'public.html')
+    return render(request,'public/public.html')
 
     
     # volunteer home page
 
 def VolunteerHome(request):
-    return render(request,'volunteer.html')
+    return render(request,'volunteer/volunteer.html')
 
 
     # user login 
@@ -162,7 +162,7 @@ def UserLogin(request):
                     messages.error(request,"User Does not Exist")
     else:
         form=LoginCheck()
-    return render(request,'login.html',{'form':form})
+    return render(request,'common/login.html',{'form':form})
 
 
      # camp profile editing
@@ -184,7 +184,7 @@ def EditCamp(request):
     else:
         login=LoginEditForm(instance=user)
         form=CampForm(instance=camp)
-    return render(request,'edit_profile.html',{'form':form,'login':login})
+    return render(request,'common/edit_profile.html',{'form':form,'login':login})
 
     
      # station profile editing
@@ -204,7 +204,7 @@ def EditStation(request):
     else:
       login=LoginEditForm(instance=user)
       form=PoliceForm(instance=station)
-    return render(request,'edit_profile.html',{'form':form,'login':login})
+    return render(request,'common/edit_profile.html',{'form':form,'login':login})
 
 
      # public profile editing
@@ -224,7 +224,7 @@ def EditPublic(request):
     else:
       login=LoginEditForm(instance=user)
       form=PublicForm(instance=public)
-    return render(request,'edit_profile.html',{'form':form,'login':login})
+    return render(request,'common/edit_profile.html',{'form':form,'login':login})
 
     # volunteer profile editing
 
@@ -243,12 +243,12 @@ def EditVolunteer(request):
     else:
       login=LoginEditForm(instance=user)
       form=VolunteerForm(instance=volunteer)
-    return render(request,'edit_profile.html',{'form':form,'login':login})
+    return render(request,'common/edit_profile.html',{'form':form,'login':login})
 
     # admin page view 2
 
 def ViewAdmin2(request):
-    return render(request,'admin2.html')
+    return render(request,'admin/admin2.html')
 
     #  Camp User Registration  
 
@@ -266,7 +266,7 @@ def CampAddUser(request):
     else:
 
         form=CampUserForm()
-    return render(request,'camp_user_reg.html',{'form':form})
+    return render(request,'camp/camp_user_reg.html',{'form':form})
 
     # Camp user viewing
 
@@ -274,7 +274,7 @@ def CampUsersView(request):
     session_id=request.session['camp_id']
     a=get_object_or_404(Login,id=session_id)
     users=CampUser.objects.filter(camp_id=a)
-    return render(request,'camp_users_table.html',{'users':users})
+    return render(request,'camp/camp_users_table.html',{'users':users})
 
     # Editing camp user
 
@@ -288,7 +288,7 @@ def EditCampUser(request,id):
             return redirect('CampUsersView') 
     else:
         form=CampUserForm(instance=user)
-    return render(request,'edit_camp_user.html',{'form':form})
+    return render(request,'camp/edit_camp_user.html',{'form':form})
 
     # Deleting camp user
  
@@ -299,7 +299,7 @@ def CampUserDelete(request,id):
     return redirect('CampUsersView')
 
 def Landing(request):
-    return render(request,'landing.html')
+    return render(request,'common/landing.html')
    
 # def CampSearch(request):
 #     if request.method=="POST":
@@ -324,9 +324,9 @@ def CampSearch(request):
             Q(thaluk__icontains=query) |
             Q(contact__icontains=query) 
         )
-        return render(request, 'camp_search.html', {'camps': camps})
+        return render(request, 'camp/camp_search.html', {'camps': camps})
     else:
-        return render(request, 'camp_search.html')
+        return render(request, 'camp/camp_search.html')
 
 
 def CampNeedsSubmit(request):
@@ -341,17 +341,17 @@ def CampNeedsSubmit(request):
             messages.success(request,"Needs are submitted successfully")
     else:
         form=CampNeedsForm()
-    return render(request,'camp_needs.html',{'form':form})
+    return render(request,'camp/camp_needs.html',{'form':form})
 
 def CampNeedsTable(request):
     needs=CampNeeds.objects.all()
-    return render(request,'camp_needs_table.html',{'needs':needs})
+    return render(request,'admin/camp_needs_table.html',{'needs':needs})
 
 def NeedsViewTable(request):
         session_id=request.session['camp_id']
         a=get_object_or_404(Camp,login_id=session_id)
         needs=CampNeeds.objects.filter(camp_id=a)
-        return render(request,'needs_view_table.html',{'needs':needs})
+        return render(request,'camp/needs_view_table.html',{'needs':needs})
 
 def EditCampNeed(request,id):
     need=get_object_or_404(CampNeeds,id=id)
@@ -363,7 +363,7 @@ def EditCampNeed(request,id):
             return redirect('NeedsViewTable')
     else:
         form=CampNeedsForm(instance=need)
-    return render(request,'camp_needs.html',{'form':form})
+    return render(request,'camp/camp_needs.html',{'form':form})
 
 def CampNeedsDelete(request,id):
     need=get_object_or_404(CampNeeds,id=id)
@@ -389,7 +389,7 @@ def SetCampNeedStatus(request,id):
         return redirect('CampNeedsTable')
     else:
         form=CampNeedsForm(instance=need)
-    return render(request,'set_camp_status.html',{'form':form})
+    return render(request,'admin/set_camp_status.html',{'form':form})
 
 def SearchCampPerson(request):
     id = request.session['camp_id']
@@ -408,9 +408,9 @@ def SearchCampPerson(request):
             Q(village__icontains=query) |
             Q(thaluk__icontains=query) 
             )      
-        return render(request,'camp_search_person.html',{'users':users})
+        return render(request,'common/camp_search_person.html',{'users':users})
     else:
-        return render(request,'camp_search_person.html')
+        return render(request,'common/camp_search_person.html')
     
 def SearchPerson(request):
     if request.method=="POST":
@@ -426,9 +426,9 @@ def SearchPerson(request):
             Q(village__icontains=query) |
             Q(thaluk__icontains=query) 
             )      
-        return render(request,'camp_search_person.html',{'users':users})
+        return render(request,'common/camp_search_person.html',{'users':users})
     else:
-        return render(request,'camp_search_person.html')
+        return render(request,'common/camp_search_person.html')
     
 def CampAlerts(request):
     session_id=request.session['camp_id']
@@ -445,17 +445,17 @@ def CampAlerts(request):
             return redirect('CampHome')
     else:
         form=CampAlertForm()
-    return render(request,'camp_alert.html',{'form':form})
+    return render(request,'camp/camp_alert.html',{'form':form})
 
 def CampAlertTable(request):
     alerts=CampAlert.objects.all()
-    return render(request,'camp_alert_table.html',{'alerts':alerts})
+    return render(request,'admin/camp_alert_table.html',{'alerts':alerts})
 
 def AlertCampTable(request):
     session_id=request.session['camp_id']                            #  getting the current session id .
     a=get_object_or_404(Camp,login_id=session_id)                    #  comparing the session id with the login id (foreign key of camp model),if true then saves  id  of the camp into a.
     alerts=CampAlert.objects.filter(login_id=a)                      #  filtering only from the camp whose id is stored in the variable a.
-    return render(request,'alert_message.html',{'alerts':alerts})    
+    return render(request,'camp/alert_message.html',{'alerts':alerts})    
 
 def DeleteAlert(request,id):
     d=get_object_or_404(CampAlert,id=id)
@@ -475,17 +475,17 @@ def VolunteerReq(request):
             return redirect('CampHome')
     else:
         form=VolunteerReqForm()
-    return render(request,'volunteer_req.html',{'form':form})
+    return render(request,'volunteer/volunteer_req.html',{'form':form})
 
 def VolunteerReqTable(request):
     requests=VolunteerRequest.objects.all()
-    return render(request,'volunteer_req_table.html',{'requests':requests})
+    return render(request,'admin/volunteer_req_table.html',{'requests':requests})
 
 def ReqVolunteerTable(request):
     session_id=request.session['camp_id']
     a=get_object_or_404(Camp,login_id=session_id)
     requests=VolunteerRequest.objects.filter(login_id=a)
-    return render(request,'req_volunteer_table.html',{'requests':requests})
+    return render(request,'camp/req_volunteer_table.html',{'requests':requests})
 
 
 def EditVolunteerReq(request,id):
@@ -498,7 +498,7 @@ def EditVolunteerReq(request,id):
               return redirect('ReqVolunteerTable')
     else:
         requests=VolunteerReqForm(instance=req)
-    return render(request,'edit_vol_req.html',{'requests':requests})
+    return render(request,'camp/edit_vol_req.html',{'requests':requests})
 
 
 def DeleteVolunteerReq(request,id):
@@ -512,7 +512,7 @@ def VolunteerAllocateTable(request,id,requestid):
     id=get_object_or_404(Camp,id=id)
     volunteers = Volunteer.objects.filter(allocation="false") | Volunteer.objects.filter(allocation__isnull=True) | Volunteer.objects.filter(id__in=Allocate.objects.filter(camp_id=id).values_list('volunteer_id')) # Here added filtering allocation field where value is NULL   
     volreq=get_object_or_404(VolunteerRequest,id=requestid)
-    return render(request,'volunteer_allocate_table.html',{'volunteers':volunteers,'campid':id,'volreq':volreq}) 
+    return render(request,'admin/volunteer_allocate_table.html',{'volunteers':volunteers,'campid':id,'volreq':volreq}) 
 
 
 def VolAllocateNow(request,campid,id,volreqid):
@@ -557,11 +557,11 @@ def Notification(request):                                        #    Allocatio
     if isallocated:
         camp=isallocated.camp
         messages.success(request,f'You have been assigned to the camp {camp.camp_name}')
-        return render(request,'notification.html',{'camp':camp})
+        return render(request,'volunteer/notification.html',{'camp':camp})
     else:
         camp=None
         messages.success(request,'You are not assigned to any camp')
-        return render(request,'notification.html',{'camp':camp})
+        return render(request,'volunteer/notification.html',{'camp':camp})
     
 
 
@@ -594,16 +594,16 @@ def PublicComplaint(request):
             return redirect('PublicHome')
     else:
         form=ComplaintForm()
-    return render(request,'public_complaint.html',{'form':form})
+    return render(request,'public/public_complaint.html',{'form':form})
 
 def ViewComplaints(request):
     complaints=Complaint.objects.all()
-    return render(request,'view_complaint.html',{'complaints':complaints})
+    return render(request,'admin/view_complaint.html',{'complaints':complaints})
 
 def ListComplaints(request):
     user=get_object_or_404(Login,id=request.session['public_id'])
     complaints=Complaint.objects.filter(login_id=user)
-    return render(request,'list_complaints.html',{'complaints':complaints})
+    return render(request,'public/list_complaints.html',{'complaints':complaints})
 
 def EditComplaint(request,id):
     complaint=get_object_or_404(Complaint,id=id)
@@ -615,7 +615,7 @@ def EditComplaint(request,id):
             return redirect('ListComplaints')
     else:
         form=ComplaintForm(instance=complaint)
-    return render(request,'public_complaint.html',{'form':form})
+    return render(request,'public/public_complaint.html',{'form':form})
 
 def DeleteComplaint(request,id):
     complaint=get_object_or_404(Complaint,id=id)
@@ -627,7 +627,7 @@ def AllocatedVolList(request):
     session_id=request.session['camp_id']
     a=get_object_or_404(Camp,login_id=session_id)
     allocated_vol=Allocate.objects.filter(camp=a)
-    return render(request,'vol_allocated_list.html',{'allocated_vol':allocated_vol})
+    return render(request,'camp/vol_allocated_list.html',{'allocated_vol':allocated_vol})
 
      
     
