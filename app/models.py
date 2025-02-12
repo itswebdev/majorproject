@@ -88,4 +88,13 @@ class Complaint(models.Model):
     complaint=models.TextField(max_length=500)
     login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
     current_date=models.DateField(auto_now_add=True)
+<<<<<<< HEAD
     reply=models.TextField(max_length=500,null=True,blank=True)
+=======
+
+class Duty(models.Model):
+    duty=models.TextField()
+    curr_date=models.DateField(auto_now_add=True)
+    volunteer=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True)
+    camp=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
+>>>>>>> 7d7f0faac2d5fac6fcc5f16829f8ef265028ab86

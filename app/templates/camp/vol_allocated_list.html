@@ -30,6 +30,7 @@
                   <td>{{user.volunteer.date_of_birth}}</td>
                   <td>{{user.volunteer.contact}}</td>
                   <td>{{user.curr_date}}</td>
+                  <td><button class="btn btn-primary"><a href="{% url 'ScheduleDuty'  user.camp.id user.volunteer.id %}" style="color: white;text-decoration: none;">Schedule Duty</a></button></td>
                 </tr>
                 {% endfor %}
               </tbody>
