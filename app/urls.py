@@ -68,6 +68,12 @@ urlpatterns = [
     
     path('Notification',views.Notification,name="Notification"),
 
+    path('PublicComplaint',views.PublicComplaint,name="PublicComplaint"),
+    path('ViewComplaints',views.ViewComplaints,name="ViewComplaints"),
+    path('ListComplaints',views.ListComplaints,name="ListComplaints"),
+    path('EditComplaint/<int:id>',views.EditComplaint,name="EditComplaint"),
+    path('DeleteComplaint/<int:id>',views.DeleteComplaint,name="DeleteComplaint"),
+
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  

@@ -582,4 +582,44 @@ def Notification(request):                                        #    Allocatio
 #     else:
 #         None
 
+def PublicComplaint(request):
+    if request.method=="POST":
+        form=ComplaintForm(request.POST)
+        if form.is_valid():
+            a=form.save(commit=False)
+            user=get_object_or_404(Login,id=request.session['public_id'])
+            a.login_id=user
+            a.save()
+            messages.success(request,'Complaint submitted successfully')
+            return redirect('PublicHome')
+    else:
+        form=ComplaintForm()
+    return render(request,'public_complaint.html',{'form':form})
+
+def ViewComplaints(request):
+    complaints=Complaint.objects.all()
+    return render(request,'view_complaint.html',{'complaints':complaints})
+
+def ListComplaints(request):
+    user=get_object_or_404(Login,id=request.session['public_id'])
+    complaints=Complaint.objects.filter(login_id=user)
+    return render(request,'list_complaints.html',{'complaints':complaints})
+
+def EditComplaint(request,id):
+    complaint=get_object_or_404(Complaint,id=id)
+    if request.method=="POST":
+        form=ComplaintForm(request.POST,instance=complaint)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Complaint edited successfully')
+            return redirect('ListComplaints')
+    else:
+        form=ComplaintForm(instance=complaint)
+    return render(request,'public_complaint.html',{'form':form})
+
+def DeleteComplaint(request,id):
+    complaint=get_object_or_404(Complaint,id=id)
+    complaint.delete()
+    messages.success(request,'Complaint deleted successfully')
+    return redirect('ListComplaints')
     

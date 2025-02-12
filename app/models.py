@@ -82,3 +82,9 @@ class Allocate(models.Model):
     camp=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True) 
     volunteer=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True)
     curr_date=models.DateField(auto_now_add=True)
+
+class Complaint(models.Model):
+    complaint_sub=models.CharField(max_length=100)
+    complaint=models.TextField(max_length=500)
+    login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
+    current_date=models.DateField(auto_now_add=True)
