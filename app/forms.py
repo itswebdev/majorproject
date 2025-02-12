@@ -61,3 +61,8 @@ class ComplaintForm(forms.ModelForm):
     class Meta:
         model=Complaint
         fields=['complaint_sub','complaint']
+
+class ComplaintReplyForm(forms.ModelForm):
+    class Meta:
+        model=Complaint
+        fields=['reply']

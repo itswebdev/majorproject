@@ -629,5 +629,22 @@ def AllocatedVolList(request):
     allocated_vol=Allocate.objects.filter(camp=a)
     return render(request,'camp/vol_allocated_list.html',{'allocated_vol':allocated_vol})
 
+def ComplaintReply(request,id):
+    complaint=get_object_or_404(Complaint,id=id)
+    if request.method=="POST":
+        form=ComplaintReplyForm(request.POST,instance=complaint)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Complaint edited successfully')
+            return redirect('ViewComplaints')
+    else:
+        form=ComplaintReplyForm(instance=complaint)
+    return render(request,'admin/reply.html',{'form':form,'complaint':complaint})
+
+def ShowReply(request,id):
+    complaint=get_object_or_404(Complaint,id=id)
+    return render(request,'public/view_reply.html',{'complaint':complaint})
+
+
      
     

@@ -39,6 +39,7 @@
                               <td>{{complaint.complaint_sub}}</td>
                               <td>{{complaint.complaint}}</td>
                               <td>{{complaint.current_date}}</td>
+                              <td><button class="btn btn-primary"><a href="{% url "ComplaintReply" complaint.id %}"  style="color: white;text-decoration: none;">Reply</a></button></td>
                             </tr>
                             {% endfor %}
                           </tbody>

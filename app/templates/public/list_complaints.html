@@ -48,6 +48,15 @@
                     <td>{{complaint.complaint_sub}}</td>
                     <td>{{complaint.complaint}}</td>
                     <td>{{complaint.current_date}}</td>
+                    {% if complaint.reply %}
+                    <td>
+                      <button class="btn btn-primary">
+                        <a href="{% url "ShowReply" complaint.id %}" style="color: white; text-decoration: none"
+                          >Show Reply</a
+                        >
+                      </button>
+                    </td>
+                    {% else %}
                     <td>
                       <button class="btn btn-primary">
                         <a href="{% url "EditComplaint" complaint.id %}" style="color: white; text-decoration: none"
@@ -67,6 +76,7 @@
                       </button>
                     </td>
                   </tr>
+                    {% endif %}
 
                   {% endfor %}
                 </tbody>

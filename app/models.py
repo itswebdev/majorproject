@@ -88,3 +88,4 @@ class Complaint(models.Model):
     complaint=models.TextField(max_length=500)
     login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
     current_date=models.DateField(auto_now_add=True)
+    reply=models.TextField(max_length=500,null=True,blank=True)
