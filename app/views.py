@@ -646,14 +646,20 @@ def ShowReply(request,id):
     return render(request,'public/view_reply.html',{'complaint':complaint})
 
 def ScheduleDuty(request,camp,volunteer):
+    print(volunteer)
     vol=get_object_or_404(Volunteer,id=volunteer)
+    print(vol)
     c=get_object_or_404(Camp,id=camp)
     if request.method == "POST":
+        alloc=get_object_or_404(Allocate,volunteer=vol)      #  volunteer is used because it specifies only 1 volunteer who has been assigned. But camp specifies all their required volunteers, so 'get() returned more than one Allocate' this exception occurs.
+        if Allocate.objects.filter(camp=c,volunteer=vol).exists():
+            alloc.duty_status="scheduled"
+            alloc.save()
         form=DutyForm(request.POST)
         if form.is_valid():
             a=form.save(commit=False)
-            a.volunteer=vol
-            a.camp=c
+            a.volunteer_id=vol
+            a.camp_id=c
             form.save()
             messages.success(request,'Duty successfully scheduled')
             return redirect('AllocatedVolList')

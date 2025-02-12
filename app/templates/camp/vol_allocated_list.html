@@ -30,7 +30,13 @@
                   <td>{{user.volunteer.date_of_birth}}</td>
                   <td>{{user.volunteer.contact}}</td>
                   <td>{{user.curr_date}}</td>
-                  <td><button class="btn btn-primary"><a href="{% url 'ScheduleDuty'  user.camp.id user.volunteer.id %}" style="color: white;text-decoration: none;">Schedule Duty</a></button></td>
+                  <td>
+                  {% if user.duty_status == "Not Scheduled" %}
+                  <button class="btn btn-primary"><a href="{% url 'ScheduleDuty'  user.camp.id user.volunteer.id %}" style="color: white;text-decoration: none;">Schedule Duty</a></button>
+                  {% else %}
+                   <p>Duty Scheduled</p>
+                  {% endif %}
+                  </td>
                 </tr>
                 {% endfor %}
               </tbody>
