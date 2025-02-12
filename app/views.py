@@ -629,7 +629,6 @@ def AllocatedVolList(request):
     allocated_vol=Allocate.objects.filter(camp=a)
     return render(request,'camp/vol_allocated_list.html',{'allocated_vol':allocated_vol})
 
-<<<<<<< HEAD
 def ComplaintReply(request,id):
     complaint=get_object_or_404(Complaint,id=id)
     if request.method=="POST":
@@ -646,7 +645,6 @@ def ShowReply(request,id):
     complaint=get_object_or_404(Complaint,id=id)
     return render(request,'public/view_reply.html',{'complaint':complaint})
 
-=======
 def ScheduleDuty(request,camp,volunteer):
     vol=get_object_or_404(Volunteer,id=volunteer)
     c=get_object_or_404(Camp,id=camp)
@@ -662,7 +660,6 @@ def ScheduleDuty(request,camp,volunteer):
     else:
         form=DutyForm()
     return render(request,'camp/vol_duty_schedule.html',{'form':form})
->>>>>>> 7d7f0faac2d5fac6fcc5f16829f8ef265028ab86
 
      
     
