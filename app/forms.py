@@ -1,5 +1,5 @@
 from django import forms
-from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds,CampAlert,VolunteerRequest,Complaint
+from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds,CampAlert,VolunteerRequest,Complaint,Duty
 
 class CampForm(forms.ModelForm):
     
@@ -61,3 +61,8 @@ class ComplaintForm(forms.ModelForm):
     class Meta:
         model=Complaint
         fields=['complaint_sub','complaint']
+
+class DutyForm(forms.ModelForm):
+    class Meta:
+        model=Duty
+        fields=['duty']

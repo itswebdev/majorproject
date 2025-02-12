@@ -73,7 +73,8 @@ urlpatterns = [
     path('ListComplaints',views.ListComplaints,name="ListComplaints"),
     path('EditComplaint/<int:id>',views.EditComplaint,name="EditComplaint"),
     path('DeleteComplaint/<int:id>',views.DeleteComplaint,name="DeleteComplaint"),
-    path('allocated_vol_List',views.AllocatedVolList,name="AllocatedVolList")  #    List of the volunteers assingned to the camp
+    path('allocated_vol_List',views.AllocatedVolList,name="AllocatedVolList"),            #    List of the volunteers assingned to the camp
+    path('ScheduleDuty/<int:camp>/<int:volunteer>',views.ScheduleDuty,name="ScheduleDuty"),
 
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
