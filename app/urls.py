@@ -68,6 +68,8 @@ urlpatterns = [
     
     path('Notification',views.Notification,name="Notification"),
 
+    path('allocated_vol_List',views.AllocatedVolList,name="AllocatedVolList")  #    List of the volunteers assingned to the camp
+
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  

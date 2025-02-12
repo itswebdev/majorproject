@@ -15,7 +15,7 @@
 
                       <thead>
                         <tr>
-                          <th>Camp name</th>
+                          <th>Volunteer name</th>
                           <th>Volunteers requests</th>
                           <th>Volunteers details</th>
                           <th>Date</th>
@@ -30,6 +30,7 @@
                               <td>{{request.current_date}}</td>
                               <td><button class="btn btn-primary"><a href="{% url 'EditVolunteerReq' request.id %}" style="text-decoration: none;color: white;">Edit</a></button></td>
                               <td><button class="btn btn-danger"><a href="{% url 'DeleteVolunteerReq' request.id %}" style="text-decoration: none;color: white;">Delete</a></button></td>
+                              <td><button class="btn btn-success"><a href="{% url 'AllocatedVolList'  %}" style="text-decoration: none;color: white;">View Staff</a></button></td>
                             </tr>
                             {% endfor %}
                         </tbody>

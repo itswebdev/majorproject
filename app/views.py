@@ -582,4 +582,11 @@ def Notification(request):                                        #    Allocatio
 #     else:
 #         None
 
+def AllocatedVolList(request):
+    session_id=request.session['camp_id']
+    a=get_object_or_404(Camp,login_id=session_id)
+    allocated_vol=Allocate.objects.filter(camp=a)
+    return render(request,'vol_allocated_list.html',{'allocated_vol':allocated_vol})
+
+     
     

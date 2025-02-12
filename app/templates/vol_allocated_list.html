@@ -1,11 +1,11 @@
-<!-- 
+
 {% load static %}
 <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header">
             <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
-          <h4 class="card-title">Volunteer Allocate Table</h4>
+          <h4 class="card-title">Allocated Volunteers List</h4>
         </div>
         <div class="card-body">
           <div class="table-responsive">
@@ -15,16 +15,20 @@
             >
               <thead>
                 <tr>
-                  <th>camp id</th>
-                  <th>volunteer id</th>
+                  <th>volunteer name</th>
+                  <th>Gender</th>
+                  <th>date of birth</th>
+                  <th>Contact</th>
                   <th>current date</th>
                 </tr>
               </thead>
               <tbody>
-                {% for user in volunteer_camp %}
+                {% for user in allocated_vol %}
                 <tr>
-                  <td>{{user.camp}}</td>
-                  <td>{{user.volunteer}}</td>
+                  <td>{{user.volunteer.volunteer_name}}</td>
+                  <td>{{user.volunteer.gender}}</td>
+                  <td>{{user.volunteer.date_of_birth}}</td>
+                  <td>{{user.volunteer.contact}}</td>
                   <td>{{user.curr_date}}</td>
                 </tr>
                 {% endfor %}
@@ -35,4 +39,4 @@
       </div>
     </div>
   </div>
-   -->
+  
