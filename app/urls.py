@@ -3,7 +3,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-urlpatterns = [
+urlpatterns =[
     path( '',views.Landing,name="Landing"),
 
     path("camp_reg/", views.CampReg, name="CampReg"),
@@ -75,10 +75,9 @@ urlpatterns = [
     path('DeleteComplaint/<int:id>',views.DeleteComplaint,name="DeleteComplaint"),
     path('allocated_vol_List',views.AllocatedVolList,name="AllocatedVolList"),
     path('ComplaintReply/<int:id>',views.ComplaintReply,name="ComplaintReply"),
-    path('ShowReply/<int:id>',views.ShowReply,name="ShowReply")
+    path('ShowReply/<int:id>',views.ShowReply,name="ShowReply"),
     path('allocated_vol_List',views.AllocatedVolList,name="AllocatedVolList"),            #    List of the volunteers assingned to the camp
     path('ScheduleDuty/<int:camp>/<int:volunteer>',views.ScheduleDuty,name="ScheduleDuty"),
 
-    
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  
