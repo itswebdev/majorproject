@@ -68,11 +68,15 @@ urlpatterns = [
     
     path('Notification',views.Notification,name="Notification"),
 
+<<<<<<< HEAD
     path('PublicComplaint',views.PublicComplaint,name="PublicComplaint"),
     path('ViewComplaints',views.ViewComplaints,name="ViewComplaints"),
     path('ListComplaints',views.ListComplaints,name="ListComplaints"),
     path('EditComplaint/<int:id>',views.EditComplaint,name="EditComplaint"),
     path('DeleteComplaint/<int:id>',views.DeleteComplaint,name="DeleteComplaint"),
+=======
+    path('allocated_vol_List',views.AllocatedVolList,name="AllocatedVolList")  #    List of the volunteers assingned to the camp
+>>>>>>> 2bab250fe22262f12b47bbb018c7e0f521ef814e
 
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 

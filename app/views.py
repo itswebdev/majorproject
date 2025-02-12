@@ -582,6 +582,7 @@ def Notification(request):                                        #    Allocatio
 #     else:
 #         None
 
+<<<<<<< HEAD
 def PublicComplaint(request):
     if request.method=="POST":
         form=ComplaintForm(request.POST)
@@ -622,4 +623,13 @@ def DeleteComplaint(request,id):
     complaint.delete()
     messages.success(request,'Complaint deleted successfully')
     return redirect('ListComplaints')
+=======
+def AllocatedVolList(request):
+    session_id=request.session['camp_id']
+    a=get_object_or_404(Camp,login_id=session_id)
+    allocated_vol=Allocate.objects.filter(camp=a)
+    return render(request,'vol_allocated_list.html',{'allocated_vol':allocated_vol})
+
+     
+>>>>>>> 2bab250fe22262f12b47bbb018c7e0f521ef814e
     
