@@ -549,20 +549,22 @@ def VolDeAllocate(request,campid,id,volreqid):
        messages.error(request,'Already deallocated')
        return redirect('VolunteerAllocateTable',id=campid,requestid=volreqid)
 
-def Notification(request):                                        #    Allocation notification sent to the volunteers
-    a=request.session['volunteer_id']
-    user=get_object_or_404(Login,id=a)
-    volunteer=get_object_or_404(Volunteer,login_id=user)
+def Notification(request):              
+    a = request.session.get('volunteer_id')
+    user = get_object_or_404(Login, id=a)
+    volunteer = get_object_or_404(Volunteer, login_id=user)
     isallocated = Allocate.objects.filter(volunteer=volunteer).first()
+
     if isallocated:
-        camp=isallocated.camp
-        messages.success(request,f'You have been assigned to the camp {camp.camp_name}')
-        return render(request,'volunteer/notification.html',{'camp':camp})
+        camp = isallocated.camp
+        duties = Duty.objects.filter(volunteer_id=volunteer) 
+        messages.success(request, f'You have been assigned to the camp {camp.camp_name}')
     else:
-        camp=None
-        messages.success(request,'You are not assigned to any camp')
-        return render(request,'volunteer/notification.html',{'camp':camp})
-    
+        camp = None
+        duties = []
+        messages.warning(request, 'You are not assigned to any camp')
+
+    return render(request, 'volunteer/notification.html', {'camp': camp, 'duties': duties})
 
 
 #                          OR
@@ -668,4 +670,33 @@ def ScheduleDuty(request,camp,volunteer):
     return render(request,'camp/vol_duty_schedule.html',{'form':form})
 
      
-    
+# def ScheduleNotify(request,camp):
+#     session_id=request.session['volunteer_id']
+#     a=get_object_or_404(Login,id=session_id)
+#     Volunteer=get_object_or_404(Volunteer,login_id=a)
+#     camp=get_object_or_404(Camp,id=camp)
+#     schedule=Duty.objects.filter(volunteer_id=Volunteer,camp_id=camp).first()
+#     if schedule:
+#         duty=schedule.duty
+#         print(duty)
+#         messages.success(request,f"Assigned Duty : {duty}")
+#         return render(request,'volunteer/notification.html',{'duty':duty})
+#     else:
+#         duty=None
+#         messages.warning(request,f"Your duty is not scheduled yet")
+#         return render(request,'volunteer/notification.html',{'duty':duty}) 
+
+
+def ReScheduleDuty(request,camp,volunteer):
+    vol=get_object_or_404(Volunteer,id=volunteer)
+    c=get_object_or_404(Camp,id=camp)
+    realloc=get_object_or_404(Duty,volunteer_id=volunteer)
+    if request.method =="POST":
+        form=DutyForm(request.POST,instance=realloc)
+        if form.is_valid():
+            form.save()
+            messages.success(request,'Duty successfully scheduled')
+            return redirect('AllocatedVolList')
+    else:
+        form=DutyForm(instance=realloc)
+    return render(request,'camp/vol_duty_reschedule.html',{'form':form})

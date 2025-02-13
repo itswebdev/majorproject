@@ -37,6 +37,13 @@
                    <p>Duty Scheduled</p>
                   {% endif %}
                   </td>
+                  <td>
+                    {% if not user.duty_status == "Not Scheduled" %}
+                    <button class="btn btn-primary"><a href="{% url 'ReScheduleDuty'  user.camp.id user.volunteer.id %}" style="color: white;text-decoration: none;">Reschedule Duty</a></button>
+                    {% else %}
+                     <p>Not Scheduled</p>
+                    {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
               </tbody>
