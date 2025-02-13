@@ -662,7 +662,7 @@ def ScheduleDuty(request,camp,volunteer):
             a=form.save(commit=False)
             a.volunteer_id=vol
             a.camp_id=c
-            form.save()
+            a.save()
             messages.success(request,'Duty successfully scheduled')
             return redirect('AllocatedVolList')
     else:
@@ -727,7 +727,7 @@ def FundAllocationRequestView(request):
 def ReScheduleDuty(request,camp,volunteer):
     vol=get_object_or_404(Volunteer,id=volunteer)
     c=get_object_or_404(Camp,id=camp)
-    realloc=get_object_or_404(Duty,volunteer_id=volunteer)
+    realloc=get_object_or_404(Duty,volunteer_id=vol)
     if request.method =="POST":
         form=DutyForm(request.POST,instance=realloc)
         if form.is_valid():
