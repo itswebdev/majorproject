@@ -45,6 +45,7 @@ class Volunteer(models.Model):
     contact=models.CharField(max_length=15)
     login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
     allocation=models.CharField(max_length=100,null=True,blank=True)      #       Can also set the default as "false".
+    
 
 class CampUser(models.Model):
     photo=models.ImageField(upload_to='camp')          # Here camp is the folder name where the images added will be stored 
@@ -82,6 +83,7 @@ class Allocate(models.Model):
     camp=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True) 
     volunteer=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True)
     curr_date=models.DateField(auto_now_add=True)
+    duty_status=models.CharField(max_length=100,default="Not Scheduled") #   To be not able to schedule volunteers who have already been scheduled to a camp.
 
 class Complaint(models.Model):
     complaint_sub=models.CharField(max_length=100)
@@ -93,6 +95,7 @@ class Complaint(models.Model):
 class Duty(models.Model):
     duty=models.TextField()
     curr_date=models.DateField(auto_now_add=True)
+<<<<<<< HEAD
     volunteer=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True)
     camp=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
 
@@ -109,3 +112,7 @@ class FundAllocationModel(models.Model):
     login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
     current_date=models.DateField(auto_now_add=True)
 
+=======
+    volunteer_id=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True)
+    camp_id=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
+>>>>>>> c69c3fddae64a0b84aad6abe9f7609314fd7d778
