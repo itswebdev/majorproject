@@ -78,17 +78,14 @@ urlpatterns =[
     path('ShowReply/<int:id>',views.ShowReply,name="ShowReply"),
     path('allocated_vol_List',views.AllocatedVolList,name="AllocatedVolList"),            #    List of the volunteers assingned to the camp
     path('ScheduleDuty/<int:camp>/<int:volunteer>',views.ScheduleDuty,name="ScheduleDuty"),
-<<<<<<< HEAD
 
     path('FundAllocationRequest',views.FundAllocationRequest,name="FundAllocationRequest"),
     path('FundAllocationRequestList',views.FundAllocationRequestList,name="FundAllocationRequestList"),
     path('FundAllocationRequestEdit/<int:id>',views.FundAllocationRequestEdit,name="FundAllocationRequestEdit"),
     path('FundAllocationRequestDelete/<int:id>',views.FundAllocationRequestDelete,name="FundAllocationRequestDelete"),
     path('FundAllocationRequestView',views.FundAllocationRequestView,name="FundAllocationRequestView"),
-=======
     # path('ScheduleNotify/<int:camp>',views.ScheduleNotify,name="ScheduleNotify"),
     path('ReScheduleDuty/<int:camp>/<int:volunteer>',views.ReScheduleDuty,name="ReScheduleDuty"),
     
->>>>>>> c69c3fddae64a0b84aad6abe9f7609314fd7d778
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  
