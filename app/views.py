@@ -661,5 +661,42 @@ def ScheduleDuty(request,camp,volunteer):
         form=DutyForm()
     return render(request,'camp/vol_duty_schedule.html',{'form':form})
 
+def FundAllocationRequest(request):
+    if request.method=="POST":
+        form=FundAllocationForm(request.POST,request.FILES)
+        if form.is_valid():
+            a=form.save(commit=False)
+            user=get_object_or_404(Login,id=request.session['public_id'])
+            a.login_id=user
+            a.save()
+            return redirect('PublicHome')
+    else:
+        form=FundAllocationForm()
+    return render(request,'public/fund_allocation.html',{'form':form})
+
+def FundAllocationRequestList(request):
+    user=get_object_or_404(Login,id=request.session['public_id'])
+    requests=FundAllocationModel.objects.filter(login_id=user)
+    return render(request,'public/fund_allocation_list.html',{'requests':requests})
+
+def FundAllocationRequestEdit(request,id):
+    req=get_object_or_404(FundAllocationModel,id=id)
+    if request.method=="POST":
+        form=FundAllocationForm(request.POST,request.FILES, instance=req)
+        if form.is_valid():
+            form.save()
+            return redirect('FundAllocationRequestList')
+    else:
+            form=FundAllocationForm(instance=req)
+    return render(request,'public/fund_allocation.html',{'form':form})
+
+def FundAllocationRequestDelete(request,id):
+    req=get_object_or_404(FundAllocationModel,id=id)
+    req.delete()
+    return redirect('FundAllocationRequestList')
+
+def FundAllocationRequestView(request):
+    requests=FundAllocationModel.objects.all()
+    return render(request,'admin/fund_allocation_table.html',{'requests':requests})
      
     

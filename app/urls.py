@@ -79,5 +79,10 @@ urlpatterns =[
     path('allocated_vol_List',views.AllocatedVolList,name="AllocatedVolList"),            #    List of the volunteers assingned to the camp
     path('ScheduleDuty/<int:camp>/<int:volunteer>',views.ScheduleDuty,name="ScheduleDuty"),
 
+    path('FundAllocationRequest',views.FundAllocationRequest,name="FundAllocationRequest"),
+    path('FundAllocationRequestList',views.FundAllocationRequestList,name="FundAllocationRequestList"),
+    path('FundAllocationRequestEdit/<int:id>',views.FundAllocationRequestEdit,name="FundAllocationRequestEdit"),
+    path('FundAllocationRequestDelete/<int:id>',views.FundAllocationRequestDelete,name="FundAllocationRequestDelete"),
+    path('FundAllocationRequestView',views.FundAllocationRequestView,name="FundAllocationRequestView"),
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  

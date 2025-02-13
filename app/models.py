@@ -95,3 +95,17 @@ class Duty(models.Model):
     curr_date=models.DateField(auto_now_add=True)
     volunteer=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True)
     camp=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
+
+class FundAllocationModel(models.Model):
+    image=models.ImageField(upload_to='fund')
+    full_name=models.CharField(max_length=100)
+    full_address=models.CharField(max_length=100)
+    district=models.CharField(max_length=100)
+    city=models.CharField(max_length=100)
+    panchayath=models.CharField(max_length=100)
+    ration_card_no=models.CharField(max_length=100)
+    contact=models.CharField(max_length=15)
+    other_details=models.TextField(max_length=100)
+    login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
+    current_date=models.DateField(auto_now_add=True)
+

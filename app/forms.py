@@ -1,5 +1,5 @@
 from django import forms
-from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds,CampAlert,VolunteerRequest,Complaint,Duty
+from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds,CampAlert,VolunteerRequest,Complaint,Duty,FundAllocationModel
 
 class CampForm(forms.ModelForm):
     
@@ -66,7 +66,13 @@ class ComplaintReplyForm(forms.ModelForm):
     class Meta:
         model=Complaint
         fields=['reply']
+
 class DutyForm(forms.ModelForm):
     class Meta:
         model=Duty
         fields=['duty']
+
+class FundAllocationForm(forms.ModelForm):
+    class Meta:
+        model=FundAllocationModel
+        fields=['image','full_name','full_address','district','city','panchayath','ration_card_no','contact','other_details']
