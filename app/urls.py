@@ -85,6 +85,9 @@ urlpatterns =[
     path('FundAllocationRequestEdit/<int:id>',views.FundAllocationRequestEdit,name="FundAllocationRequestEdit"),
     path('FundAllocationRequestDelete/<int:id>',views.FundAllocationRequestDelete,name="FundAllocationRequestDelete"),
     path('FundAllocationRequestView',views.FundAllocationRequestView,name="FundAllocationRequestView"),
+    path('ViewFundAllocationRequest/<int:id>',views.ViewFundAllocationRequest,name="ViewFundAllocationRequest"),
+    path('AllocateFund/<int:id>',views.AllocateFund,name="AllocateFund"),
+    path('Payment/<int:id>/<int:amount>',views.Payment,name="Payment"),
     # path('ScheduleNotify/<int:camp>',views.ScheduleNotify,name="ScheduleNotify"),
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 

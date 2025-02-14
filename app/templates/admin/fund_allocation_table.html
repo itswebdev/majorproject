@@ -4,7 +4,7 @@
               <div class="col-md-12">
                 <div class="card">
                   <div class="card-header">
-                    <h4 class="card-title">Camp Table</h4>
+                    <h4 class="card-title">Fund Request Table</h4>
                   </div>
                   <div class="card-body">
                     <div class="table-responsive">
@@ -22,10 +22,9 @@
                           <th>District</th>
                           <th>City</th>
                           <th>Panchayath</th>
-                          <th>Ration Card No</th>
-                          <th>Contact</th>
-                          <th>Other Details</th>
                           <th>Date</th>
+                          <th>Status</th>
+
                         </tr>
                       </thead>
                           <tfoot>                      
@@ -37,10 +36,8 @@
                                 <th>District</th>
                                 <th>City</th>
                                 <th>Panchayath</th>
-                                <th>Ration Card No</th>
-                                <th>Contact</th>
-                                <th>Other Details</th>
                                 <th>Date</th>
+                                <th>Status</th>
                               </tr>
                           </tfoot>
                           <tbody>
@@ -49,7 +46,7 @@
                               <td>{{request.id}}</td>
                               <td>
                                 <img
-                                  style="width: 150px; height: 150px"
+                                  style="width: 200px"
                                   src="{{request.image.url}}"
                                 />
                               </td>
@@ -58,10 +55,13 @@
                               <td>{{request.district}}</td>
                               <td>{{request.city}}</td>
                               <td>{{request.panchayath}}</td>
-                              <td>{{request.ration_card_no}}</td>
-                              <td>{{request.contact}}</td>
-                              <td>{{request.other_details}}</td>
-                              <td><button class="btn btn-primary"><a href=""  style="color: white;text-decoration: none;">Allocate Fund</a></button></td>
+                              <td>{{request.current_date}}</td>
+                              {% if request.status == 1 %}
+                              <td style="color: green;">Fund Allocated</td>
+                              {% else %}
+                              <td style="color: red;">Not Allocated</td>
+                              {% endif %}
+                              <td><button class="btn btn-primary"><a href="{% url "ViewFundAllocationRequest" request.id %}"  style="color: white;text-decoration: none;">View  Request</a></button></td>
                             </tr>
                             {% endfor %}
                           </tbody>

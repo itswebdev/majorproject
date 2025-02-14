@@ -16,7 +16,7 @@
     <title>Camp user</title>
   </head>
   <body>
-    <h1>Camp Users</h1>
+    <h1>Fund Request</h1>
     <table class="table table-striped" border="1">
       <tr>
         <th>Photo</th>
@@ -29,7 +29,7 @@
         <th>Contact no</th>
         <th>Other Details</th>
         <th>Date</th>
-        <th>Actions</th>
+        <th colspan="2">Actions</th>
       </tr>
       {% for request in requests %}
       <tr>
@@ -50,6 +50,7 @@
         <td>{{request.contact}}</td>
         <td>{{request.other_details}}</td>
         <td>{{request.current_date}}</td>
+        {% if request.status == 0 %}
         <td>
           <button class="btn btn-primary">
             <a
@@ -69,6 +70,9 @@
             Delete
           </button>
         </td>
+        {% else %}
+        <td colspan="2">Fund Allocated</td>
+        {% endif %}
       </tr>
       {% endfor %}
     </table>
@@ -115,16 +119,15 @@
     <script>
       $(document).ready(function () {
         var userIdToDelete;
-    
+
         $("#deleteModal").on("show.bs.modal", function (event) {
           var button = $(event.relatedTarget);
           userIdToDelete = button.data("user-id");
-    
-          var deleteUrl = "/FundAllocationRequestDelete/" + userIdToDelete ;
+
+          var deleteUrl = "/FundAllocationRequestDelete/" + userIdToDelete;
           $("#confirmDeleteBtn").attr("href", deleteUrl);
         });
       });
     </script>
   </body>
 </html>
-
