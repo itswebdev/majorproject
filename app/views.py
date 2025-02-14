@@ -758,7 +758,8 @@ def ReportMissingPerson(request):               #       function to report missi
 
 def ViewMissingReports(request):                              #        To view missing persons by the station
     reports=MissingPerson.objects.all()
-    return render(request,'police/missing_report_table.html',{'reports':reports})  
+    return render(request,'police/missing_report_table.html',{'reports':reports}) 
+ 
 def ViewFundAllocationRequest(request,id):
     view=get_object_or_404(FundAllocationModel,id=id)
     return render(request,'admin/view_fund_request.html',{'view':view})
@@ -783,5 +784,4 @@ def AllocateFund(request,id):
     if request.method == "POST":
         amount=request.POST.get('amount')
         return redirect(reverse('Payment', kwargs={'id':id, 'amount':amount}))
-    return render(request,'admin/allocate_fund.html' ,{'id':id})
     return render(request,'admin/allocate_fund.html' ,{'id':id})
