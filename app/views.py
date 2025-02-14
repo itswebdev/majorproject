@@ -3,6 +3,7 @@ from .forms import *
 from django.contrib import messages
 from .models import *
 from django.db.models import Q
+from django.urls import reverse
 
 
 # Create your views here.
@@ -737,3 +738,49 @@ def ReScheduleDuty(request,camp,volunteer):
     else:
         form=DutyForm(instance=realloc)
     return render(request,'camp/vol_duty_reschedule.html',{'form':form})
+
+def ReportMissingPerson(request):               #       function to report missing person case in stations.
+    session_id=request.session['public_id']
+    a=get_object_or_404(Login,id=session_id)
+    user=get_object_or_404(Public,login_id=a)
+    if request.method =="POST":
+        form=MissingPersonForm(request.POST,request.FILES)
+        if form.is_valid():
+            a=form.save(commit=False)
+            a.public_id=user
+            a.save() 
+            messages.success(request,'public/missing_report.html',{'form':form})
+            return redirect('PublicHome')
+    else:
+        form=MissingPersonForm()
+    return render(request,'public/missing_report.html',{'form':form})
+
+
+def ViewMissingReports(request):                              #        To view missing persons by the station
+    reports=MissingPerson.objects.all()
+    return render(request,'police/missing_report_table.html',{'reports':reports})  
+def ViewFundAllocationRequest(request,id):
+    view=get_object_or_404(FundAllocationModel,id=id)
+    return render(request,'admin/view_fund_request.html',{'view':view})
+
+def Payment(request,id,amount):
+    req=get_object_or_404(FundAllocationModel,id=id)
+    if request.method=="POST":
+        form=FundPaymentForm(request.POST)
+        if form.is_valid():
+            a=form.save(commit=False)
+            a.req_id = req
+            a.amount = amount
+            a.save()
+            req.status = 1
+            req.save()
+            return redirect('FundAllocationRequestView') 
+    else:
+        form2=FundPaymentForm()
+    return render(request,'admin/fund_payment.html',{'form2':form2,'id':id,'amount':amount})
+
+def AllocateFund(request,id):
+    if request.method == "POST":
+        amount=request.POST.get('amount')
+        return redirect(reverse('Payment', kwargs={'id':id, 'amount':amount}))
+    return render(request,'admin/allocate_fund.html' ,{'id':id})

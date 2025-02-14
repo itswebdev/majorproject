@@ -110,6 +110,25 @@ class FundAllocationModel(models.Model):
     other_details=models.TextField(max_length=100)
     login_id=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
     current_date=models.DateField(auto_now_add=True)
+    status=models.IntegerField(default=0)
 
     volunteer_id=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True)
     camp_id=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
+
+
+class MissingPerson(models.Model):
+    photo=models.ImageField(upload_to='person')
+    name=models.CharField(max_length=30)
+    address=models.TextField()
+    gender=models.CharField(max_length=10)
+    age=models.IntegerField()
+    other_details=models.TextField()
+    public_id=models.ForeignKey(Public,on_delete=models.CASCADE,null=True,blank=True)
+class FundPayment(models.Model):
+    name_on_card=models.CharField(max_length=100)
+    card_no=models.IntegerField(default=0)
+    expiring_date=models.CharField(max_length=10)
+    cvv_no=models.IntegerField(default=0)
+    amount=models.IntegerField(default=0)
+    current_date=models.DateField(auto_now_add=True)
+    req_id=models.ForeignKey(FundAllocationModel,on_delete=models.CASCADE,null=True,blank=True)

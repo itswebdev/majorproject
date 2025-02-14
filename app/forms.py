@@ -1,5 +1,6 @@
 from django import forms
-from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds,CampAlert,VolunteerRequest,Complaint,Duty,FundAllocationModel
+from .models import *
+from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds,CampAlert,VolunteerRequest,Complaint,Duty,FundAllocationModel,FundPayment
 
 class CampForm(forms.ModelForm):
     
@@ -76,3 +77,14 @@ class FundAllocationForm(forms.ModelForm):
     class Meta:
         model=FundAllocationModel
         fields=['image','full_name','full_address','district','city','panchayath','ration_card_no','contact','other_details']
+
+
+class MissingPersonForm(forms.ModelForm):
+    class Meta:
+        model=MissingPerson
+        fields=['photo','name','address','gender','age','other_details']
+class FundPaymentForm(forms.ModelForm):
+    class Meta:
+        model=FundPayment
+        fields=['name_on_card','card_no','expiring_date','cvv_no']
+
