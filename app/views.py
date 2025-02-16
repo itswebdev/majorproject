@@ -143,7 +143,7 @@ def UserLogin(request):
             email=form.cleaned_data['email']
             password=form.cleaned_data['password']
             try:
-                user=Login.objects.get(email=email)
+                user=Login.objects.get(email=email)         #   login object
                 if user.password==password:
                     if user.usertype=="camp":
                         request.session['camp_id']=user.id
