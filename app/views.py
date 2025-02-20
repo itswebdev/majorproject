@@ -739,15 +739,18 @@ def ReScheduleDuty(request,camp,volunteer):
         form=DutyForm(instance=realloc)
     return render(request,'camp/vol_duty_reschedule.html',{'form':form})
 
-def ReportMissingPerson(request):               #       function to report missing person case in stations.
+def ReportMissingPerson(request,id):               #       function to report missing person case in stations.
     session_id=request.session['public_id']
     a=get_object_or_404(Login,id=session_id)
     user=get_object_or_404(Public,login_id=a)
+    b=get_object_or_404(Login,id=id)
+    station=get_object_or_404(Police,login_id=b)
     if request.method =="POST":
         form=MissingPersonForm(request.POST,request.FILES)
         if form.is_valid():
             a=form.save(commit=False)
             a.public_id=user
+            a.station_id=station
             a.save() 
             messages.success(request,'public/missing_report.html',{'form':form})
             return redirect('PublicHome')
@@ -757,9 +760,11 @@ def ReportMissingPerson(request):               #       function to report missi
 
 
 def ViewMissingReports(request):                              #        To view missing persons by the station
-    reports=MissingPerson.objects.all()
+    session_id=request.session['station_id']
+    a=get_object_or_404(Police,login_id=session_id)
+    reports=MissingPerson.objects.filter(station_id=a)
     return render(request,'police/missing_report_table.html',{'reports':reports}) 
- 
+  
 def ViewFundAllocationRequest(request,id):
     view=get_object_or_404(FundAllocationModel,id=id)
     return render(request,'admin/view_fund_request.html',{'view':view})
@@ -785,3 +790,18 @@ def AllocateFund(request,id):
         amount=request.POST.get('amount')
         return redirect(reverse('Payment', kwargs={'id':id, 'amount':amount}))
     return render(request,'admin/allocate_fund.html' ,{'id':id})
+
+
+
+def StationSearch(request):
+    if request.method == "POST":
+        query = request.POST.get('stationinfo')
+        stations = Police.objects.filter(
+            Q(station_id__icontains=query) |
+            Q(address_line_1__icontains=query) |
+            Q(address_line_2__icontains=query) |
+            Q(city__icontains=query)  
+        )
+        return render(request, 'public/station_search.html', {'stations': stations})
+    else:
+        return render(request, 'public/station_search.html')

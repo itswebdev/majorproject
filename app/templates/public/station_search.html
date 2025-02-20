@@ -1,0 +1,43 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
+</head>
+<body>
+    <form method="post">
+        {% csrf_token %}
+        Search station:<input type="text" name="stationinfo" >
+        <button type="submit">Search</button>
+    </form>
+    {% if stations %}
+         <table class="display table table-striped table-hover">
+            <tr>
+                <th>Station ID</th>
+                <th>Address Line 1</th>
+                <th>Address Line 2</th>
+                <th>District</th>
+                <th>City</th>
+                <th>Contact</th>
+                <th>Email</th>
+                <th>Reports</th>
+              </tr>
+              {% for station in stations %}
+              <tr>
+                <td>{{ station.station_id }}</td>
+                <td>{{ station.address_line_1 }}</td>
+                <td>{{ station.address_line_2 }}</td>
+                <td>{{ station.district }}</td>
+                <td>{{ station.city }}</td>
+                <td>{{ station.contact }}</td>
+                <td>{{ station.login_id.email }}</td>
+                <td><button class="btn btn-primary"><a href="{% url 'ReportMissingPerson' station.login_id.id %}" style="color: white;text-decoration: none;">Report person missing</a></button></td>
+              </tr>
+              {% endfor %}
+         </table>
+    {% endif %}
+</body> 
+</html>

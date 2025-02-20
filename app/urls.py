@@ -48,7 +48,7 @@ urlpatterns =[
 
     path('camp_person_search',views.SearchCampPerson,name="SearchCampPerson"),
     path('person_search',views.SearchPerson,name="SearchPerson"),
-    path('ReportMissingPerson',views.ReportMissingPerson,name="ReportMissingPerson"),    # missing person search
+    path('ReportMissingPerson/<int:id>',views.ReportMissingPerson,name="ReportMissingPerson"),    # missing person search
 
 
     path('camp_alert',views.CampAlerts,name="CampAlerts"),
@@ -91,7 +91,9 @@ urlpatterns =[
     path('AllocateFund/<int:id>',views.AllocateFund,name="AllocateFund"),
     path('Payment/<int:id>/<int:amount>',views.Payment,name="Payment"),
     # path('ScheduleNotify/<int:camp>',views.ScheduleNotify,name="ScheduleNotify"),
-    path('ViewMissingReports',views.ViewMissingReports,name="ViewMissingReports")
+    path('ViewMissingReports',views.ViewMissingReports,name="ViewMissingReports"),
+
+    path('StationSearch',views.StationSearch,name="StationSearch")
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  
