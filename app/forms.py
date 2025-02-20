@@ -27,6 +27,9 @@ class VolunteerForm(forms.ModelForm):
     class Meta:
         model=Volunteer
         fields=['volunteer_name','gender','date_of_birth','aadhar_no','contact']
+        widgets={
+            'date_of_birth' : forms.DateInput(attrs={'class':'form-control','type':'date'})
+        }
 
 class LoginCheck(forms.Form):
     email=forms.CharField(max_length=100)
@@ -87,4 +90,8 @@ class FundPaymentForm(forms.ModelForm):
     class Meta:
         model=FundPayment
         fields=['name_on_card','card_no','expiring_date','cvv_no']
+        widgets={
+            'expiring_date' : forms.DateInput(attrs={'class':'form-control','type':'date'})
+        }
+        
 

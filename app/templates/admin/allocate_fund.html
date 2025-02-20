@@ -10,7 +10,7 @@
         {% csrf_token %}
         <label for="amount">Amount</label>
         <input type="number" name="amount" id="amount">
-        <button type="submit"><a href="{% url "AllocateFund" id %}">Payment</a></button>
+        <button type="submit"><a href="{% url 'AllocateFund' id %}" style="text-decoration: none;">Payment</a></button>
     </form>
 </body>
 </html>

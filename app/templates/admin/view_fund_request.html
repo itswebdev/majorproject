@@ -26,7 +26,7 @@
         <li>Date: {{view.current_date}}</li>
       </ul>
       {% if view.status == 0 %}
-      <button type="submit"><a href="{% url "AllocateFund" view.id %}">Allocate Fund</a></button>
+      <button type="submit"><a href="{% url "AllocateFund" view.id %}" style="text-decoration: none;">Allocate Fund</a></button>
       {% else %}
       <div>Fund Allocated</div>
       {% endif %}
