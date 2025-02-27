@@ -86,6 +86,12 @@ class MissingPersonForm(forms.ModelForm):
     class Meta:
         model=MissingPerson
         fields=['photo','name','address','gender','age','other_details']
+
+class MissingPersonStatusForm(forms.ModelForm):
+    class Meta:
+        model=MissingPerson
+        fields=['status']
+
 class FundPaymentForm(forms.ModelForm):
     class Meta:
         model=FundPayment

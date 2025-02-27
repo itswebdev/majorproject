@@ -92,6 +92,11 @@ urlpatterns =[
     path('Payment/<int:id>/<int:amount>',views.Payment,name="Payment"),
     # path('ScheduleNotify/<int:camp>',views.ScheduleNotify,name="ScheduleNotify"),
     path('ViewMissingReports',views.ViewMissingReports,name="ViewMissingReports"),
+    path('AddMissingStatus/<int:id>',views.AddMissingStatus,name="AddMissingStatus"),
+    path('ViewMissingList',views.ViewMissingList,name="ViewMissingList"),
+    path('EditMissingStatus/<int:id>',views.EditMissingStatus,name="EditMissingStatus"),
+    path('DeleteMissingStatus/<int:id>',views.DeleteMissingStatus,name="DeleteMissingStatus"),
+     
 
     path('StationSearch',views.StationSearch,name="StationSearch")
     

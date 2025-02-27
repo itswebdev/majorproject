@@ -656,7 +656,7 @@ def ScheduleDuty(request,camp,volunteer):
     if request.method == "POST":
         alloc=get_object_or_404(Allocate,volunteer=vol)      #  volunteer is used because it specifies only 1 volunteer who has been assigned. But camp specifies all their required volunteers, so 'get() returned more than one Allocate' this exception occurs.
         if Allocate.objects.filter(camp=c,volunteer=vol).exists():
-            alloc.duty_status="scheduled"
+            alloc.duty_status="scheduled"  
             alloc.save()
         form=DutyForm(request.POST)
         if form.is_valid():
@@ -805,3 +805,42 @@ def StationSearch(request):
         return render(request, 'public/station_search.html', {'stations': stations})
     else:
         return render(request, 'public/station_search.html')
+    
+def AddMissingStatus(request,id):
+    id=get_object_or_404(MissingPerson,id=id)
+    if request.method == "POST":
+       form=MissingPersonStatusForm(request.POST)
+       if  form.is_valid():
+           a=form.cleaned_data['status']
+           id.status=a
+           id.save()
+           return redirect('ViewMissingReports')
+    else:
+        form=MissingPersonStatusForm()
+    return render(request,'police/missing_case_status.html',{'form':form ,'id':id})
+
+def EditMissingStatus(request,id):
+    id=get_object_or_404(MissingPerson,id=id)
+    if request.method == "POST":
+       form=MissingPersonStatusForm(request.POST,instance=id)
+       if  form.is_valid():
+           a=form.cleaned_data['status']
+           id.status=a
+           id.save()
+           return redirect('ViewMissingReports')
+    else:
+        form=MissingPersonStatusForm(instance=id)
+    return render(request,'police/missing_case_status.html',{'form':form })
+
+def DeleteMissingStatus(request,id):   # here request can be used for messages
+    status=get_object_or_404(MissingPerson,id=id)
+    status.delete()
+    return render(request,'police/missing_case_status.html',{'id':id})
+
+
+def ViewMissingList(request):    # To view by public.
+    session_id=request.session['public_id']
+    login=get_object_or_404(Login,id=session_id)
+    public=get_object_or_404(Public,login_id=login)
+    results=MissingPerson.objects.filter(public_id=public)
+    return render(request,'public/missing_person_view.html',{'results':results})

@@ -125,6 +125,8 @@ class MissingPerson(models.Model):
     other_details=models.TextField()
     public_id=models.ForeignKey(Public,on_delete=models.CASCADE,null=True,blank=True)
     station_id=models.ForeignKey(Police,on_delete=models.CASCADE,null=True,blank=True)
+    status=models.CharField(max_length=30)
+    
     
 class FundPayment(models.Model):
     name_on_card=models.CharField(max_length=100)

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
+</head>
+<body>
+    <table class="display table table-striped table-hover">
+        <tr>
+            <th>Photo</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Gender</th>
+            <th>Age</th>
+            <th>Other Details</th>
+            <th>Case Status</th>
+        </tr>
+        {% for result in results %}
+        <tr>
+            <td><img src="{{ result.photo.url }}" style="height: 130px;width: 140px;" ></td>
+            <td>{{result.name}}</td>
+            <td>{{result.address}}</td>
+            <td>{{result.gender}}</td>
+            <td>{{result.age}}</td>
+            <td>{{result.other_details}}</td>
+            <td>{{ result.status }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>
