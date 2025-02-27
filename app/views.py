@@ -833,9 +833,10 @@ def EditMissingStatus(request,id):
     return render(request,'police/missing_case_status.html',{'form':form })
 
 def DeleteMissingStatus(request,id):   # here request can be used for messages
-    status=get_object_or_404(MissingPerson,id=id)
-    status.delete()
-    return render(request,'police/missing_case_status.html',{'id':id})
+    stat=get_object_or_404(MissingPerson,id=id)
+    stat.status=None
+    stat.save()
+    return redirect('ViewMissingReports')
 
 
 def ViewMissingList(request):    # To view by public.

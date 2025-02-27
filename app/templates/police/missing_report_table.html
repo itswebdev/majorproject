@@ -26,9 +26,14 @@
             <td>{{report.gender}}</td>
             <td>{{report.age}}</td>
             <td>{{report.other_details}}</td>
-            <td><button class="btn btn-primary"><a href="{% url 'AddMissingStatus' report.id %}" style="color: white;text-decoration: none;">Status</a></button>
+            <td>
+            {% if report.status == NULL %}
+           <button class="btn btn-primary"><a href="{% url 'AddMissingStatus' report.id %}" style="color: white;text-decoration: none;">Status</a></button>
+            {% elif report.status != NULL  %}
                 <button class="btn btn-primary"><a href="{% url 'EditMissingStatus' report.id %}" style="color: white;text-decoration: none;">Edit</a></button>
-                <button class="btn btn-primary"><a href="{% url 'DeleteMissingStatus' report.id %}" style="color: white;text-decoration: none;">Delete Status</a></button></td>
+                <button class="btn btn-primary"><a href="{% url 'DeleteMissingStatus' report.id %}" style="color: white;text-decoration: none;">Delete Status</a></button>
+            {% endif %}
+            </td>
         </tr>
         {% endfor %}
     </table>
