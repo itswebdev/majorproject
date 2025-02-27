@@ -31,9 +31,9 @@
            <button class="btn btn-primary"><a href="{% url 'AddMissingStatus' report.id %}" style="color: white;text-decoration: none;">Status</a></button>
             {% elif report.status != NULL  %}
                 <button class="btn btn-primary"><a href="{% url 'EditMissingStatus' report.id %}" style="color: white;text-decoration: none;">Edit</a></button>
-                <button class="btn btn-primary"><a href="{% url 'DeleteMissingStatus' report.id %}" style="color: white;text-decoration: none;">Delete Status</a></button>
+                <button class="btn btn-danger"><a href="{% url 'DeleteMissingStatus' report.id %}" style="color: white;text-decoration: none;">Delete Status</a></button>
             {% endif %}
-            </td>
+           </td>
         </tr>
         {% endfor %}
     </table>

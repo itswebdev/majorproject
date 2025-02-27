@@ -161,19 +161,19 @@
               <li class="nav-item">
                 <a data-bs-toggle="collapse" href="#sidebarLayouts">
                   <i class="fas fa-th-list"></i>
-                  <p>Sidebar Layouts</p>
+                  <p>Emergency Alert Message</p>
                   <span class="caret"></span>
                 </a>
                 <div class="collapse" id="sidebarLayouts">
                   <ul class="nav nav-collapse">
                     <li>
-                      <a href="sidebar-style-2.html">
-                        <span class="sub-item">Sidebar Style 2</span>
+                      <a href="{% url 'EmergencyMessageAlert' %}">
+                        <span class="sub-item">Send Alert</span>
                       </a>
                     </li>
                     <li>
-                      <a href="icon-menu.html">
-                        <span class="sub-item">Icon Menu</span>
+                      <a href="{% url 'EmergencyAlertList' %}">
+                        <span class="sub-item">Emergency Alerts</span>
                       </a>
                     </li>
                   </ul>

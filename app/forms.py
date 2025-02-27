@@ -1,6 +1,6 @@
 from django import forms
 from .models import *
-from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds,CampAlert,VolunteerRequest,Complaint,Duty,FundAllocationModel,FundPayment
+# from .models import Camp, Login, Police, Public, Volunteer, CampUser,CampNeeds,CampAlert,VolunteerRequest,Complaint,Duty,FundAllocationModel,FundPayment,EmergencyAlert
 
 class CampForm(forms.ModelForm):
     
@@ -100,4 +100,7 @@ class FundPaymentForm(forms.ModelForm):
             'expiring_date' : forms.DateInput(attrs={'class':'form-control','type':'date'})
         }
         
-
+class EmergencyAlertForm(forms.ModelForm):
+    class Meta:
+        model=EmergencyAlert
+        fields=['alert_message']

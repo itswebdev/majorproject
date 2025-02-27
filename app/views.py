@@ -845,3 +845,38 @@ def ViewMissingList(request):    # To view by public.
     public=get_object_or_404(Public,login_id=login)
     results=MissingPerson.objects.filter(public_id=public)
     return render(request,'public/missing_person_view.html',{'results':results})
+
+def EmergencyMessageAlert(request):
+    if request.method =="POST":
+        form=EmergencyAlertForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('EmergencyMessageAlert')
+    else:
+        form=EmergencyAlertForm()
+    return render(request,'admin/emergency_alert.html',{'form':form})
+
+def EmergencyAlertList(request):
+    results=EmergencyAlert.objects.all()
+    return render(request,'admin/emergency_alert_list.html',{'results':results})
+
+def EditEmergencyAlert(request,id):
+    alert=get_object_or_404(EmergencyAlert,id=id)
+    if request.method =="POST":
+        form=EmergencyAlertForm(request.POST,instance=alert)
+        if form.is_valid():
+            form.save()
+            return redirect('EmergencyAlertList')
+    else:
+        form=EmergencyAlertForm(instance=alert)
+    return render(request,'admin/emergency_alert.html',{'form':form,'alert':alert})
+
+def DeleteEmergencyAlert(request,id):
+    alert=get_object_or_404(EmergencyAlert,id=id)
+    alert.delete()
+    return redirect('EmergencyAlertList')
+
+
+def EmergencyAlertView(request):                         #     To view emergency messages by the public and station.
+    results=EmergencyAlert.objects.all()
+    return render(request,'common/emergency_alert_view.html',{'results':results})

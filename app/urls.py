@@ -98,7 +98,16 @@ urlpatterns =[
     path('DeleteMissingStatus/<int:id>',views.DeleteMissingStatus,name="DeleteMissingStatus"),
      
 
-    path('StationSearch',views.StationSearch,name="StationSearch")
+    path('StationSearch',views.StationSearch,name="StationSearch"),
+
+
+    path('EmergencyMessageAlert',views.EmergencyMessageAlert,name="EmergencyMessageAlert"),
+    path('EmergencyAlertList',views.EmergencyAlertList,name="EmergencyAlertList"),
+    path('EditEmergencyAlert/<int:id>',views.EditEmergencyAlert,name="EditEmergencyAlert"),
+    path('DeleteEmergencyAlert/<int:id>',views.DeleteEmergencyAlert,name="DeleteEmergencyAlert"),
+    path('EmergencyAlertView',views.EmergencyAlertView,name="EmergencyAlertView"),
+    
+
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  

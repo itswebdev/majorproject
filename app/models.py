@@ -136,3 +136,7 @@ class FundPayment(models.Model):
     amount=models.IntegerField(default=0)
     current_date=models.DateField(auto_now_add=True)
     req_id=models.ForeignKey(FundAllocationModel,on_delete=models.CASCADE,null=True,blank=True)
+
+class EmergencyAlert(models.Model):
+    alert_message=models.TextField()
+    current_date=models.DateField(auto_now_add=True)
