@@ -140,3 +140,10 @@ class FundPayment(models.Model):
 class EmergencyAlert(models.Model):
     alert_message=models.TextField()
     current_date=models.DateField(auto_now_add=True)
+
+class Enquiry(models.Model):
+    enq=models.TextField()
+    public=models.ForeignKey(Public,on_delete=models.CASCADE,null=True,blank=True) # public id
+    camp=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)    # camp login id
+    current_date=models.DateField(auto_now_add=True)
+    response=models.CharField(max_length=50,null=True,blank=True)

@@ -104,3 +104,8 @@ class EmergencyAlertForm(forms.ModelForm):
     class Meta:
         model=EmergencyAlert
         fields=['alert_message']
+
+class EnquiryForm(forms.ModelForm):
+    class Meta:
+        model=Enquiry
+        fields=['enq']

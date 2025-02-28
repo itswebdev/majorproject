@@ -880,3 +880,30 @@ def DeleteEmergencyAlert(request,id):
 def EmergencyAlertView(request):                         #     To view emergency messages by the public and station.
     results=EmergencyAlert.objects.all()
     return render(request,'common/emergency_alert_view.html',{'results':results})
+
+def TableCamp(request):
+    camps=Camp.objects.all()
+    return render(request,'public/camp_table_enq.html',{'camps':camps})
+
+def CampEnquiry(request,id):
+    session_id=request.session['public_id']
+    camp_login=get_object_or_404(Login,id=id)
+    public_id=get_object_or_404(Public,login_id=session_id)
+    if request.method == "POST":
+        form=EnquiryForm(request.POST)
+        if form.is_valid():
+            a=form.save(commit=False)
+            a.camp=camp_login
+            a.public=public_id
+            a.save()
+            return redirect('TableCamp')
+    else:
+        form=EnquiryForm()
+    return render(request,'public/camp_enq.html',{'form':form})
+
+
+def EnquiryTable(request):
+    session_id=request.session['camp_id']
+    id=get_object_or_404(Login,id=session_id)
+    results=Enquiry.objects.filter(camp=id)
+    return render(request,'camp/public_enq_table.html',{'results':results})

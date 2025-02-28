@@ -106,6 +106,12 @@ urlpatterns =[
     path('EditEmergencyAlert/<int:id>',views.EditEmergencyAlert,name="EditEmergencyAlert"),
     path('DeleteEmergencyAlert/<int:id>',views.DeleteEmergencyAlert,name="DeleteEmergencyAlert"),
     path('EmergencyAlertView',views.EmergencyAlertView,name="EmergencyAlertView"),
+
+    path('TableCamp',views.TableCamp,name="TableCamp"),
+    path('CampEnquiry/<int:id>',views.CampEnquiry,name="CampEnquiry"),
+    path('EnquiryTable',views.EnquiryTable,name="EnquiryTable"),
+    
+
     
 
     
