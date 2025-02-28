@@ -26,7 +26,7 @@
                     <td>{{result.id}}</td>
                     <td>{{result.enq}}</td>
                     <td>{{result.current_date}}</td>
-                    <td><button class="btn btn-success"><a href="" style="color: white;text-decoration: none;">Response</a></button></td>
+                    <td><button class="btn btn-success"><a href="{% url 'EnquiryReply' result.id %}" style="color: white;text-decoration: none;">Response</a></button></td>
                   </tr>
                   {% endfor %}
                 </tbody>

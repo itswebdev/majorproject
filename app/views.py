@@ -907,3 +907,16 @@ def EnquiryTable(request):
     id=get_object_or_404(Login,id=session_id)
     results=Enquiry.objects.filter(camp=id)
     return render(request,'camp/public_enq_table.html',{'results':results})
+
+def EnquiryReply(request,id):
+    id=get_object_or_404(Enquiry,id=id) 
+    if request.method == "POST":
+       form=EnquiryResponseForm(request.POST)
+       if  form.is_valid():
+           a=form.cleaned_data['response']
+           id.response=a
+           id.save()
+           return redirect('EnquiryTable')
+    else:
+        form=MissingPersonStatusForm()
+    return render(request,'camp/enq_response.html',{'form':form ,'id':id})

@@ -109,3 +109,8 @@ class EnquiryForm(forms.ModelForm):
     class Meta:
         model=Enquiry
         fields=['enq']
+
+class EnquiryResponseForm(forms.ModelForm):
+    class Meta:
+        model=Enquiry
+        fields=['response']
