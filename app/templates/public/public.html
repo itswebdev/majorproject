@@ -64,7 +64,7 @@
             </li>
             <li><a href="about.html">About</a></li>
             <li><a href="{% url 'TableCamp' %}">Enquiry</a></li>
-            <li><a href="{% url 'CampSearch' %}">Search Camps</a></li>
+            <li><a href="{% url 'EnqResponseTable' %}">Enquiry Response</a></li>
             <li><a href="{% url 'EditPublic' %}">Profile</a></li>
             <li class="dropdown">
               <a href="#"
@@ -73,6 +73,7 @@
               ></a>
               <ul>
                 <li><a href="{% url "SearchPerson" %}">Search Person</a></li>
+                <li><a href="{% url 'CampSearch' %}">Search Camps</a></li>
                 <li><a href="{% url "StationSearch" %}">Search Stations</a></li>
                 <li><a href="{% url "ViewMissingList" %}">View Missing Reports</a></li>
                 <li><a href="{% url "PublicComplaint" %}">Complaint</a></li>

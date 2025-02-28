@@ -1,0 +1,46 @@
+{% load static %}
+<div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+            <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
+          <h4 class="card-title">Public Enquiries</h4>
+        </div>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table
+              id="basic-datatables"
+              class="display table table-striped table-hover"
+            >
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Enquiry</th>
+                <th>Uploaded On</th>
+                <th>Response</th>
+              </tr>
+            </thead>
+                <tbody>
+                  {% for result in results %}
+                  <tr>
+                    <td>{{result.id}}</td>
+                    <td>{{result.enq}}</td>
+                    <td>{{result.current_date}}</td>
+                    <td>
+                    {% if result.response != NULL %}
+                    {{result.response }}
+                    {% else %}
+                    <p>No Response Yet.</p>
+                    {% endif %}
+                    </td>
+                   </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>              
+  </div>

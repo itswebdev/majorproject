@@ -146,4 +146,4 @@ class Enquiry(models.Model):
     public=models.ForeignKey(Public,on_delete=models.CASCADE,null=True,blank=True) # public id
     camp=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)    # camp login id
     current_date=models.DateField(auto_now_add=True)
-    response=models.CharField(max_length=50,null=True,blank=True)
+    response=models.TextField(null=True,blank=True)

@@ -918,5 +918,12 @@ def EnquiryReply(request,id):
            id.save()
            return redirect('EnquiryTable')
     else:
-        form=MissingPersonStatusForm()
+        form=EnquiryResponseForm()
     return render(request,'camp/enq_response.html',{'form':form ,'id':id})
+
+def EnqResponseTable(request):
+    session_id=request.session['public_id']
+    id=get_object_or_404(Login,id=session_id)
+    p=get_object_or_404(Public,login_id=id)
+    results=Enquiry.objects.filter(public=p)
+    return render(request,'public/enq_response_table.html',{'results':results})

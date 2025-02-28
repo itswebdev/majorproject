@@ -111,6 +111,8 @@ urlpatterns =[
     path('CampEnquiry/<int:id>',views.CampEnquiry,name="CampEnquiry"),
     path('EnquiryTable',views.EnquiryTable,name="EnquiryTable"),
     path('EnquiryReply/<int:id>',views.EnquiryReply,name="EnquiryReply"),
+    path('EnqResponseTable',views.EnqResponseTable,name="EnqResponseTable"),
+
     
 
     
