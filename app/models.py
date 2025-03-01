@@ -158,3 +158,4 @@ class Vehicle(models.Model):
     current_date=models.DateField(auto_now_add=True)
     public=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
     police=models.ForeignKey(Police,on_delete=models.CASCADE,null=True,blank=True)
+    status=models.CharField(max_length=30,null=True,blank=True)

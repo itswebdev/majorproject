@@ -75,7 +75,7 @@
                 <li><a href="{% url "SearchPerson" %}">Search Person</a></li>
                 <li><a href="{% url 'CampSearch' %}">Search Camps</a></li>
                 <li><a href="{% url "StationSearch" %}">Search Stations</a></li>
-                <li><a href="{% url "ViewMissingList" %}">View Missing Reports</a></li>
+                
                 <li><a href="{% url "PublicComplaint" %}">Complaint</a></li>
                 <li><a href="{% url "ListComplaints" %}">View Complaint</a></li>
                 <li><a href="{% url 'FundAllocationRequest' %}">Fund Allocation Request</a></li>
@@ -83,12 +83,12 @@
                 <li><a href="{% url 'EmergencyAlertView' %}">View Emergency Alerts</a></li>
                 <li class="dropdown">
                   <a href="#"
-                  ><span>Deep Dropdown</span>
+                  ><span>View Missing Reports</span>
                   <i class="bi bi-chevron-down toggle-dropdown"></i
                     ></a>
                     <ul>
-                      <li><a href="#">Deep Dropdown 1</a></li>
-                      <li><a href="#">Deep Dropdown 2</a></li>
+                      <li><a href="{% url "ViewMissingList" %}">Person Missing</a></li>
+                      <li><a href="{% url "VehicleList" %}">Vehicle Missing</a></li>
                       <li><a href="#">Deep Dropdown 3</a></li>
                       <li><a href="#">Deep Dropdown 4</a></li>
                       <li><a href="#">Deep Dropdown 5</a></li>

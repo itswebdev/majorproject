@@ -122,3 +122,9 @@ class VehicleForm(forms.ModelForm):
         widgets={
             'missing_date':forms.DateInput(attrs={'class':'form-control','type':'date'})
         }
+    
+class VehicleStatusForm(forms.ModelForm):
+    class Meta:
+        model=Vehicle
+        fields=['status']
+

@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'admin/assets/css/bootstrap.min.css' %}" />
+</head>
+<body>
+    <table class="display table table-striped table-hover">
+        <tr>
+            <th>Category</th>
+            <th>Company</th>
+            <th>Model</th>
+            <th>Vehicle Number</th>
+            <th>Missing Place</th>
+            <th>Missing Date</th>
+            <th>Reportse Status</th>
+        </tr>
+        {% for report in reports %}
+        <tr>
+            <td>{{report.category}}</td>
+            <td>{{report.company}}</td>
+            <td>{{report.model_name}}</td>
+            <td>{{report.vehicle_num}}</td>
+            <td>{{report.missing_place}}</td>
+            <td>{{report.missing_date}}</td>
+            <td>{{report.status}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    
+</body>
+</html>

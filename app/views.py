@@ -944,3 +944,48 @@ def VehicleMissing(request,id):
     else:
         form=VehicleForm()
     return render(request,'public/vehicle_missing_form.html',{'form':form})
+
+
+def VehicleMissingReports(request):                              #        To view missing persons by the station
+    session_id=request.session['station_id']
+    a=get_object_or_404(Police,login_id=session_id)
+    reports=Vehicle.objects.filter(police=a)
+    return render(request,'police/vehicle_missing_table.html',{'reports':reports})
+
+def VehicleStatus(request,id):
+    vehicle_id=get_object_or_404(Vehicle,id=id)
+    if request.method == "POST":
+        form=VehicleStatusForm(request.POST)
+        if form.is_valid():
+            a=form.cleaned_data['status']
+            vehicle_id.status=a
+            vehicle_id.save()
+            return redirect('VehicleMissingReports')
+    else:
+        form=VehicleStatusForm()
+    return render(request,'police/missing_case_status.html',{'form':form})
+
+def EditVehicleStatus(request,id):
+    vehicle_id=get_object_or_404(Vehicle,id=id)
+    if request.method == "POST":
+        form=VehicleStatusForm(request.POST,instance=vehicle_id)
+        if form.is_valid():
+            a=form.cleaned_data['status']
+            vehicle_id.status=a
+            vehicle_id.save()
+            return redirect('VehicleMissingReports')
+    else:
+        form=VehicleStatusForm(instance=vehicle_id)
+    return render(request,'police/missing_case_status.html',{'form':form})
+
+def DeleteVehicleStatus(request,id):
+    vehicle_id=get_object_or_404(Vehicle,id=id)
+    vehicle_id.status=None
+    vehicle_id.save()
+    return redirect('VehicleMissingReports')
+
+def VehicleList(request):
+    session_id=request.session['public_id']
+    id=get_object_or_404(Login,id=session_id)
+    reports=Vehicle.objects.filter(public=id)
+    return render(request,'public/missing_vehicle_list.html',{'reports':reports})

@@ -112,12 +112,14 @@ urlpatterns =[
     path('EnquiryTable',views.EnquiryTable,name="EnquiryTable"),
     path('EnquiryReply/<int:id>',views.EnquiryReply,name="EnquiryReply"),
     path('EnqResponseTable',views.EnqResponseTable,name="EnqResponseTable"),
+
     path('VehicleMissing/<int:id>',views.VehicleMissing,name="VehicleMissing"),
-
+    path('VehicleMissingReports',views.VehicleMissingReports,name="VehicleMissingReports"),
+    path('VehicleStatus/<int:id>',views.VehicleStatus,name="VehicleStatus"),
+    path('EditVehicleStatus/<int:id>',views.EditVehicleStatus,name="EditVehicleStatus"),
+    path('DeleteVehicleStatus/<int:id>',views.DeleteVehicleStatus,name="DeleteVehicleStatus"),
+    path('VehicleList',views.VehicleList,name="VehicleList"),
     
-
-    
-
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 
  
