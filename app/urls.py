@@ -112,6 +112,7 @@ urlpatterns =[
     path('EnquiryTable',views.EnquiryTable,name="EnquiryTable"),
     path('EnquiryReply/<int:id>',views.EnquiryReply,name="EnquiryReply"),
     path('EnqResponseTable',views.EnqResponseTable,name="EnqResponseTable"),
+    path('VehicleMissing/<int:id>',views.VehicleMissing,name="VehicleMissing"),
 
     
 

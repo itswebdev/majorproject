@@ -34,8 +34,10 @@
                 <td>{{ station.city }}</td>
                 <td>{{ station.contact }}</td>
                 <td>{{ station.login_id.email }}</td>
-                <td><button class="btn btn-primary"><a href="{% url 'ReportMissingPerson' station.login_id.id %}" style="color: white;text-decoration: none;">Report person missing</a></button></td>
-              </tr>
+                <td><button class="btn btn-primary"><a href="{% url 'ReportMissingPerson' station.login_id.id %}" style="color: white;text-decoration: none;">Report person missing</a></button>
+               <button class="btn btn-primary"><a href="{% url 'VehicleMissing' station.login_id.id %}" style="color: white;text-decoration: none;">Report vehicle missing</a></button></td>
+                
+            </tr>
               {% endfor %}
          </table>
     {% endif %}

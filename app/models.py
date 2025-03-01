@@ -147,3 +147,14 @@ class Enquiry(models.Model):
     camp=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)    # camp login id
     current_date=models.DateField(auto_now_add=True)
     response=models.TextField(null=True,blank=True)
+
+class Vehicle(models.Model):
+    category=models.CharField(max_length=30)
+    company=models.CharField(max_length=20)
+    model_name=models.CharField(max_length=30)
+    vehicle_num=models.CharField(max_length=15)
+    missing_place=models.CharField(max_length=20)
+    missing_date=models.CharField(max_length=10)
+    current_date=models.DateField(auto_now_add=True)
+    public=models.ForeignKey(Login,on_delete=models.CASCADE,null=True,blank=True)
+    police=models.ForeignKey(Police,on_delete=models.CASCADE,null=True,blank=True)

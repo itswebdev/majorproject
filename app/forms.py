@@ -114,3 +114,11 @@ class EnquiryResponseForm(forms.ModelForm):
     class Meta:
         model=Enquiry
         fields=['response']
+
+class VehicleForm(forms.ModelForm):
+    class Meta:
+        model=Vehicle
+        fields=['category','company','model_name','vehicle_num','missing_place','missing_date']
+        widgets={
+            'missing_date':forms.DateInput(attrs={'class':'form-control','type':'date'})
+        }

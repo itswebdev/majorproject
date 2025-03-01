@@ -927,3 +927,20 @@ def EnqResponseTable(request):
     p=get_object_or_404(Public,login_id=id)
     results=Enquiry.objects.filter(public=p)
     return render(request,'public/enq_response_table.html',{'results':results})
+
+def VehicleMissing(request,id):
+    session_id=request.session['public_id']
+    public_id=get_object_or_404(Login,id=session_id)
+    # vehicle_id=get_object_or_404(Login,id=public_id)
+    station_id=get_object_or_404(Police,login_id=id)
+    if request.method == "POST":
+        form=VehicleForm(request.POST)
+        if form.is_valid():
+            a=form.save(commit=False)
+            a.public=public_id
+            a.police=station_id
+            a.save()
+            return redirect('PublicHome')
+    else:
+        form=VehicleForm()
+    return render(request,'public/vehicle_missing_form.html',{'form':form})
