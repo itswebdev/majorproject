@@ -5,7 +5,7 @@ from django.db import models
 class Login(models.Model):
     email=models.EmailField(unique=True)
     password=models.CharField(max_length=100)
-    usertype=models.CharField(max_length=100)
+    usertype=models.CharField(max_length=100) 
 
 class Camp(models.Model):
     camp_name=models.CharField(max_length=100)
