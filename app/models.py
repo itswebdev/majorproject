@@ -95,7 +95,7 @@ class Complaint(models.Model):
 class Duty(models.Model):
     duty=models.TextField()
     curr_date=models.DateField(auto_now_add=True)
-    volunteer_id=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True)
+    volunteer_id=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True) 
     camp_id=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
 
 class FundAllocationModel(models.Model):
