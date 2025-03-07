@@ -156,7 +156,10 @@ def UserLogin(request):
                         return redirect('PublicHome')
                     elif user.usertype=="volunteer":
                         request.session['volunteer_id']=user.id
-                        return redirect('VolunteerHome')    
+                        return redirect('VolunteerHome')
+                    elif user.usertype=="admin":
+                        request.session['admin_id']=user.id
+                        return redirect('ViewAdmin2')    
                 else:
                     messages.error(request,"invalid password")
             except Login.DoesNotExist:
@@ -237,7 +240,7 @@ def EditVolunteer(request):
             login=LoginEditForm(request.POST, instance=user)
             form=VolunteerForm(request.POST, instance=volunteer)
             if form.is_valid() and login.is_valid():
-             form.save()
+             form.save() 
              login.save()
              messages.success(request,"Profile Updated Successfully")
              return redirect('VolunteerHome')
@@ -363,7 +366,7 @@ def EditCampNeed(request,id):
             messages.success(request,"Updated Successfully")
             return redirect('NeedsViewTable')
     else:
-        form=CampNeedsForm(instance=need)
+        form=CampNeedsForm(instance=need)  
     return render(request,'camp/camp_needs.html',{'form':form})
 
 def CampNeedsDelete(request,id):

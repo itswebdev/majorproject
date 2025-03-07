@@ -93,6 +93,7 @@ class Complaint(models.Model):
     reply=models.TextField(max_length=500,null=True,blank=True)
 
 class Duty(models.Model):
+    spec=models.CharField(max_length=30,null=True,blank=True)
     duty=models.TextField()
     curr_date=models.DateField(auto_now_add=True)
     volunteer_id=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True) 

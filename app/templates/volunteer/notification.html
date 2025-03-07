@@ -51,6 +51,17 @@
             color: white;
             font-weight: bold;
         }
+        .footer{
+            background-color: #15649c;
+            height: 300px;
+            color: white;
+        }
+        .about{
+           text-align: center;
+           padding-top: 20px;
+           font-weight: bold;
+           font-size: x-large;
+        }
     </style>
 </head>
 <body>
@@ -84,6 +95,8 @@
         {% if duties %}
             <ul>
                 {% for duty in duties %}
+                <li>Duty Specification : {{ duty.spec }} </li>
+                Duty description :
                     <li>{{ duty.duty }} (Assigned on {{ duty.curr_date }})</li>
                 {% endfor %}
             </ul>
@@ -96,4 +109,7 @@
     {% endif %}
    
 </body>
+<footer class="footer">
+   <p class="about">About Us:</p>
+</footer>
 </html>

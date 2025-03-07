@@ -71,10 +71,18 @@ class ComplaintReplyForm(forms.ModelForm):
         model=Complaint
         fields=['reply']
 
+CHOICES = [
+    ('Cooking', 'Cooking'),
+    ('Cleaning', 'Cleaning'),
+    ('Cloth collecting', 'Cloth collecting'),
+]
+
 class DutyForm(forms.ModelForm):
+    spec = forms.ChoiceField(choices=CHOICES)
+
     class Meta:
-        model=Duty
-        fields=['duty']
+        model = Duty
+        fields = ['spec', 'duty']
 
 class FundAllocationForm(forms.ModelForm):
     class Meta:
@@ -83,7 +91,7 @@ class FundAllocationForm(forms.ModelForm):
 
 
 class MissingPersonForm(forms.ModelForm):
-    class Meta:
+    class Meta: 
         model=MissingPerson
         fields=['photo','name','address','gender','age','other_details']
 
