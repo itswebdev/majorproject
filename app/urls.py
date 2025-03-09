@@ -119,6 +119,7 @@ urlpatterns =[
     path('EditVehicleStatus/<int:id>',views.EditVehicleStatus,name="EditVehicleStatus"),
     path('DeleteVehicleStatus/<int:id>',views.DeleteVehicleStatus,name="DeleteVehicleStatus"),
     path('VehicleList',views.VehicleList,name="VehicleList"),
+    path('ComfirmPassCamp',views.ComfirmPassCamp,name="ComfirmPassCamp"),
     
     
 ]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT) # new 

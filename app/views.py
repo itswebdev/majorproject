@@ -794,7 +794,7 @@ def AllocateFund(request,id):
         return redirect(reverse('Payment', kwargs={'id':id, 'amount':amount}))
     return render(request,'admin/allocate_fund.html' ,{'id':id})
 
-
+ 
 
 def StationSearch(request):
     if request.method == "POST":
@@ -992,3 +992,114 @@ def VehicleList(request):
     id=get_object_or_404(Login,id=session_id)
     reports=Vehicle.objects.filter(public=id)
     return render(request,'public/missing_vehicle_list.html',{'reports':reports})
+
+
+def ComfirmPassCamp(request):            #     password updation for camp
+    session_id=request.session['camp_id']
+    id=get_object_or_404(Login,id=session_id)
+    if request.method == "POST":
+        form=ChangePasswordForm(request.POST)
+        if form.is_valid():
+            curr=form.cleaned_data['current_pass']
+            new=form.cleaned_data['new_pass']
+            confirm=form.cleaned_data['confirm_pass']
+
+            if id.password == curr:
+                if new == confirm:
+                    id.password=confirm
+                    id.save()
+                    messages.success(request,'password updated.')
+                    return redirect('CampHome')
+                else:
+                    messages.error(request,'New and confirm should be the same.')
+                    return redirect('ComfirmPassCamp')
+            else:
+                messages.error(request,'Incorrect password.')
+                return redirect('ComfirmPassCamp')
+    else:
+        form=ChangePasswordForm()
+
+    return render(request,'common/change_password.html',{'form':form})
+
+
+def ComfirmPassPublic(request):            #     password updation for public
+    session_id=request.session['public_id']
+    id=get_object_or_404(Login,id=session_id)
+    if request.method == "POST":
+        form=ChangePasswordForm(request.POST)
+        if form.is_valid():
+            curr=form.cleaned_data['current_pass']
+            new=form.cleaned_data['new_pass']
+            confirm=form.cleaned_data['confirm_pass']
+
+            if id.password == curr:
+                if new == confirm:
+                    id.password=confirm
+                    id.save()
+                    messages.success(request,'password updated.')
+                    return redirect('PublicHome')
+                else:
+                    messages.error(request,'New and confirm should be the same.')
+                    return redirect('ComfirmPassCamp')
+            else:
+                messages.error(request,'Incorrect password.')
+                return redirect('ComfirmPassCamp')
+    else:
+        form=ChangePasswordForm()
+
+    return render(request,'common/change_password.html',{'form':form})
+
+
+def ComfirmPassVolunteer(request):            #     password updation for volunteer
+    session_id=request.session['volunteer_id']
+    id=get_object_or_404(Login,id=session_id)
+    if request.method == "POST":
+        form=ChangePasswordForm(request.POST)
+        if form.is_valid():
+            curr=form.cleaned_data['current_pass']
+            new=form.cleaned_data['new_pass']
+            confirm=form.cleaned_data['confirm_pass']
+
+            if id.password == curr:
+                if new == confirm:
+                    id.password=confirm
+                    id.save()
+                    messages.success(request,'password updated.')
+                    return redirect('VolunteerHome')
+                else:
+                    messages.error(request,'New and confirm should be the same.')
+                    return redirect('ComfirmPassCamp')
+            else:
+                messages.error(request,'Incorrect password.')
+                return redirect('ComfirmPassCamp')
+    else:
+        form=ChangePasswordForm()
+
+    return render(request,'common/change_password.html',{'form':form})
+
+def ComfirmPassStation(request):            #     password updation for station
+    session_id=request.session['station_id']
+    id=get_object_or_404(Login,id=session_id)
+    if request.method == "POST":
+        form=ChangePasswordForm(request.POST)
+        if form.is_valid():
+            curr=form.cleaned_data['current_pass']
+            new=form.cleaned_data['new_pass']
+            confirm=form.cleaned_data['confirm_pass']
+
+            if id.password == curr:
+                if new == confirm:
+                    id.password=confirm
+                    id.save()
+                    messages.success(request,'password updated.')
+                    return redirect('StationHome')
+                else:
+                    messages.error(request,'New and confirm should be the same.')
+                    return redirect('ComfirmPassCamp')
+            else:
+                messages.error(request,'Incorrect password.')
+                return redirect('ComfirmPassCamp')
+    else:
+        form=ChangePasswordForm()
+
+    return render(request,'common/change_password.html',{'form':form})

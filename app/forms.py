@@ -136,3 +136,8 @@ class VehicleStatusForm(forms.ModelForm):
         model=Vehicle
         fields=['status']
 
+
+class ChangePasswordForm(forms.Form):                   #      form for changing passwo
+    current_pass=forms.CharField(max_length=30)
+    new_pass=forms.CharField(widget=forms.PasswordInput)
+    confirm_pass=forms.CharField(widget=forms.PasswordInput)

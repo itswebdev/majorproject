@@ -40,7 +40,7 @@
         grid-column: span 2;
       }
       button {
-        margin-right: 0;
+        margin-right:40px 0;
         background-color: var(--accent-color);
         color: white;
       }
@@ -53,9 +53,12 @@
       <div class="form-container">
         <div>{{ form.as_p }}</div>
         <div>{{ login.as_p }}</div>
-        <button type="submit">Save</button>
+        <button type="submit">Save</button><br>
       </div>
     </form><br>
+    <!-- <div style="text-align: center;margin-top: -46px;">
+      <a href=""  title="Update password"><i class="bi bi-pencil-square"></i> Change password</a>
+    </div><br> -->
     {% if messages %}
     <ul>
       {% for message in messages %}
