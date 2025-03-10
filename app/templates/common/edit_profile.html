@@ -20,10 +20,15 @@
         margin: 0;
       }
       .header {
+            position: fixed;
+            width: 100%;
             text-align: center;
             background-color: #15649c;
             padding: 1px 0;
         }
+      .main{
+        padding-top: 132px;
+      }
       h1 {
         text-align: center;
         color: white;
@@ -48,6 +53,7 @@
     <header class="header">
       <h1>Profile Updation</h1>
     </header><br>
+    <main class="main">
     <form method="post">
       {% csrf_token %}
       <div class="form-container">
@@ -56,6 +62,7 @@
         <button type="submit">Save</button><br>
       </div>
     </form><br>
+  </main>
     <!-- <div style="text-align: center;margin-top: -46px;">
       <a href=""  title="Update password"><i class="bi bi-pencil-square"></i> Change password</a>
     </div><br> -->
