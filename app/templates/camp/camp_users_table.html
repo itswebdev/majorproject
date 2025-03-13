@@ -10,14 +10,16 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
 
     <title>Camp user</title>
   </head>
+
   <body>
     <h1>Camp Users</h1>
-    <table class="table table-striped" border="1">
+    <table id="myTable"  class="table table-hover table-bordered " >
       <tr>
         <th>Photo</th>
         <th>Full Name</th>
@@ -36,8 +38,8 @@
       <tr>
         {% comment %} new {% endcomment %}
         <td>
-          <img  style="width: 150px;height: 150px;"  src="{{user.photo.url}}"  />
-          <!-- For showing images-->>
+          <img  style="width: 110px;height: 110px;"  src="{{user.photo.url}}"  />
+          <!-- For showing images-->
         </td>
         <td>{{user.full_name}}</td>
         <td>{{user.address}}</td>
