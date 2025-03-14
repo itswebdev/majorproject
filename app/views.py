@@ -1019,7 +1019,7 @@ def ComfirmPassCamp(request):            #     password updation for camp
     else:
         form=ChangePasswordForm()
 
-    return render(request,'common/change_password.html',{'form':form})
+    return render(request,'camp/change_password.html',{'form':form})
 
 
 def ComfirmPassPublic(request):            #     password updation for public
@@ -1047,7 +1047,7 @@ def ComfirmPassPublic(request):            #     password updation for public
     else:
         form=ChangePasswordForm()
 
-    return render(request,'common/change_password.html',{'form':form})
+    return render(request,'public/change_password.html',{'form':form})
 
 
 def ComfirmPassVolunteer(request):            #     password updation for volunteer
@@ -1075,7 +1075,7 @@ def ComfirmPassVolunteer(request):            #     password updation for volunt
     else:
         form=ChangePasswordForm()
 
-    return render(request,'common/change_password.html',{'form':form})
+    return render(request,'volunteer/change_password.html',{'form':form})
 
 def ComfirmPassStation(request):            #     password updation for station
     session_id=request.session['station_id']
@@ -1102,4 +1102,7 @@ def ComfirmPassStation(request):            #     password updation for station
     else:
         form=ChangePasswordForm()
 
-    return render(request,'common/change_password.html',{'form':form})
+    return render(request,'police/change_password.html',{'form':form})
+
+
+    
