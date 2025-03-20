@@ -805,7 +805,7 @@ def StationSearch(request):
             Q(address_line_2__icontains=query) |
             Q(city__icontains=query)  
         )
-        return render(request, 'public/station_search.html', {'stations': stations})
+        return render(request, 'public/station_search.html', {'stations': stations}) 
     else:
         return render(request, 'public/station_search.html')
     
@@ -822,12 +822,12 @@ def AddMissingStatus(request,id):
         form=MissingPersonStatusForm()
     return render(request,'police/missing_case_status.html',{'form':form ,'id':id})
 
-def EditMissingStatus(request,id):
+def EditMissingStatus(request,id): 
     id=get_object_or_404(MissingPerson,id=id)
     if request.method == "POST":
        form=MissingPersonStatusForm(request.POST,instance=id)
        if  form.is_valid():
-           a=form.cleaned_data['status']
+           a=form.cleaned_data['status']       # can only used after form validation.
            id.status=a
            id.save()
            return redirect('ViewMissingReports')

@@ -116,7 +116,7 @@ class FundAllocationModel(models.Model):
     volunteer_id=models.ForeignKey(Volunteer,on_delete=models.CASCADE,null=True,blank=True)
     camp_id=models.ForeignKey(Camp,on_delete=models.CASCADE,null=True,blank=True)
 
-
+ 
 class MissingPerson(models.Model):
     photo=models.ImageField(upload_to='person')
     name=models.CharField(max_length=30)
